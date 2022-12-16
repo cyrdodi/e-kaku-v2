@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,9 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-  return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+  return view('home');
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +32,10 @@ Route::middleware('auth')->group(function () {
   Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
   Route::get('/biodata/create', [BiodataController::class, 'create'])->name('biodata.create');
   Route::post('/biodata/create', [BiodataController::class, 'store']);
+
+  Route::middleware(['admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  });
 });
 
 require __DIR__ . '/auth.php';
