@@ -3,7 +3,8 @@
   <label class="label">
     <span class="label-text">{{ $label }}</span>
   </label>
-  <input class="w-full input input-bordered " {{ $slot }} placeholder="{{ $placeholder }}" {{ $attributes }} />
+  <input class="w-full input input-bordered " name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $attributes }}
+    value="{{ old($name) }}" />
   @if($altLabel)
   <label class="label">
     <span class="label-text-alt">{{ $altLabel }}</span>

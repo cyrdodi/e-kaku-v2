@@ -15,11 +15,12 @@ return new class extends Migration
   {
     Schema::create('biodata', function (Blueprint $table) {
       $table->id();
+      $table->integer('no_pendaftaran');
       $table->string('nik');
       $table->string('name');
       $table->string('tempat_lahir');
       $table->date('tanggal_lahir');
-      $table->enum('jenis_kelamin', ['pria', 'wanita']);
+      $table->enum('jenis_kelamin', ['l', 'p']);
       $table->string('provinsi')->default('BANTEN');
       $table->string('kabupaten')->default('PANDEGLANG');
       $table->foreignId('kecamatan_id')->constrained('kecamatan');

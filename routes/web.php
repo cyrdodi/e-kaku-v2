@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
   Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
   Route::get('/biodata/create', [BiodataController::class, 'create'])->name('biodata.create');
+  Route::post('/biodata/create', [BiodataController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';
