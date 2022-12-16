@@ -51,10 +51,10 @@ class BiodataController extends Controller
       'pendidikan_terakhir_id' => 'required',
       'tahun_lulus' => 'required|numeric',
       'jurusan' => 'required',
-      'pas_foto' => ['required', File::image()->max(2000)],
-      'ktp' => ['required', File::image()->max(2000)],
-      'ijazah' => ['required', File::types(['pdf'])->max(2000)],
-      'sertifikat' => [File::types(['pdf'])->max(2000)]
+      'pas_foto' => ['required', 'max:2048', 'image'],
+      'ktp' => ['required', 'max:2048', File::image()->max(2000)],
+      'ijazah' => ['required', 'max:2048', File::types(['pdf'])->max(2000)],
+      'sertifikat' => ['max:2048', File::types(['pdf'])->max(2000)]
     ]);
 
 
@@ -68,8 +68,15 @@ class BiodataController extends Controller
       $ktpPath = $request->ktp->store('berkas');
       $ijazahTitle = $request->ijazah->getClientOriginalName();
       $ijazahPath = $request->ijazah->store('berkas');
-      $sertifikatTitle = $request->sertifikat->getClientOriginalName();
-      $sertifikatPath = $request->sertifikat->store('berkas');
+
+      $sertifikatTitle = null;
+      $sertifikatPath = null;
+
+      if ($request->hasFile('sertifikat')) {
+        $sertifikatTitle = $request->sertifikat->getClientOriginalName();
+        $sertifikatPath = $request->sertifikat->store('berkas');
+      }
+
 
       Biodata::create([
         'no_pendaftaran' => rand(0, 10000), // TODO: buat method generate no pendaftaran

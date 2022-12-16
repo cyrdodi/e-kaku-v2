@@ -3,7 +3,7 @@
   <label class="label">
     <span class="label-text">{{ $label }}</span>
   </label>
-  <textarea class="h-24 textarea textarea-bordered" name="{{ $name }}"
+  <textarea class="h-24 textarea textarea-bordered @error($name) textarea-error @enderror" name="{{ $name }}"
     placeholder="{{ $placeholder }}">{{ old($name) }}</textarea>
   @if($altLabel)
   <label class="label">

@@ -7,9 +7,6 @@
 
   <div class="container py-12 mx-auto">
     <div>
-      @foreach($errors->all() as $message)
-      <p>{{ $message }}</p>
-      @endforeach
       <div class="flex justify-center ">
         <div class="w-full mt-6 bg-white max-w-7xl card">
           <div class="card-body">
@@ -177,16 +174,17 @@
                       <h3 class="mb-4 text-lg font-semibold ">Berkas</h3>
 
                       {{-- pas foto --}}
-                      <x-form.input type="file" label="Pas Foto" name="pas_foto" altLabel="File: jgp, png. Max 2 MB" />
+                      <x-form.input type="file" label="Pas Foto" name="pas_foto"
+                        altLabel="Format: jgp, png. Max 2 MB" />
 
                       {{-- Foto ktp --}}
-                      <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="File: jpg, png. Max 2 MB" />
+                      <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="Format: jpg, png. Max 2 MB" />
 
                       {{-- foto ijazah --}}
-                      <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="File: pdf. Max 2 MB" />
+                      <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB" />
 
                       {{-- sertifikat --}}
-                      <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="File: pdf. Max 2 MB" />
+                      <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="Format: pdf. Max 2 MB" />
 
                     </div>
                   </div> {{-- end berkas --}}
