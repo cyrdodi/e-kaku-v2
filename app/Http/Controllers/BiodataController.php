@@ -8,6 +8,7 @@ use App\Models\Kecamatan;
 use App\Models\PendidikanTerakhir;
 use App\Models\StatusPerkawinan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class BiodataController extends Controller
 {
@@ -29,7 +30,8 @@ class BiodataController extends Controller
 
   public function store(Request $request)
   {
-    $attributes = $request->validate([
+
+    $request->validate([
       'nik' => 'required|numeric',
       'name' => 'required',
       'tempat_lahir' => 'required',
@@ -38,7 +40,8 @@ class BiodataController extends Controller
       'kecamatan_id' => 'required',
       'kelurahan' => 'required',
       'kode_pos' => 'required|numeric',
-      'alamat_lengkap' => 'required',
+      'alamat' => 'required',
+      'rtrw' => 'required',
       'no_hp' => 'required|numeric',
       'agama_id' => 'required',
       'status_perkawinan_id' => 'required',
@@ -48,27 +51,66 @@ class BiodataController extends Controller
       'pendidikan_terakhir_id' => 'required',
       'tahun_lulus' => 'required|numeric',
       'jurusan' => 'required',
+      'pas_foto' => ['required', File::image()->max(2000)],
+      'ktp' => ['required', File::image()->max(2000)],
+      'ijazah' => ['required', File::types(['pdf'])->max(2000)],
+      'sertifikat' => [File::types(['pdf'])->max(2000)]
     ]);
 
-    $attributes['keterampilan'] = $request->keterampilan;
-    $attributes['pengalaman'] = $request->pengalaman;
-
-    $attributes['no_pendaftaran'] = rand(0, 9000);
-    $attributes['email'] = auth()->user()->email;
-    $attributes['user_id'] = auth()->user()->id;
-
-    $attributes['pas_foto'] = 'test';
-    $attributes['ktp'] = 'test';
-    $attributes['ijazah'] = 'test';
-    $attributes['sertifikat'] = 'test';
 
     try {
-      Biodata::create($attributes);
+
+
+      // file processing
+      $pasFotoTitle = $request->pas_foto->getClientOriginalName();
+      $pasFotoPath = $request->pas_foto->store('berkas');
+      $ktpTitle = $request->ktp->getClientOriginalName();
+      $ktpPath = $request->ktp->store('berkas');
+      $ijazahTitle = $request->ijazah->getClientOriginalName();
+      $ijazahPath = $request->ijazah->store('berkas');
+      $sertifikatTitle = $request->sertifikat->getClientOriginalName();
+      $sertifikatPath = $request->sertifikat->store('berkas');
+
+      Biodata::create([
+        'no_pendaftaran' => rand(0, 10000), // TODO: buat method generate no pendaftaran
+        'nik' => $request->nik,
+        'name' => $request->name,
+        'tempat_lahir' => $request->tempat_lahir,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'kecamatan_id' => $request->kecamatan_id,
+        'kelurahan' => $request->kelurahan,
+        'kode_pos' => $request->kode_pos,
+        'alamat' => $request->alamat,
+        'rtrw' => $request->rtrw,
+        'no_hp' => $request->no_hp,
+        'email' => auth()->user()->email,
+        'agama_id' => $request->agama_id,
+        'status_perkawinan_id' => $request->status_perkawinan_id,
+        'tinggi_badan' => $request->tinggi_badan,
+        'berat_badan' => $request->berat_badan,
+        'disabilitas' => $request->disabilitas,
+        'pendidikan_terakhir_id' => $request->pendidikan_terakhir_id,
+        'tahun_lulus' => $request->tahun_lulus,
+        'jurusan' => $request->jurusan,
+        'keterampilan' => $request->keterampilan,
+        'pengalaman' => $request->pengalaman,
+        'tujuan_lamaran' => $request->tujuan_lamaran,
+        'pas_foto' => $pasFotoTitle,
+        'pas_foto_path' => $pasFotoPath,
+        'ktp' => $ktpTitle,
+        'ktp_path' => $ktpPath,
+        'ijazah' => $ijazahTitle,
+        'ijazah_path' => $ijazahPath,
+        'sertifikat' => $sertifikatTitle,
+        'sertifikat_path' => $sertifikatPath,
+        'user_id' => auth()->user()->id
+      ]);
       toastr()->success('Bioadata berhasil dibuat');
       return redirect()->route('biodata.index');
-    } catch (\Error $e) {
+    } catch (\Exception $e) {
       toastr()->error($e->getMessage());
-      return back();
+      return redirect()->back()->withInput();
     }
   }
 }

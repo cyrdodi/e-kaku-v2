@@ -36,29 +36,26 @@
                     <div class="flex gap-2">
                       {{-- tanggal lahir --}}
                       <x-form.input label="Tanggal Lahir" name="tanggal_lahir" type="date" placeholder="" />
-
-                      {{-- jenis kelamin --}}
-                      <div class="w-full mb-4 form-control">
-                        <label class="label">
-                          <span class="label-text">Jenis Kelamin</span>
-                        </label>
-                        <select class="select select-bordered" name="jenis_kelamin">
-                          <option disabled selected>Pilih Jenis Kelamin</option>
-                          <option value="l">Laki-laki</option>
-                          <option value="p">Perempuan</option>
-                        </select>
-                        @error('jenis_kelamin')
-                        <small class="mt-4 text-red-500">{{ $message }}</small>
-                        @enderror
-                      </div>
+                      <x-form.select label="Jenis Kelamin" name="jenis_kelamin">
+                        <option value="l" {{ old('jenis_kelamin')=='l' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="p" {{ old('jenis_kelamin')=='p' ? 'selected' : '' }}>Perempuan</option>
+                      </x-form.select>
                     </div>
 
-                    {{-- provinsi --}}
-                    <div class="w-full mb-4 form-control">
-                      <label class="label">
-                        <span class="label-text">Provinsi</span>
-                      </label>
-                      <div class="p-3 border rounded-lg">Banten</div>
+                    {{-- alamat --}}
+                    <x-form.textarea label="Alamat" name="alamat" />
+
+                    <div class="grid grid-cols-2 gap-2">
+
+                      {{-- rtrw --}}
+                      <x-form.input label="RT/RW" name="rtrw" />
+                      {{-- provinsi --}}
+                      <div class="w-full mb-4 form-control">
+                        <label class="label">
+                          <span class="label-text">Provinsi</span>
+                        </label>
+                        <div class="p-3 border rounded-lg">Banten</div>
+                      </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
@@ -72,19 +69,13 @@
 
 
                       {{-- kecamatan --}}
-                      <div class="w-full mb-4 form-control">
-                        <label class="label">
-                          <span class="label-text">Kecamatan</span>
-                        </label>
-                        <select class="select select-bordered" name="kecamatan_id">
-                          @foreach($kecamatan as $row)
-                          <option value="{{ $row->id }}">{{ $row->name }}</option>
-                          @endforeach
-                        </select>
-                        @error('kecamatan_id')
-                        <small class="mt-4 text-red-500">{{ $message }}</small>
-                        @enderror
-                      </div>
+                      <x-form.select label="Kecamatan" name="kecamatan_id">
+                        @foreach($kecamatan as $row)
+                        <option value="{{ $row->id }}" {{ old('kecamatan_id')==$row->id ? 'selected' : '' }}>{{
+                          $row->name
+                          }}</option>
+                        @endforeach
+                      </x-form.select>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
@@ -95,8 +86,6 @@
                       <x-form.input label="Kode Pos" name="kode_pos" type="number" />
                     </div>
 
-                    {{-- alamat lengkap --}}
-                    <x-form.textarea label="Alamat Lengkap" name="alamat_lengkap" />
                   </div>
                   {{-- end informasi pribadi --}}
 
@@ -109,34 +98,20 @@
                     <x-form.input label="No HP" name="no_hp" type="number" />
 
                     {{-- agama --}}
-                    <div class="w-full mb-4 form-control">
-                      <label class="label">
-                        <span class="label-text">Agama</span>
-                      </label>
-                      <select class="select select-bordered" name="agama_id">
-                        @foreach($agama as $row)
-                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                        @endforeach
-                      </select>
-                      @error('agama_id')
-                      <small class="mt-4 text-red-500">{{ $message }}</small>
-                      @enderror
-                    </div>
+                    <x-form.select label="Agama" name="agama_id">
+                      @foreach($agama as $row)
+                      <option value="{{ $row->id }}" {{ old('agama_id')==$row->id ? 'selected' : '' }}>{{ $row->name }}
+                      </option>
+                      @endforeach
+                    </x-form.select>
 
                     {{-- status perkawinan --}}
-                    <div class="w-full mb-4 form-control">
-                      <label class="label">
-                        <span class="label-text">Status Perkawinan</span>
-                      </label>
-                      <select class="select select-bordered" name="status_perkawinan_id">
-                        @foreach($statusPerkawinan as $row)
-                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                        @endforeach
-                      </select>
-                      @error('status_perkawinan_id')
-                      <small class="mt-4 text-red-500">{{ $message }}</small>
-                      @enderror
-                    </div>
+                    <x-form.select label="Status Perkawinan" name="status_perkawinan_id">
+                      @foreach($statusPerkawinan as $row)
+                      <option value="{{ $row->id }}" {{ old('status_perkawinan_id')==$row->id ? 'selected' : '' }}>{{
+                        $row->name }}</option>
+                      @endforeach
+                    </x-form.select>
 
                     <div class="grid grid-cols-2 gap-2">
                       {{-- Tinggi badan --}}
@@ -146,18 +121,11 @@
                     </div>
 
                     {{-- penyandang disabilitas --}}
-                    <div class="w-full mb-4 form-control">
-                      <label class="label">
-                        <span class="label-text">Penyandang Disabilitas</span>
-                      </label>
-                      <select class="select select-bordered" name="disabilitas">
-                        <option value="0">Tidak</option>
-                        <option value="1">Ya</option>
-                      </select>
-                      @error('disabilitas')
-                      <small class="mt-4 text-red-500">{{ $message }}</small>
-                      @enderror
-                    </div>
+                    <x-form.select name="disabilitas" label="Penyandang Disabilitas">
+                      <option value="0" {{ old('disabilitas')=='0' ? 'selected' : "" }}>Tidak</option>
+                      <option value="1" {{ old('disabilitas')=='1' ? 'selected' : "" }}>Ya</option>
+                    </x-form.select>
+
                   </div> {{-- end informasi tambahan --}}
                 </div> {{-- end left --}}
 
@@ -197,6 +165,9 @@
                     {{-- pengalaman kerja --}}
                     <x-form.textarea label="pengalaman" name="pengalaman" />
 
+                    {{-- tempat/tujuan melamar --}}
+                    <x-form.input label="Tempat/Tujuan Melamar" name="tujuan_lamaran" />
+
                   </div>
                   {{-- end pendidikan dan pengalaman --}}
 
@@ -206,16 +177,16 @@
                       <h3 class="mb-4 text-lg font-semibold ">Berkas</h3>
 
                       {{-- pas foto --}}
-                      <x-form.input type="file" label="Pas Foto" name="pasFoto" altLabel="Max 2 MB" />
+                      <x-form.input type="file" label="Pas Foto" name="pas_foto" altLabel="File: jgp, png. Max 2 MB" />
 
                       {{-- Foto ktp --}}
-                      <x-form.input type="file" label="Foto KTP" name="fotoKtp" altLabel="Max 2 MB" />
+                      <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="File: jpg, png. Max 2 MB" />
 
                       {{-- foto ijazah --}}
-                      <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Max 2 MB" />
+                      <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="File: pdf. Max 2 MB" />
 
                       {{-- sertifikat --}}
-                      <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="Max 2 MB" />
+                      <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="File: pdf. Max 2 MB" />
 
                     </div>
                   </div> {{-- end berkas --}}
@@ -224,7 +195,9 @@
 
 
               </div>
-              <button type="submit" class="btn btn-primary">Simpan</button>
+              <div class="flex justify-end mt-4">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+              </div>
             </form>
 
 

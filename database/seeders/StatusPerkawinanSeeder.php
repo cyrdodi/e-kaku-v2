@@ -15,10 +15,9 @@ class StatusPerkawinanSeeder extends Seeder
    */
   public function run()
   {
-    StatusPerkawinan::create(['name' => 'Belum Menikah']);
-    StatusPerkawinan::create(['name' => 'Sudah Menikah']);
+    StatusPerkawinan::create(['name' => 'Belum Kawin']);
+    StatusPerkawinan::create(['name' => 'Sudah Kawin']);
     StatusPerkawinan::create(['name' => 'Janda']);
     StatusPerkawinan::create(['name' => 'Duda']);
-    StatusPerkawinan::create(['name' => 'Tidak Menikah']);
   }
 }

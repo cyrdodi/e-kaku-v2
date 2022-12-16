@@ -26,7 +26,8 @@ return new class extends Migration
       $table->foreignId('kecamatan_id')->constrained('kecamatan');
       $table->string('kelurahan');
       $table->string('kode_pos');
-      $table->text('alamat_lengkap');
+      $table->text('alamat');
+      $table->string('rtrw');
       $table->string('no_hp');
       $table->string('email');
       $table->foreignId('agama_id')->constrained('agama');
@@ -39,10 +40,15 @@ return new class extends Migration
       $table->string('jurusan');
       $table->text('keterampilan')->nullable();
       $table->text('pengalaman')->nullable();
+      $table->string('tujuan_lamaran')->nullable();
       $table->string('pas_foto');
+      $table->string('pas_foto_path');
       $table->string('ktp');
+      $table->string('ktp_path');
       $table->string('ijazah');
+      $table->string('ijazah_path');
       $table->string('sertifikat')->nullable();
+      $table->string('sertifikat_path')->nullable();
       $table->foreignId('user_id')->constrained('users');
       $table->timestamps();
     });
