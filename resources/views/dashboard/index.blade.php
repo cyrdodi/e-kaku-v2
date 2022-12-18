@@ -15,10 +15,9 @@
           <div class="stat-desc">Tahun 2022</div>
         </div>
       </div> {{-- end stats --}}
-      <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-        <div class="p-6 text-gray-900">
-        </div>
-      </div>
+      @livewire('dashboard.list-kartu-pencari-kerja')
+
+      <a href="{{ route('dashboard.print') }}" class="btn">Print</a>
     </div>
   </div>
 </x-app-layout>

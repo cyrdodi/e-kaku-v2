@@ -34,7 +34,9 @@ Route::middleware('auth')->group(function () {
   Route::post('/biodata/create', [BiodataController::class, 'store']);
 
   Route::middleware(['admin'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard/print', [DashboardController::class, 'print'])->name('dashboard.print');
+    Route::get('/dashboard/print-view', [DashboardController::class, 'printView'])->name('dashboard.printView');
   });
 });
 

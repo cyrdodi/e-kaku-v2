@@ -15,9 +15,16 @@
           <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
             {{ __('home') }}
           </x-nav-link>
+          @if(Auth::check())
           <x-nav-link :href="route('biodata.index')" :active="request()->routeIs('biodata.index')">
             {{ __('Biodata') }}
           </x-nav-link>
+          @isadmin
+          <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
+            {{ __('Dashboard') }}
+          </x-nav-link>
+          @endisadmin
+          @endif
         </div>
       </div>
 
