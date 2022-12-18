@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Biodata;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AgamaSeeder;
 use Database\Seeders\KecamatanSeeder;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    // \App\Models\User::factory(10)->create();
+    \App\Models\User::factory(10)->create();
 
     \App\Models\User::factory()->create([
       'name' => 'Administrator',
@@ -34,5 +35,8 @@ class DatabaseSeeder extends Seeder
       PendidikanTerakhirSeeder::class,
       StatusPerkawinanSeeder::class
     ]);
+
+
+    Biodata::factory(50)->create();
   }
 }

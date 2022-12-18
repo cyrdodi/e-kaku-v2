@@ -3,6 +3,10 @@
     <div class="p-6 text-gray-900"> --}}
       {{-- search menu here --}}
 
+      {{-- search --}}
+      <div class="mb-4">
+        <input type="text" placeholder="Pencari" class="w-full max-w-xs input input-bordered" wire:model="search" />
+      </div>
 
       {{-- table --}}
       <div class="overflow-hidden bg-white rounded-lg shadow">
@@ -43,6 +47,9 @@
         </table>
       </div> {{-- end table --}}
 
+      <div class="mt-4">
+        {{ $biodata->links() }}
+      </div>
       {{--
     </div>
   </div> --}}
