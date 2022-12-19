@@ -36,6 +36,7 @@ return new class extends Migration
       $table->integer('berat_badan');
       $table->boolean('disabilitas');
       $table->foreignId('pendidikan_terakhir_id')->constrained('pendidikan_terakhir');
+      $table->string('institusi_pendidikan');
       $table->integer('tahun_lulus');
       $table->string('jurusan');
       $table->text('keterampilan')->nullable();

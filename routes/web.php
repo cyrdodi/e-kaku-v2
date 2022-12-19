@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard/print', [DashboardController::class, 'print'])->name('dashboard.print');
     Route::get('/dashboard/print-view', [DashboardController::class, 'printView'])->name('dashboard.printView');
+    Route::get('/dashboard/show/{biodata}', [DashboardController::class, 'show'])->name('dashboardShow');
   });
 });
 

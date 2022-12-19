@@ -39,7 +39,8 @@
                 {{ $row->pendidikanTerakhir->name . ' ('. $row->tahun_lulus . ')' }}
               </td>
               <td class="p-2 text-center">
-                <a class="btn btn-sm btn-primary" href="{{ route('dashboard.printView') }}">Cetak</a>
+                <a class="btn btn-sm btn-primary"
+                  href="{{ route('dashboardShow', ['biodata' => $row->id]) }}">Detail</a>
               </td>
             </tr>
             @endforeach

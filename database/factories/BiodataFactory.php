@@ -39,6 +39,7 @@ class BiodataFactory extends Factory
       'berat_badan' => rand(1, 200),
       'disabilitas' => rand(0, 1),
       'pendidikan_terakhir_id' => rand(1, 10),
+      'institusi_pendidikan' => fake()->sentence(),
       'tahun_lulus' => fake()->year(),
       'jurusan' => fake()->sentence(),
       'keterampilan' => fake()->sentence(),

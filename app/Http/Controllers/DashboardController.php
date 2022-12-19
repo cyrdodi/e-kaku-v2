@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biodata;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -36,4 +37,12 @@ class DashboardController extends Controller
   }
 
   // public function createPDF()
+
+
+  public function show(Biodata $biodata)
+  {
+
+    // dd($biodata);
+    return view('dashboard.show', compact('biodata'));
+  }
 }
