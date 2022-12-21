@@ -31,9 +31,9 @@ class DashboardController extends Controller
     return $pdf->download('pdf_file.pdf');
   }
 
-  public function printView()
+  public function printView(Biodata $biodata)
   {
-    return view('pdf/kaku');
+    return view('pdf/kaku', compact('biodata'));
   }
 
   // public function createPDF()

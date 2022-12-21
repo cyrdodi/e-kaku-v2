@@ -9,8 +9,8 @@
       </div>
 
       {{-- table --}}
-      <div class="overflow-hidden bg-white rounded-lg shadow">
-        <table class="w-full text-sm">
+      <div class="overflow-x-auto bg-white rounded-lg shadow ">
+        <table class="w-full overflow-x-auto text-sm">
           <thead class="border-b">
             <tr>
               <th class="p-2">#</th>
@@ -25,7 +25,7 @@
           <tbody>
             @foreach($biodata as $row)
             <tr>
-              <td class="p-2 text-center">1</td>
+              <td class="p-2 text-center">{{ $biodata->firstItem() + $loop->index }}</td>
               <td class="p-2 ">{{ $row->no_pendaftaran }}</td>
               <td class="p-2">
                 <div>{{ $row->name }}</div>

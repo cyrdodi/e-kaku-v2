@@ -16,9 +16,10 @@
       {{-- data diri --}}
       <div class="bg-white shadow-sm card">
         <div class="relative card-body">
-          <div class="flex gap-4">
+          <div class="flex gap-6">
 
-            <img src="{{ asset('images/logo-pandeglang.png') }}" class="w-32" alt="">
+            <img src="{{ asset('storage/' .  $biodata->pas_foto_path) }}"
+              class="object-cover w-40 h-48 bg-gray-100 border rounded-lg" alt="Pas Foto">
 
             <section class="">
               <div class="mb-2 text-lg font-semibold">{{ $biodata->name }}</div>
@@ -26,13 +27,16 @@
                 <x-icons.identification class="w-6 h-6 mr-2" />
                 <span class="font-medium">{{ $biodata->nik }}</span>
               </div>
+              <div class="text-lg font-semibold text-gray-600 md:absolute md:right-5 md:top-5">#{{
+                $biodata->no_pendaftaran }}
+              </div>
               <div class="flex mb-2">
                 <x-icons.at-symbol class="w-6 h-6 mr-2" />
                 <span>{{ $biodata->email }}</span>
               </div>
               <div class="flex mb-2">
                 <x-icons.cake class="w-6 h-6 mr-2" />
-                {{ $biodata->tempat_lahir .'/'. $biodata->tanggal_lahir }}
+                {{ $biodata->tempat_lahir .'/'. date('d-m-Y', strtotime($biodata->tanggal_lahir)) }}
               </div>
               <div class="flex mb-2">
                 @if($biodata->jenis_kelamin == 'l')
@@ -43,19 +47,24 @@
                 Perempuan
                 @endif
               </div>
-              <div class="flex mb-2">
+              <div class="flex w-2/3 mb-2">
                 <x-icons.map-pin class="w-6 h-6 mr-2" />
-                {{ $biodata->alamat }}
-              </div>
-              <div class="absolute text-lg font-semibold text-gray-600 right-5 top-5">#{{ $biodata->no_pendaftaran }}
+                {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
+                $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
+                $biodata->kode_pos}}
               </div>
             </section>
+          </div>
+          <div class="flex ">
+            <a href="{{ route('dashboardPrintView', ['biodata' => $biodata->id ]) }}"
+              class="btn btn-primary md:absolute md:bottom-5 md:right-5">Cetak
+              Kartu</a>
           </div>
         </div>
       </div> {{-- end data diri --}}
 
       {{-- --}}
-      <section class="grid grid-cols-2 gap-4">
+      <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
 
         {{-- data pelengkap --}}
         <div class="mt-4 bg-white shadow-sm card">
@@ -134,17 +143,22 @@
           <table>
             <tr>
               <th class="w-40 text-left">KTP</th>
-              <td><a href="">{{ $biodata->ktp }}</a></td>
+              <td><a href="{{ asset('storage/' . $biodata->ktp_path) }}" target="_blank" class="underline">{{
+                  $biodata->ktp }}</a></td>
             </tr>
             <tr>
               <th class="w-40 text-left">Ijazah</th>
-              <td><a href="">{{ $biodata->ijazah }}</a></td>
+              <td><a href="{{ asset('storage/' . $biodata->ijazah_path) }}" target="_blank" class="underline">{{
+                  $biodata->ijazah }}</a>
+              </td>
             </tr>
             <tr>
               <th class="w-40 text-left">Sertifikat</th>
               <td>
                 @if($biodata->ijazah !== '')
-                <a href="">{{ $biodata->sertifikat }}</a>
+                <a href="{{ asset('storage/' . $biodata->sertifikat_path) }}" target="_blank" class="underline">{{
+                  $biodata->sertifikat
+                  }}</a>
                 @endif
               </td>
             </tr>

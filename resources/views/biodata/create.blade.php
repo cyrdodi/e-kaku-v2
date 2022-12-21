@@ -153,6 +153,9 @@
                       <x-form.input type="number" label="Tahun Lulus" name="tahun_lulus" />
                     </div>
 
+                    {{-- institusi penididikan --}}
+                    <x-form.input name="institusi_pendidikan" label="Nama Institusi Pendidikan" />
+
                     {{-- jurusan --}}
                     <x-form.input label="Jurusan" name="jurusan" />
 

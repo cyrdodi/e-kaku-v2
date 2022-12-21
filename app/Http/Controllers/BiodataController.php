@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Agama;
 use App\Models\Biodata;
 use App\Models\Kecamatan;
-use App\Models\PendidikanTerakhir;
-use App\Models\StatusPerkawinan;
 use Illuminate\Http\Request;
+use App\Models\StatusPerkawinan;
+use App\Models\PendidikanTerakhir;
 use Illuminate\Validation\Rules\File;
 
 class BiodataController extends Controller
 {
   public function index()
   {
-    return view('biodata/index');
+    $biodata = Biodata::where('user_id', auth()->user()->id)->first();
+
+    return view('biodata/index', compact('biodata'));
   }
 
   public function create()
@@ -50,6 +52,7 @@ class BiodataController extends Controller
       'disabilitas' => 'required',
       'pendidikan_terakhir_id' => 'required',
       'tahun_lulus' => 'required|numeric',
+      'institusi_pendidikan' => 'required',
       'jurusan' => 'required',
       'pas_foto' => ['required', 'max:2048', 'image'],
       'ktp' => ['required', 'max:2048', File::image()->max(2000)],
@@ -79,7 +82,7 @@ class BiodataController extends Controller
 
 
       Biodata::create([
-        'no_pendaftaran' => rand(0, 10000), // TODO: buat method generate no pendaftaran
+        'no_pendaftaran' => $this->generateNoPendaftaran($request->nik), // TODO: buat method generate no pendaftaran
         'nik' => $request->nik,
         'name' => $request->name,
         'tempat_lahir' => $request->tempat_lahir,
@@ -99,6 +102,7 @@ class BiodataController extends Controller
         'disabilitas' => $request->disabilitas,
         'pendidikan_terakhir_id' => $request->pendidikan_terakhir_id,
         'tahun_lulus' => $request->tahun_lulus,
+        'institusi_pendidikan' => $request->institusi_pendidikan,
         'jurusan' => $request->jurusan,
         'keterampilan' => $request->keterampilan,
         'pengalaman' => $request->pengalaman,
@@ -119,5 +123,21 @@ class BiodataController extends Controller
       toastr()->error($e->getMessage());
       return redirect()->back()->withInput();
     }
+  }
+
+  public function generateNoPendaftaran($nik)
+  {
+
+    $prefix = substr($nik, 0, 4);
+    $suffix = date('dmY');
+
+    // cek apakah ada data pada bulan ini
+    $noUrut = Biodata::whereYear('created_at', date('Y'))
+      ->whereMonth('created_at', date('m'))
+      ->count();
+
+    $noUrut = sprintf('%05d', $noUrut + 1);
+
+    return $prefix . $noUrut . $suffix;
   }
 }
