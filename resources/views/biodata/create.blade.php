@@ -40,7 +40,7 @@
                     </div>
 
                     {{-- alamat --}}
-                    <x-form.textarea label="Alamat" name="alamat" />
+                    <x-form.textarea label="Alamat" name="alamat">{{ old('alamat') }}</x-form.textarea>
 
                     <div class="grid grid-cols-2 gap-2">
 
@@ -141,7 +141,8 @@
                         </label>
                         <select class="select select-bordered" name="pendidikan_terakhir_id">
                           @foreach($pendidikan as $row)
-                          <option value="{{ $row->id }}">{{ $row->name }}</option>
+                          <option value="{{ $row->id }}" {{ old('pendidikan_terakhir_id'==$row->id ? 'selected' : '')
+                            }}>{{ $row->name }}</option>
                           @endforeach
                         </select>
                         @error('pendidikan_terakhir_id')
@@ -160,10 +161,11 @@
                     <x-form.input label="Jurusan" name="jurusan" />
 
                     {{-- keterampilan --}}
-                    <x-form.textarea label="keterampilan" name="keterampilan" />
+                    <x-form.textarea label="keterampilan" name="keterampilan">{{ old('keterampilan') }}
+                    </x-form.textarea>
 
                     {{-- pengalaman kerja --}}
-                    <x-form.textarea label="pengalaman" name="pengalaman" />
+                    <x-form.textarea label="pengalaman" name="pengalaman">{{ old('pengalaman') }}</x-form.textarea>
 
                     {{-- tempat/tujuan melamar --}}
                     <x-form.input label="Tempat/Tujuan Melamar" name="tujuan_lamaran" />

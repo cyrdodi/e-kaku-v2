@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
   Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
   Route::get('/biodata/create', [BiodataController::class, 'create'])->name('biodata.create');
   Route::post('/biodata/create', [BiodataController::class, 'store']);
+  Route::get('/biodata/edit/{biodata}', [BiodataController::class, 'edit'])->name('biodataEdit');
+
+  // delete berkas
+  Route::delete('/biodata/delete/berkas', [BiodataController::class, 'destroyBerkas'])->name('biodataDestroyBerkas');
 
   Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

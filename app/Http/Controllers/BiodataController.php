@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\StatusPerkawinan;
 use App\Models\PendidikanTerakhir;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
 
 class BiodataController extends Controller
 {
@@ -139,5 +140,32 @@ class BiodataController extends Controller
     $noUrut = sprintf('%05d', $noUrut + 1);
 
     return $prefix . $noUrut . $suffix;
+  }
+
+  public function edit($biodata)
+  {
+    return view('biodata/edit', compact('biodata'));
+  }
+
+  public function destroyBerkas(Request $request)
+  {
+    /**
+     * delete file
+     * empty path and name
+     */
+
+    $path = $request->colName . '_path';
+
+    $biodata = Biodata::where('id', $request->biodataId)->first();
+
+    // delete file
+    Storage::delete($request->filename);
+
+    // update value to empty
+    $biodata->$path = '';
+    $biodata->$request->colName = '';
+    $biodata->save();
+
+    return redirect()->back();
   }
 }

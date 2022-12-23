@@ -10,7 +10,7 @@
       <div class="overflow-hidden sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
-          @if($biodata->count() > 0)
+          @if($biodata)
           <div class="bg-white shadow-sm card">
             <div class="relative card-body">
               <div class="flex gap-6">
@@ -55,6 +55,11 @@
 
             </div>
           </div> {{-- end data diri --}}
+
+          {{-- button --}}
+          <div class="mt-4">
+            <a href="{{ route('biodataEdit', ['biodata' => $biodata->id]) }}" class="btn btn-primary ">Edit</a>
+          </div>
 
           {{-- --}}
           <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
