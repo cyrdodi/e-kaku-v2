@@ -13,7 +13,7 @@
         <!-- Navigation Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-            {{ __('home') }}
+            {{ __('Home') }}
           </x-nav-link>
           @if(Auth::check())
           <x-nav-link :href="route('biodata.index')" :active="request()->routeIs('biodata.index')">
@@ -85,6 +85,16 @@
       <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
         {{ __('Home') }}
       </x-responsive-nav-link>
+      @if(Auth::check())
+      <x-responsive-nav-link :href="route('biodata.index')" :active="request()->routeIs('biodata')">
+        {{ __('Biodata') }}
+      </x-responsive-nav-link>
+      @isadmin
+      <x-responsive-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard')">
+        {{ __('Dashboard') }}
+      </x-responsive-nav-link>
+      @endisadmin
+      @endif
     </div>
 
     <!-- Responsive Settings Options -->

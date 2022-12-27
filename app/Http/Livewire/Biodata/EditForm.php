@@ -93,14 +93,14 @@ class EditForm extends Component
     $this->keterampilan = $biodata->disabilitas;
     $this->pengalaman = $biodata->pengalaman;
     $this->tujuan_lamaran = $biodata->tujuan_lamaran;
-    $this->pas_foto = $biodata->pas_foto;
-    $this->pas_foto_path = $biodata->pas_foto_path;
-    $this->ktp = $biodata->ktp;
-    $this->ktp_path = $biodata->ktp_path;
-    $this->ijazah = $biodata->ijazah;
-    $this->ijazah_path = $biodata->ijazah_path;
-    $this->sertifikat = $biodata->sertifikat;
-    $this->sertifikat_path = $biodata->sertifikat_path;
+    // $this->pas_foto = $biodata->pas_foto;
+    // $this->pas_foto_path = $biodata->pas_foto_path;
+    // $this->ktp = $biodata->ktp;
+    // $this->ktp_path = $biodata->ktp_path;
+    // $this->ijazah = $biodata->ijazah;
+    // $this->ijazah_path = $biodata->ijazah_path;
+    // $this->sertifikat = $biodata->sertifikat;
+    // $this->sertifikat_path = $biodata->sertifikat_path;
   }
 
   public function render()
@@ -165,22 +165,6 @@ class EditForm extends Component
   public function updateBiodata()
   {
     $this->validate();
-
-
-    if ($this->pas_foto_path == '' && $this->ktp_path && $this->ijazah_path) {
-      $this->validate([
-        'pas_foto' => ['required', 'max:2048', 'image'],
-        'ktp' => ['required', 'max:2048', 'image'],
-        'ijazah' => ['required', 'max:2048', 'mime:pdf'],
-      ]);
-    }
-    if ($this->ktp_path == '') {
-      $this->validate([]);
-    }
-    if ($this->ijazah_path == '') {
-      $this->validate([]);
-    }
-
     /**
      * 1. validasi data
      * 2. jika tidak hapus berkas
@@ -190,5 +174,110 @@ class EditForm extends Component
      *    - store ke storage
      * 
      */
+
+    //  update pas foto
+    if ($this->pas_foto) {
+      $this->validate([
+        'pas_foto' => 'image|max:2048'
+      ]);
+
+      // delete old file
+      Storage::delete($this->biodata->pas_foto_path);
+
+      // store new file
+      $path = $this->pas_foto->store('berkas');
+
+      // update database
+      Biodata::find($this->biodata->id)
+        ->update([
+          'pas_foto' => $this->pas_foto->getClientOriginalName(),
+          'pas_foto_path' => $path
+        ]);
+    }
+
+    // update ktp
+    if ($this->ktp) {
+      $this->validate([
+        'ktp' => 'image|max:2048'
+      ]);
+
+      // delete old file
+      Storage::delete($this->biodata->ktp_path);
+
+      // store new file
+      $path = $this->ktp->store('berkas');
+
+      Biodata::find($this->biodata->id)
+        ->update([
+          'ktp' => $this->ktp->getClientOriginalName(),
+          'ktp_path' => $path
+        ]);
+    }
+
+    // update ijazah
+    if ($this->ijazah) {
+      $this->validate([
+        'ijazah' => 'mime:pdf|max:2048'
+      ]);
+
+      // delete old file
+      Storage::delete($this->biodata->ijazah_path);
+
+      // store new file
+      $path = $this->ijazah->store('berkas');
+
+      Biodata::find($this->biodata->id)
+        ->update([
+          'ijazah' => $this->ijazah->getClientOriginalName(),
+          'ijazah_path' => $path
+        ]);
+    }
+
+    if ($this->sertifikat) {
+      $this->validate([
+        'sertifikat' => 'mime:pdf|max:2048'
+      ]);
+
+      Storage::delete($this->biodata->sertifikat_path);
+
+      $path = $this->sertifikat->store('berkas');
+
+      Biodata::find($this->biodata->id)
+        ->update([
+          'sertifikat' => $this->sertifikat->getClientOriginalName(),
+          'sertifikat_path' => $path
+        ]);
+    }
+
+    Biodata::find($this->biodata->id)
+      ->update([
+        'nik' => $this->nik,
+        'name' => $this->name,
+        'tempat_lahir' => $this->tempat_lahir,
+        'tanggal_lahir' => $this->tanggal_lahir,
+        'jenis_kelamin' => $this->jenis_kelamin,
+        'kecamatan_id' => $this->kecamatan_id,
+        'kelurahan' => $this->kelurahan,
+        'kode_pos' => $this->kode_pos,
+        'alamat' => $this->alamat,
+        'rtrw' => $this->rtrw,
+        'no_hp' => $this->no_hp,
+        'email' => $this->email,
+        'agama_id' => $this->agama_id,
+        'status_perkawinan_id' => $this->status_perkawinan_id,
+        'tinggi_badan' => $this->tinggi_badan,
+        'berat_badan' => $this->berat_badan,
+        'disabilitas' => $this->disabilitas,
+        'pendidikan_terakhir_id' => $this->pendidikan_terakhir_id,
+        'institusi_pendidikan' => $this->institusi_pendidikan,
+        'tahun_lulus' => $this->tahun_lulus,
+        'jurusan' => $this->jurusan,
+        'keterampilan' => $this->keterampilan,
+        'pengalaman' => $this->pengalaman,
+        'tujuan_lamaran' => $this->tujuan_lamaran,
+      ]);
+
+
+    toastr()->success('Biodata updated');
   }
 }

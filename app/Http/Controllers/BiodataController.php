@@ -142,8 +142,10 @@ class BiodataController extends Controller
     return $prefix . $noUrut . $suffix;
   }
 
-  public function edit($biodata)
+  public function edit(Biodata $biodata)
   {
+    $this->authorize('update', $biodata);
+
     return view('biodata/edit', compact('biodata'));
   }
 

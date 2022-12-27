@@ -168,6 +168,54 @@
         </div>
         {{-- end pendidikan dan pengalaman --}}
 
+        <h1>Edit Berkas</h1>
+
+        {{-- berkas --}}
+        <div class="flex flex-col gap-4">
+          <div class="p-4 border rounded-lg">
+            <h3 class="mb-4 text-lg font-semibold ">Berkas</h3>
+
+            {{-- pas foto --}}
+            <x-form.input type="file" label="Pas Foto" name="pas_foto" altLabel="Format: jgp, png. Max 2 MB"
+              wire:model="pas_foto" />
+
+            @if($pas_foto)
+            {{-- jika upload file baru tampilkan temporary upload --}}
+            <img src="{{ $pas_foto->temporaryUrl() }}" alt="Pas Foto" class="object-cover w-52">
+            @else
+            {{-- jika tidak tampilkan file lama --}}
+            <img src="{{ asset('storage/' .$biodata->pas_foto_path) }}" alt="Pas Foto" class="object-cover w-52">
+            @endif
+
+            {{-- Foto ktp --}}
+            <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="Format: jpg, png. Max 2 MB"
+              wire:model="ktp" />
+
+            @if($ktp)
+            <img src="{{ $ktp->temporaryUrl() }}" alt="KTP" class="object-cover w-96">
+            @else
+            <img src="{{ asset('storage/' .$biodata->ktp_path) }}" alt="KTP" class="object-cover w-96">
+            @endif
+
+            {{-- foto ijazah --}}
+            <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB"
+              wire:model="ijazah" />
+            @if(!$ijazah)
+            <a href="{{ asset('storage/' . $biodata->ijazah_path) }}" class="underline">{{ $biodata->ijazah }}</a>
+            @endif
+
+            {{-- sertifikat --}}
+            <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="Format: pdf. Max 2 MB"
+              wire:model="sertifikat" />
+            @if(!$sertifikat)
+            <a href="{{ asset('storage/' . $biodata->sertifikat_path) }}" class="underline">{{ $biodata->sertifikat
+              }}</a>
+            @endif
+
+
+
+          </div>
+        </div> {{-- end berkas --}}
 
 
       </div> {{-- end right --}}
