@@ -15,9 +15,7 @@
     <div>
       <div class="flex justify-center ">
         <div class="w-full mt-6 bg-white max-w-7xl card">
-
           <livewire:biodata.edit-form :biodata="$biodata" />
-
         </div>
       </div>
     </div>

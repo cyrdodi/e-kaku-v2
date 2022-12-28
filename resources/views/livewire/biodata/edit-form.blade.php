@@ -1,8 +1,4 @@
 <div class="card-body">
-  <div>
-    <button
-      wire:click="$emit('openModal', 'biodata.edit-berkas', {{ json_encode(['biodata' => $biodata]) }})">Berkas</button>
-  </div>
   <form wire:submit.prevent="updateBiodata">
     <div class="grid gap-4 md:grid-cols-2">
       {{-- left --}}
@@ -10,7 +6,7 @@
 
         {{-- informasi pribadi --}}
         <div class="p-4 border rounded-lg">
-          <h3 class="mb-4 text-lg font-semibold ">Informasi Pribadi</h3>
+          <h3 class="mb-4 text-lg font-semibold text-primary ">Informasi Pribadi</h3>
 
           {{-- nik --}}
           <x-form.input label="NIK" name="nik" placeholder="Nomor Induk Kependudukan" type="number"
@@ -81,7 +77,7 @@
 
         {{-- informasi tambahan --}}
         <div class="p-4 border rounded-lg">
-          <h3 class="mb-4 text-lg font-semibold ">Informasi Lanjutan</h3>
+          <h3 class="mb-4 text-lg font-semibold text-primary">Informasi Lanjutan</h3>
 
           {{-- no hp --}}
           <x-form.input label="No HP" name="no_hp" type="number" wire:model.defer="no_hp" />
@@ -126,7 +122,7 @@
       <div class="flex flex-col gap-4">
         {{-- pendidikan dan pengalaman --}}
         <div class="p-4 border rounded-lg">
-          <h3 class="mb-4 text-lg font-semibold ">Pendidikan dan Pengalaman</h3>
+          <h3 class="mb-4 text-lg font-semibold text-primary">Pendidikan dan Pengalaman</h3>
 
           <div class="grid grid-cols-2 gap-2">
             {{-- pendidikan terkahir --}}
@@ -173,44 +169,51 @@
         {{-- berkas --}}
         <div class="flex flex-col gap-4">
           <div class="p-4 border rounded-lg">
-            <h3 class="mb-4 text-lg font-semibold ">Berkas</h3>
+            <h3 class="mb-4 text-lg font-semibold text-primary">Berkas</h3>
 
-            {{-- pas foto --}}
-            <x-form.input type="file" label="Pas Foto" name="pas_foto" altLabel="Format: jgp, png. Max 2 MB"
-              wire:model="pas_foto" />
 
-            @if($pas_foto)
-            {{-- jika upload file baru tampilkan temporary upload --}}
-            <img src="{{ $pas_foto->temporaryUrl() }}" alt="Pas Foto" class="object-cover w-52">
-            @else
-            {{-- jika tidak tampilkan file lama --}}
-            <img src="{{ asset('storage/' .$biodata->pas_foto_path) }}" alt="Pas Foto" class="object-cover w-52">
-            @endif
+            <div class="p-5 mb-6 border rounded-lg shadow-inner">
+              {{-- pas foto --}}
+              <x-form.input type="file" label="Pas Foto" name="pas_foto" altLabel="Format: jgp, png. Max 2 MB"
+                wire:model="pas_foto" />
+              @if($pas_foto)
+              {{-- jika upload file baru tampilkan temporary upload --}}
+              <img src="{{ $pas_foto->temporaryUrl() }}" alt="Pas Foto" class="object-cover w-52">
+              @else
+              {{-- jika tidak tampilkan file lama --}}
+              <img src="{{ asset('storage/' .$biodata->pas_foto_path) }}" alt="Pas Foto" class="object-cover w-52">
+              @endif
+            </div>
 
-            {{-- Foto ktp --}}
-            <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="Format: jpg, png. Max 2 MB"
-              wire:model="ktp" />
+            <div class="p-5 mb-6 border rounded-lg shadow-inner">
+              {{-- Foto ktp --}}
+              <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="Format: jpg, png. Max 2 MB"
+                wire:model="ktp" />
+              @if($ktp)
+              <img src="{{ $ktp->temporaryUrl() }}" alt="KTP" class="object-cover w-96">
+              @else
+              <img src="{{ asset('storage/' .$biodata->ktp_path) }}" alt="KTP" class="object-cover w-96">
+              @endif
+            </div>
 
-            @if($ktp)
-            <img src="{{ $ktp->temporaryUrl() }}" alt="KTP" class="object-cover w-96">
-            @else
-            <img src="{{ asset('storage/' .$biodata->ktp_path) }}" alt="KTP" class="object-cover w-96">
-            @endif
+            <div class="p-5 mb-6 border rounded-lg shadow-inner">
+              {{-- foto ijazah --}}
+              <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB"
+                wire:model="ijazah" />
+              @if(!$ijazah)
+              <a href="{{ asset('storage/' . $biodata->ijazah_path) }}" class="underline">{{ $biodata->ijazah }}</a>
+              @endif
+            </div>
 
-            {{-- foto ijazah --}}
-            <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB"
-              wire:model="ijazah" />
-            @if(!$ijazah)
-            <a href="{{ asset('storage/' . $biodata->ijazah_path) }}" class="underline">{{ $biodata->ijazah }}</a>
-            @endif
-
-            {{-- sertifikat --}}
-            <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="Format: pdf. Max 2 MB"
-              wire:model="sertifikat" />
-            @if(!$sertifikat)
-            <a href="{{ asset('storage/' . $biodata->sertifikat_path) }}" class="underline">{{ $biodata->sertifikat
-              }}</a>
-            @endif
+            <div class="p-5 mb-6 border rounded-lg shadow-inner">
+              {{-- sertifikat --}}
+              <x-form.input type="file" label="Sertifikat" name="sertifikat" altLabel="Format: pdf. Max 2 MB"
+                wire:model="sertifikat" />
+              @if(!$sertifikat)
+              <a href="{{ asset('storage/' . $biodata->sertifikat_path) }}" class="underline">{{ $biodata->sertifikat
+                }}</a>
+              @endif
+            </div>
 
 
 

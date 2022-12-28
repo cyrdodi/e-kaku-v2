@@ -6,11 +6,12 @@ use App\Models\Agama;
 use App\Models\Biodata;
 use Livewire\Component;
 use App\Models\Kecamatan;
+use Livewire\WithFileUploads;
 use App\Models\StatusPerkawinan;
 use App\Models\PendidikanTerakhir;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
-use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 // use Illuminate\Support\Facades\File as FacFile;
 
@@ -25,6 +26,7 @@ class EditForm extends Component
   // form
   public $biodataId, $nik, $no_pendaftaran, $name, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $provinsi, $kabupaten, $kecamatan_id, $kelurahan, $kode_pos, $alamat, $rtrw, $no_hp, $email, $agama_id, $status_perkawinan_id, $tinggi_badan, $berat_badan, $disabilitas, $pendidikan_terakhir_id, $institusi_pendidikan, $tahun_lulus, $jurusan, $keterampilan, $pengalaman, $tujuan_lamaran, $pas_foto, $pas_foto_path, $ktp, $ktp_path, $ijazah, $ijazah_path, $sertifikat, $sertifikat_path;
 
+  public $previousUrl;
 
   // validation
   protected $rules = [
@@ -93,14 +95,9 @@ class EditForm extends Component
     $this->keterampilan = $biodata->disabilitas;
     $this->pengalaman = $biodata->pengalaman;
     $this->tujuan_lamaran = $biodata->tujuan_lamaran;
-    // $this->pas_foto = $biodata->pas_foto;
-    // $this->pas_foto_path = $biodata->pas_foto_path;
-    // $this->ktp = $biodata->ktp;
-    // $this->ktp_path = $biodata->ktp_path;
-    // $this->ijazah = $biodata->ijazah;
-    // $this->ijazah_path = $biodata->ijazah_path;
-    // $this->sertifikat = $biodata->sertifikat;
-    // $this->sertifikat_path = $biodata->sertifikat_path;
+
+
+    $this->previousUrl = URL::previous();
   }
 
   public function render()
@@ -277,7 +274,8 @@ class EditForm extends Component
         'tujuan_lamaran' => $this->tujuan_lamaran,
       ]);
 
-
     toastr()->success('Biodata updated');
+
+    return redirect($this->previousUrl);
   }
 }
