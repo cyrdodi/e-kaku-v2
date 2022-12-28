@@ -53,11 +53,8 @@ class BiodataPolicy
    */
   public function update(User $user, Biodata $biodata)
   {
-    if ($user->is_admin == 1) {
-      return true;
-    } else {
-      return $user->id === $biodata->user_id;
-    }
+    // jika user adalah admin atau user adalah pemilik biodata maka return true
+    return $user->isAdmin() || $user->id === $biodata->user_id;
   }
 
   /**
@@ -94,5 +91,10 @@ class BiodataPolicy
   public function forceDelete(User $user, Biodata $biodata)
   {
     //
+  }
+
+  public function cetak(User $user, Biodata $biodata)
+  {
+    return $user->isAdmin();
   }
 }

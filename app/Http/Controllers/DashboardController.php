@@ -33,6 +33,7 @@ class DashboardController extends Controller
 
   public function printView(Biodata $biodata)
   {
+    $this->authorize('cetak', $biodata);
     return view('pdf/kaku', compact('biodata'));
   }
 

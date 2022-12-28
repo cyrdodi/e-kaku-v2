@@ -148,26 +148,4 @@ class BiodataController extends Controller
 
     return view('biodata/edit', compact('biodata'));
   }
-
-  public function destroyBerkas(Request $request)
-  {
-    /**
-     * delete file
-     * empty path and name
-     */
-
-    $path = $request->colName . '_path';
-
-    $biodata = Biodata::where('id', $request->biodataId)->first();
-
-    // delete file
-    Storage::delete($request->filename);
-
-    // update value to empty
-    $biodata->$path = '';
-    $biodata->$request->colName = '';
-    $biodata->save();
-
-    return redirect()->back();
-  }
 }

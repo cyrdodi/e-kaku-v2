@@ -11,9 +11,11 @@
               kartu pencari kerja dari mana saja, kapan
               saja, hanya dengan beberapa klik saja!</div>
 
+            @if(!Auth::check())
             <div class="mt-4">
               <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
             </div>
+            @endif
           </div>
           <div>
             <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pandeglang" class="w-[400px]">

@@ -16,11 +16,11 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+// Route::get('/', function () {
+//   return view('welcome');
+// });
 
-Route::get('/home', function () {
+Route::get('/', function () {
   return view('home');
 })->middleware(['auth', 'verified'])->name('home');
 
