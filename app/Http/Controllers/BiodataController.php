@@ -8,6 +8,7 @@ use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Models\StatusPerkawinan;
 use App\Models\PendidikanTerakhir;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,11 +23,15 @@ class BiodataController extends Controller
 
   public function create()
   {
+    // jika user sudah membuat biodata maka abort
+    if (!Gate::allows('create')) {
+      abort(403, 'Anda sudah memiliki Biodata');
+    }
+
     $kecamatan = Kecamatan::orderBy('name')->get();
     $agama = Agama::where('is_active', 1)->get();
     $statusPerkawinan = StatusPerkawinan::where('is_active', 1)->get();
     $pendidikan = PendidikanTerakhir::where('is_active', 1)->get();
-
 
     return view('biodata/create', compact('kecamatan', 'agama', 'statusPerkawinan', 'pendidikan'));
   }

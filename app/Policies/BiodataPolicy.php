@@ -41,7 +41,18 @@ class BiodataPolicy
    */
   public function create(User $user)
   {
-    //
+    // dd('kicig');
+    // jika admin diperbolehkan input banyak
+    // if ($user->isAdmin()) {
+    //   return true;
+    // }
+
+
+    // jika user sudah input maka ditolak
+    $hasProfile = Biodata::where('user_id', $user->id)->count();
+    return $hasProfile === 0;
+
+    // return true;
   }
 
   /**
@@ -54,7 +65,7 @@ class BiodataPolicy
   public function update(User $user, Biodata $biodata)
   {
     // jika user adalah admin atau user adalah pemilik biodata maka return true
-    return $user->isAdmin() || $user->id === $biodata->user_id;
+    return $user->id === $biodata->user_id;
   }
 
   /**
@@ -96,5 +107,9 @@ class BiodataPolicy
   public function cetak(User $user, Biodata $biodata)
   {
     return $user->isAdmin();
+  }
+
+  public function createOnce(User $user)
+  {
   }
 }

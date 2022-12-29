@@ -168,9 +168,20 @@
 
         </div>
         @else
-        <div class="">
-          Anda belum memiliki biodata
-          <a href="{{ route('biodata.create') }}">Buat Disini</a>
+        <div class="bg-white card">
+          <div class="card-body">
+            <div class="flex gap-4">
+
+              <x-illustrations.profile />
+              <div>
+                <div class="mb-6 text-5xl font-bold">
+                  Anda belum memiliki biodata
+                </div>
+                <a href="{{ route('biodata.create') }}" class="btn btn-primary">Buat Disini</a>
+
+              </div>
+            </div>
+          </div>
         </div>
         @endif
       </div>

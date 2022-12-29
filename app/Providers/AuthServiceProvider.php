@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Models\Biodata;
 use App\Policies\BiodataPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,10 @@ class AuthServiceProvider extends ServiceProvider
     $this->registerPolicies();
 
     //
+    Gate::before(function ($user) {
+      return $user->isAdmin() ? true : null;
+    });
+
+    Gate::define('create', [BiodataPolicy::class, 'create']);
   }
 }
