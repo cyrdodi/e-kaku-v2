@@ -7,8 +7,8 @@
       <div class="flex justify-between mb-4">
         <div class="flex gap-3">
           {{-- <form wire:submit.prevent="search"> --}}
-            <input type="text" placeholder="Pencarian berdasarkan nama/nik" class="w-full max-w-xs input input-bordered"
-              wire:model="search" />
+            <input type="text" placeholder="Pencarian by nama/nik"
+              class="md:w-[400px] w-lg max-w-lg  input input-bordered" wire:model="search" />
             {{-- <button type="submit" class="btn btn-outline btn-primary">Search</button> --}}
             {{--
           </form> --}}

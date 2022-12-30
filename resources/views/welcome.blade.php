@@ -75,22 +75,25 @@
   {{-- header --}}
   <div class="bg-slate-100" id="home">
     <div class="flex gap-12 py-12 mx-4 md:flex-row md:container md:mx-auto md:justify-center md:items-center">
-      <div class="w-2/3">
+      <div class="w-2/3 animate__animated animate__slideInLeft">
         <h1 class="font-bold text-7xl">E-Kaku</h1>
-        <div class="mt-10 text-xl text-gray-700">Aplikasi pembuatan kartu AK/1 Online Dinas Tenaga Kerja dan
+        <div class="mt-10 text-xl text-gray-700 ">Aplikasi pembuatan kartu AK/1
+          Online Dinas
+          Tenaga
+          Kerja dan
           Transmigrasi Kabupaten Pandeglang</div>
         <div class="mt-10">
           <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang</a>
         </div>
       </div>
-      <div class="items-center justify-center hidden w-full md:flex">
+      <div class="items-center justify-center hidden w-full md:flex animate__animated animate__slideInRight">
         <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pandeglang" class="w-[400px]">
       </div>
     </div>
   </div>
   {{-- end header --}}
   {{-- persyaratan --}}
-  <div id="persyaratan">
+  <div id="persyaratan " class="animate__animated animate__fadeInUp">
     <div class="gap-12 py-12 mx-4 md:container md:flex md:items-center md:justify-center md:mx-auto">
       <div class="">
         <img src="{{ asset('images/Files And Folder_Isometric.png') }}" alt="file ilustration">

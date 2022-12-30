@@ -13,7 +13,7 @@
               </div>
               {{-- copyright --}}
               <div>
-                <h1 class="mb-4 text-2xl font-bold">Selamat Datang di Aplikasi E-Kaku</h1>
+                <h1 class="mb-4 text-3xl font-bold text-primary">Selamat Datang di Aplikasi E-Kaku</h1>
                 <p>Langkah selanjutnya adalah kamu harus melengkapi Biodata dan upload Berkas, pastikan kamu sudah
                   menyiapkan berkas yang diperlukan.</p>
                 <ul class="mt-4 ml-8 list-disc">
@@ -46,7 +46,8 @@
               </div>
               {{-- copyright --}}
               <div>
-                <h1 class="mb-4 text-2xl font-bold">Datamu sudah terekam di Disnakertrans Kab. Pandeglang!</h1>
+                <h1 class="mb-4 text-3xl font-bold text-primary">Datamu sudah terekam di Disnakertrans Kab. Pandeglang!
+                </h1>
                 <p>Selanjutnya kamu tinggal mendatangi Kantor Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang
                   untuk mencetak <span class="font-bold">Kartu AK/1</span>.</p>
                 <h2 class="mt-4 font-semibold">Jadwal Pelayanan</h2>
