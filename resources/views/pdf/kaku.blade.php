@@ -83,12 +83,12 @@
       <section>
         <table>
           <tr>
-            <td>No. Pendaftaran Pencari Kerja</td>
-            <td>{{ $cetakTrans->biodata->no_pendaftaran }}</td>
+            <td class="w-[200px]">No. Pendaftaran Pencari Kerja</td>
+            <th class="text-right">{{ $cetakTrans->biodata->no_pendaftaran }}</td>
           </tr>
           <tr>
             <td>No. Induk Kependudukan</td>
-            <td>{{ $cetakTrans->biodata->nik }}</td>
+            <th class="text-right">{{ $cetakTrans->biodata->nik }}</td>
           </tr>
         </table>
       </section>
@@ -97,9 +97,9 @@
       <section>
         <div class="flex gap-2">
           {{-- foto dan ttd --}}
-          <div class="w-[170px]">
+          <div class="">
             <img src="{{ asset('storage/' . $cetakTrans->biodata->pas_foto_path) }}" alt="Pas Foto"
-              class="w-[170px] object-cover rounded-lg mb-2"></a>
+              class="w-[100px] max-h-[250px] object-cover rounded-lg mb-2"></a>
             <div>Tanda Tangan Pencari kerja</div>
           </div>
 

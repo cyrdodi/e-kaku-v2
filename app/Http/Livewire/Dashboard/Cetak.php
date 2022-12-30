@@ -34,7 +34,7 @@ class Cetak extends ModalComponent
       'expired' => $this->expired,
     ]);
 
-    toastr()->success('Berhasil input');
+    // toastr()->success('Berhasil input');
 
     // go to preview pdf
     return redirect()->route('dashboardPrintView', ['cetak_trans' => $cetakTransId]);
