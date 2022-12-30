@@ -16,9 +16,11 @@
             {{ __('Home') }}
           </x-nav-link>
           @if(Auth::check())
+          @isuser
           <x-nav-link :href="route('biodata.index')" :active="request()->routeIs('biodata.index')">
             {{ __('Biodata') }}
           </x-nav-link>
+          @endisuser
           @isadmin
           <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
             {{ __('Dashboard') }}
@@ -86,9 +88,11 @@
         {{ __('Home') }}
       </x-responsive-nav-link>
       @if(Auth::check())
+      @isuser
       <x-responsive-nav-link :href="route('biodata.index')" :active="request()->routeIs('biodata')">
         {{ __('Biodata') }}
       </x-responsive-nav-link>
+      @endisuser
       @isadmin
       <x-responsive-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard')">
         {{ __('Dashboard') }}

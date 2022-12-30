@@ -16,7 +16,7 @@ class FunctionarySeeder extends Seeder
   public function run()
   {
     Functionary::create([
-      'name' => 'Parti',
+      'name' => 'Parti, S.IP',
       'nip' => '196504151985032003',
       'golongan' => 'Pembina IV/a',
       'jabatan' => 'Kepala Bidang Penempatan Tenaga Kerja, Perluasan Kesempatan Kerja dan Transmigrasi',

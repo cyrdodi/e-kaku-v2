@@ -14,7 +14,7 @@
           </form> --}}
         </div>
 
-        <button class="btn btn-primary">Tambah Baru</button>
+        <a href="{{ route('dashboardCreate') }}" class="btn btn-primary">Tambah Baru</a>
       </div>
 
       {{-- table --}}

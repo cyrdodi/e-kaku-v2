@@ -63,4 +63,10 @@ class DashboardController extends Controller
   {
     return view('dashboard.edit', compact('biodata'));
   }
+
+  public function create()
+  {
+
+    return view('dashboard.create');
+  }
 }

@@ -2,11 +2,11 @@
   <x-slot name="header">
     <div class="flex justify-between">
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        {{ __('Buat Biodata') }}
+        {{ __('Tambah Biodata') }}
       </h2>
       <x-breadcrumb :links="[
-                ['url' =>  route('biodata.index'), 'name' => 'Biodata']
-                ]" current="Buat Biodata" />
+            ['url' =>  route('dashboard.index'), 'name' => 'Dashboard']
+            ]" current="Tambah Biodata" />
     </div>
   </x-slot>
 

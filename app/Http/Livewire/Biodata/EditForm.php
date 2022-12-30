@@ -41,6 +41,7 @@ class EditForm extends Component
     'alamat' => 'required',
     'rtrw' => 'required',
     'no_hp' => 'required|numeric',
+    'email' => 'required|email',
     'agama_id' => 'required',
     'status_perkawinan_id' => 'required',
     'tinggi_badan' => 'required|numeric',
@@ -102,61 +103,7 @@ class EditForm extends Component
 
   public function render()
   {
-
     return view('livewire.biodata.edit-form');
-  }
-
-  public function deletePasFoto()
-  {
-    // delete file
-    Storage::delete($this->pas_foto_path);
-
-    // update value to empty
-    $this->biodata->pas_foto_path = '';
-    $this->biodata->pas_foto = '';
-    $this->biodata->save();
-
-    toastr()->success('Pas Foto berhasil dihapus!');
-  }
-
-  public function deleteKtp()
-  {
-
-    // delete file
-    Storage::delete($this->ktp_path);
-
-    // update value to empty
-    $this->biodata->ktp_path = '';
-    $this->biodata->ktp = '';
-    $this->biodata->save();
-
-    toastr()->success('KTP berhasil dihapus!');
-  }
-
-  public function deleteIjazah()
-  {
-    // delete file
-    Storage::delete($this->ijazah_path);
-
-    // update value to empty
-    $this->biodata->ijazah_path = '';
-    $this->biodata->ijazah = '';
-    $this->biodata->save();
-
-    toastr()->success('Ijazah berhasil dihapus!');
-  }
-
-  public function deleteSertifikat()
-  {
-    // delete file
-    Storage::delete($this->sertifikat_path);
-
-    // update value to empty
-    $this->biodata->sertifikat_path = '';
-    $this->biodata->sertifikat = '';
-    $this->biodata->save();
-
-    toastr()->success('Sertifikat berhasil dihapus!');
   }
 
   public function updateBiodata()
