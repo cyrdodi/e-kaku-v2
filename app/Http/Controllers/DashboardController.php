@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biodata;
+use App\Models\CetakTransaction;
+use App\Models\Functionary;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -25,16 +27,18 @@ class DashboardController extends Controller
     // $data = Employee::all();
     // share data to view
     // view()->share('pdf.kaku', $data);
+
     $pdf = Pdf::loadView('pdf.test')
       ->setPaper('a4', 'landscape');
     // download PDF file with download method
     return $pdf->download('pdf_file.pdf');
   }
 
-  public function printView(Biodata $biodata)
+  public function printView(CetakTransaction $cetakTrans)
   {
-    $this->authorize('cetak', $biodata);
-    return view('pdf/kaku', compact('biodata'));
+    // $this->authorize('cetak', $biodata);
+    // dd($cetakTrans->functionary->name);
+    return view('pdf/kaku', compact('cetakTrans'));
   }
 
   // public function createPDF()
@@ -44,6 +48,11 @@ class DashboardController extends Controller
   {
 
     // dd($biodata);
-    return view('dashboard.show', compact('biodata'));
+
+    $cetak = CetakTransaction::where('biodata_id', $biodata->id)->first();
+
+    // dd($cetak);
+
+    return view('dashboard.show', compact('biodata', 'cetak'));
   }
 }

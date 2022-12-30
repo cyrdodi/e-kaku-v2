@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
       AgamaSeeder::class,
       KecamatanSeeder::class,
       PendidikanTerakhirSeeder::class,
-      StatusPerkawinanSeeder::class
+      StatusPerkawinanSeeder::class,
+      FunctionarySeeder::class,
     ]);
 
 

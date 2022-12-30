@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
   Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard/print', [DashboardController::class, 'print'])->name('dashboard.print');
-    Route::get('/dashboard/print-view/{biodata}', [DashboardController::class, 'printView'])->name('dashboardPrintView');
+    Route::get('/dashboard/print-view/{cetak_trans}', [DashboardController::class, 'printView'])->name('dashboardPrintView');
     Route::get('/dashboard/show/{biodata}', [DashboardController::class, 'show'])->name('dashboardShow');
   });
 });
