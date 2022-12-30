@@ -12,7 +12,10 @@ class DashboardController extends Controller
 {
   public function index()
   {
-    return view('dashboard/index');
+    $countRegisteredYearly = Biodata::whereYear('created_at', date('Y'))->count();
+    $countPrintedYearly = CetakTransaction::whereYear('created_at', date('Y'))->count();
+
+    return view('dashboard/index', compact('countRegisteredYearly', 'countPrintedYearly'));
   }
 
   public function print()
@@ -54,5 +57,10 @@ class DashboardController extends Controller
     // dd($cetak);
 
     return view('dashboard.show', compact('biodata', 'cetak'));
+  }
+
+  public function edit(Biodata $biodata)
+  {
+    return view('dashboard.edit', compact('biodata'));
   }
 }

@@ -67,6 +67,9 @@
         <a class="btn btn-primary" href="{{ route('dashboardPrintView', ['cetak_trans' => $cetak->id]) }}">Cetak
           Ulang</a>
         @endif
+
+        <a href="{{ route('dashboardEdit', ['biodata' => $biodata->id]) }}"
+          class="ml-4 btn btn-primary btn-outline">Edit</a>
       </div>
 
       {{-- --}}
@@ -124,7 +127,7 @@
                 <td>{{ $biodata->jurusan }}</td>
               </tr>
               <tr>
-                <th class="text-left">Ketermapilan</th>
+                <th class="text-left">Keterampilan</th>
                 <td>{{ $biodata->keterampilan }}</td>
               </tr>
               <tr>

@@ -14,8 +14,6 @@ class ListKartuPencariKerja extends Component
 
 
 
-  public $biodatsa;
-
   public function updatingSearch()
   {
     $this->resetPage();
@@ -24,11 +22,17 @@ class ListKartuPencariKerja extends Component
   public function render()
   {
     $biodata = Biodata::with('pendidikanTerakhir', 'kecamatan')
-      ->when(!empty($this->search), fn ($query) => $query->where('name', 'like', '%' .  $this->search . '%'))
+      ->when(!empty($this->search), fn ($query) => $query->where('name', 'like', '%' .  $this->search . '%')
+        ->orWhere('nik', 'like', '%' . $this->search . '%'))
       ->paginate(10);
+    return view('livewire.dashboard.list-kartu-pencari-kerja', compact('biodata'));
+  }
 
-    return view('livewire.dashboard.list-kartu-pencari-kerja', [
-      'biodata' => $biodata
-    ]);
+  public function search()
+  {
+    $this->biodata = Biodata::with('pendidikanTerakhir', 'kecamatan')
+      ->when(!empty($this->search), fn ($query) => $query->where('name', 'like', '%' .  $this->search . '%')
+        ->orWhere('nik', 'like', '%' . $this->search . '%'))
+      ->paginate(10);
   }
 }

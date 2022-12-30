@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/print', [DashboardController::class, 'print'])->name('dashboard.print');
     Route::get('/dashboard/print-view/{cetak_trans}', [DashboardController::class, 'printView'])->name('dashboardPrintView');
     Route::get('/dashboard/show/{biodata}', [DashboardController::class, 'show'])->name('dashboardShow');
+    Route::get('/dashboard/edit/{biodata}', [DashboardController::class, 'edit'])->name('dashboardEdit');
   });
 });
 

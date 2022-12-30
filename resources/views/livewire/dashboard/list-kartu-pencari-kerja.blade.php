@@ -4,8 +4,17 @@
       {{-- search menu here --}}
 
       {{-- search --}}
-      <div class="mb-4">
-        <input type="text" placeholder="Pencari" class="w-full max-w-xs input input-bordered" wire:model="search" />
+      <div class="flex justify-between mb-4">
+        <div class="flex gap-3">
+          {{-- <form wire:submit.prevent="search"> --}}
+            <input type="text" placeholder="Pencarian berdasarkan nama/nik" class="w-full max-w-xs input input-bordered"
+              wire:model="search" />
+            {{-- <button type="submit" class="btn btn-outline btn-primary">Search</button> --}}
+            {{--
+          </form> --}}
+        </div>
+
+        <button class="btn btn-primary">Tambah Baru</button>
       </div>
 
       {{-- table --}}
