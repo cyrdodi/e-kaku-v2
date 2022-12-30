@@ -5,8 +5,14 @@
       <div class="flex">
         <!-- Logo -->
         <div class="flex items-center shrink-0">
-          <a href="{{ route('home') }}">
-            <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
+          <a href="/">
+            <div class="flex">
+              <img src="{{ asset('images/logo-pandeglang.png') }}" alt="logo" class="object-contain w-8 mr-3">
+              <div>
+                <div class="font-bold normal-case ">DISNAKER<span class="font-light">TRANS</span></div>
+                <div class="text-xs text-gray-500">Kabupaten Pandeglang</div>
+              </div>
+            </div>
           </a>
         </div>
 
