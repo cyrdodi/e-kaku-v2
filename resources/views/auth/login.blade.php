@@ -2,7 +2,7 @@
   <x-auth-card>
     <x-slot name="logo">
       <a href="/">
-        <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
+        <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pandeglang" class="object-contain w-24">
       </a>
     </x-slot>
 
@@ -43,7 +43,7 @@
         @if (Route::has('password.request'))
         <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           href="{{ route('register') }}">
-          {{ __('Register') }}
+          {{ __('Buat akun baru') }}
         </a>
         @endif
 

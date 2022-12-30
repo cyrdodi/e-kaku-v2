@@ -74,14 +74,11 @@
 
   {{-- header --}}
   <div class="bg-slate-100" id="home">
-    <div
-      class="flex flex-col-reverse gap-12 py-12 mx-4 md:flex-row md:container md:mx-auto md:justify-center md:items-center">
-      <div>
-        <h1 class="font-bold text-7xl">Aplikasi Pembuatan Kartu Pencari Kerja</h1>
-        <div class="mt-10 text-xl text-gray-700">Dengan aplikasi pembuatan kartu pencari kerja online, Anda bisa
-          membuat
-          kartu pencari kerja dari mana saja, kapan
-          saja, hanya dengan beberapa klik saja!</div>
+    <div class="flex gap-12 py-12 mx-4 md:flex-row md:container md:mx-auto md:justify-center md:items-center">
+      <div class="w-2/3">
+        <h1 class="font-bold text-7xl">E-Kaku</h1>
+        <div class="mt-10 text-xl text-gray-700">Aplikasi pembuatan kartu AK/1 Online Dinas Tenaga Kerja dan
+          Transmigrasi Kabupaten Pandeglang</div>
         <div class="mt-10">
           <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang</a>
         </div>
@@ -184,22 +181,23 @@
   {{-- end hubungi kami --}}
 
   {{-- footer --}}
-  <footer class="p-4  bg-neutral text-neutral-content">
+  <footer class="p-4 bg-neutral text-neutral-content">
     <div class="container items-center mx-auto footer">
       <div class="items-center grid-flow-col ">
         <p>Copyright © {{ date('Y') }} - Dinas Tenaga Kerja dan Transmigrasi Pandeglang</p>
       </div>
       <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-        <a href="www.instagram.com/disnaker_pdg/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-brand-instagram" width="24" height="24" viewBox="0 0 24 24"
-            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <a href="https://www.instagram.com/disnakertrans.pandeglang/" target="_blank"><svg
+            xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
+            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <rect x="4" y="4" width="16" height="16" rx="4"></rect>
             <circle cx="12" cy="12" r="3"></circle>
             <line x1="16.5" y1="7.5" x2="16.5" y2="7.501"></line>
           </svg>
         </a>
-        <a>
+        <a href="https://www.facebook.com/nakertrans.disnakertrans">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="24"
             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
