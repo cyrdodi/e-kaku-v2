@@ -6,13 +6,7 @@
         <!-- Logo -->
         <div class="flex items-center shrink-0">
           <a href="/">
-            <div class="flex">
-              <img src="{{ asset('images/logo-pandeglang.png') }}" alt="logo" class="object-contain w-8 mr-3">
-              <div>
-                <div class="font-bold normal-case ">DISNAKER<span class="font-light">TRANS</span></div>
-                <div class="text-xs text-gray-500">Kabupaten Pandeglang</div>
-              </div>
-            </div>
+            <img src="{{ asset('images/logo-app.png') }}" alt="" class="w-[188px]">
           </a>
         </div>
 

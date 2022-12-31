@@ -1,184 +1,78 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('Home') }}
-    </h2>
+    <div class="flex justify-between">
+      <h2 class="text-xl font-semibold leading-tight text-gray-800">
+        {{ __('Biodata') }}
+      </h2>
+      <x-breadcrumb current="Biodata" />
+    </div>
   </x-slot>
 
   <div class="py-12">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="overflow-hidden sm:rounded-lg">
-        <div class="p-6 text-gray-900">
+      <div class="relative overflow-hidden sm:rounded-lg">
 
-          @if($biodata)
-          <div class="bg-white shadow-sm card">
-            <div class="relative card-body">
-              <div class="flex gap-6">
-
-                <img src="{{ asset('storage/' .  $biodata->pas_foto_path) }}"
-                  class="object-cover w-40 h-48 bg-gray-100 border rounded-lg" alt="Pas Foto">
-
-                <section class="">
-                  <div class="mb-2 text-lg font-semibold">{{ $biodata->name }}</div>
-                  <div class="flex mb-2 text-gray-500 ">
-                    <x-icons.identification class="w-6 h-6 mr-2" />
-                    <span class="font-medium">{{ $biodata->nik }}</span>
-                  </div>
-                  <div class="text-lg font-semibold text-gray-600 md:absolute md:right-5 md:top-5">#{{
-                    $biodata->no_pendaftaran }}
-                  </div>
-                  <div class="flex mb-2">
-                    <x-icons.at-symbol class="w-6 h-6 mr-2" />
-                    <span>{{ $biodata->email }}</span>
-                  </div>
-                  <div class="flex mb-2">
-                    <x-icons.cake class="w-6 h-6 mr-2" />
-                    {{ $biodata->tempat_lahir .'/'. date('d-m-Y', strtotime($biodata->tanggal_lahir)) }}
-                  </div>
-                  <div class="flex mb-2">
-                    @if($biodata->jenis_kelamin == 'l')
-                    <x-icons.male class="mr-2" />
-                    Laki-laki
-                    @else
-                    <x-icons.female class="mr-2" />
-                    Perempuan
-                    @endif
-                  </div>
-                  <div class="flex w-2/3 mb-2">
-                    <x-icons.map-pin class="w-6 h-6 mr-2" />
-                    {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
-                    $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
-                    $biodata->kode_pos}}
-                  </div>
-                </section>
-              </div>
-
-            </div>
-          </div> {{-- end data diri --}}
-
-          {{-- button --}}
-          <div class="mt-4">
-            <a href="{{ route('biodataEdit', ['biodata' => $biodata->id]) }}" class="btn btn-primary ">Edit</a>
-          </div>
-
-          {{-- --}}
-          <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
-
-            {{-- data pelengkap --}}
-            <div class="mt-4 bg-white shadow-sm card">
-              <div class="card-body">
-                <h3 class="mb-4 text-xl font-semibold text-primary">Informasi Lanjutan</h3>
-                <table>
-                  <tr>
-                    <th class="w-40 text-left">No. Handphone</th>
-
-                    <td>{{ $biodata->no_hp }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Agama</th>
-                    <td>{{ $biodata->agama->name }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Status</th>
-                    <td>{{ $biodata->statusPerkawinan->name }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Tinggi Badan</th>
-                    <td>{{ $biodata->tinggi_badan }} CM</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Berat Badan</th>
-                    <td>{{ $biodata->berat_badan }} KG</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-
-            {{-- data pendidikan dan pengalaman --}}
-            <div class="mt-4 bg-white shadow-sm card">
-              <div class="card-body">
-                <h3 class="mb-4 text-xl font-semibold text-primary">Pendidikan & Pengalaman</h3>
-                <table>
-                  <tr>
-                    <th class="w-40 text-left">Pendidikan Terakhir</th>
-                    <td>{{ $biodata->pendidikanTerakhir->name }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Tahun Lulus</th>
-                    <td>{{ $biodata->tahun_lulus }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Institusi Pendidikan</th>
-                    <td>{{ $biodata->institusi_pendidikan }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Jurusan</th>
-                    <td>{{ $biodata->jurusan }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Ketermapilan</th>
-                    <td>{{ $biodata->keterampilan }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Pengalaman</th>
-                    <td>{{ $biodata->pengalaman }}</td>
-                  </tr>
-                  <tr>
-                    <th class="text-left">Tujuan Melamar</th>
-                    <td>{{ $biodata->tujuan_lamaran }}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-
-          </section>
-
-          {{-- berkas --}}
-          <section class="mt-4 bg-white shadow-sm card">
-            <div class="card-body">
-              <h3 class="mb-4 text-xl font-semibold text-primary">Berkas</h3>
-
-              <table>
-                <tr>
-                  <th class="w-40 text-left">KTP</th>
-                  <td><a href="{{ asset('storage/' . $biodata->ktp_path) }}" target="_blank" class="underline">{{
-                      $biodata->ktp }}</a></td>
-                </tr>
-                <tr>
-                  <th class="w-40 text-left">Ijazah</th>
-                  <td><a href="{{ asset('storage/' . $biodata->ijazah_path) }}" target="_blank" class="underline">{{
-                      $biodata->ijazah }}</a>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="w-40 text-left">Sertifikat</th>
-                  <td>
-                    @if($biodata->ijazah !== '')
-                    <a href="{{ asset('storage/' . $biodata->sertifikat_path) }}" target="_blank" class="underline">{{
-                      $biodata->sertifikat
-                      }}</a>
-                    @endif
-                  </td>
-                </tr>
-              </table>
-
-            </div>
-          </section>
-
-
-        </div>
-        @else
+        @if(!$biodata)
         <div class="bg-white card">
           <div class="card-body">
-            <div class="flex gap-4">
-
-              <x-illustrations.profile />
+            <div class="gap-6 md:flex">
+              {{-- image --}}
               <div>
-                <div class="mb-6 text-5xl font-bold">
-                  Anda belum memiliki biodata
+                <img src="{{ asset('images/Profiling_Isometric.png') }}" alt="Ilustrasi">
+              </div>
+              {{-- copyright --}}
+              <div>
+                <h1 class="mb-4 text-3xl font-bold text-primary">Selamat Datang di Aplikasi E-Kaku</h1>
+                <p>Langkah selanjutnya adalah kamu harus melengkapi Biodata dan upload Berkas, pastikan kamu sudah
+                  menyiapkan berkas yang diperlukan.</p>
+                <ul class="mt-4 ml-8 list-disc">
+                  <li>Pas Foto Background Merah, Format: <span class="badges">JPG</span>, <span
+                      class="badges">JPEG</span>,
+                    <span class="badges">PNG</span>
+                  </li>
+                  <li> Scan KTP, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
+                      class="badges">PNG</span> </li>
+                  <li>Scan Ijazah, Terkakhir Format: <span class="badges">PDF</span> </li>
+                  <li>Sertifikat (Opsional), Format: <span class="badges">PDF</span> </li>
+                </ul>
+                <small class="mt-4 italic text-gray-600">*Masing-masing file berukuran maksimal 2 MB</small>
+                <div class="mt-6">
+                  <a href="{{ route('biodata.index') }}" class="btn btn-primary">Lengkapi Biodata</a>
                 </div>
-                <a href="{{ route('biodata.create') }}" class="btn btn-primary">Buat Disini</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        @else
+        {{-- --}}
 
+        <div class="bg-white card">
+          <div class="card-body">
+            <div class="gap-6 md:flex">
+              {{-- image --}}
+              <div>
+                <img src="{{ asset('images/Step 1_Isometric.png') }}" alt="Ilustrasi">
+              </div>
+              {{-- copyright --}}
+              <div>
+                <h1 class="mb-4 text-3xl font-bold text-primary">Datamu sudah terekam di Disnakertrans Kab. Pandeglang!
+                </h1>
+                <p>Selanjutnya kamu tinggal mendatangi Kantor Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang
+                  untuk mencetak <span class="font-bold">Kartu AK/1</span>.</p>
+
+                <div class="mt-4">
+                  <a href="{{ route('biodata.show') }}" class="btn btn-primary">
+                    <x-icons.user class="" />
+                    <span class="ml-2">Lihat Biodata</span>
+                  </a>
+                </div>
+                <h2 class="mt-4 font-semibold">Jadwal Pelayanan</h2>
+                <div>
+                  Hari: Senin - Jumat
+                </div>
+                <div>
+                  Jam: 09:00 s/d 13:00
+                </div>
               </div>
             </div>
           </div>
@@ -187,5 +81,6 @@
       </div>
     </div>
   </div>
-  </div>
+
+
 </x-app-layout>

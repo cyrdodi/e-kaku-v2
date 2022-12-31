@@ -26,6 +26,7 @@ class EditForm extends Component
   // form
   public $biodataId, $nik, $no_pendaftaran, $name, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $provinsi, $kabupaten, $kecamatan_id, $kelurahan, $kode_pos, $alamat, $rtrw, $no_hp, $email, $agama_id, $status_perkawinan_id, $tinggi_badan, $berat_badan, $disabilitas, $pendidikan_terakhir_id, $institusi_pendidikan, $tahun_lulus, $jurusan, $keterampilan, $pengalaman, $tujuan_lamaran, $pas_foto, $pas_foto_path, $ktp, $ktp_path, $ijazah, $ijazah_path, $sertifikat, $sertifikat_path;
 
+
   public $previousUrl;
 
   // validation
@@ -106,6 +107,35 @@ class EditForm extends Component
     return view('livewire.biodata.edit-form');
   }
 
+  public function updatedPasFoto()
+  {
+    $this->validate([
+      'pas_foto' => 'mimes:jpg,jpeg,png|max:2048'
+    ]);
+  }
+
+  public function updatedKtp()
+  {
+    $this->validate([
+      'ktp' => 'mimes:jpg,jpeg,png|max:2048'
+    ]);
+  }
+
+  public function updatedIjazah()
+  {
+    $this->validate([
+      'ijazah' => 'mimes:pdf|max:2048'
+    ]);
+  }
+
+  public function updatedSertifikat()
+  {
+    $this->validate([
+      'sertifikat' => 'mimes:pdf|max:2048'
+    ]);
+  }
+
+
   public function updateBiodata()
   {
     $this->validate();
@@ -161,7 +191,7 @@ class EditForm extends Component
     // update ijazah
     if ($this->ijazah) {
       $this->validate([
-        'ijazah' => 'mime:pdf|max:2048'
+        'ijazah' => 'mimes:pdf|max:2048'
       ]);
 
       // delete old file
@@ -179,10 +209,12 @@ class EditForm extends Component
 
     if ($this->sertifikat) {
       $this->validate([
-        'sertifikat' => 'mime:pdf|max:2048'
+        'sertifikat' => 'mimes:pdf|max:2048'
       ]);
 
-      Storage::delete($this->biodata->sertifikat_path);
+      if ($this->biodata->sertifikat_path !== null) {
+        Storage::delete($this->biodata->sertifikat_path);
+      }
 
       $path = $this->sertifikat->store('berkas');
 

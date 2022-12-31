@@ -31,7 +31,7 @@
 <body class="">
   {{-- navbar --}}
   <div class="">
-    <div class=" md:container md:mx-auto navbar">
+    <div class="mx-auto max-w-7xl navbar">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -48,12 +48,8 @@
           </ul>
         </div>
         <a class="" href="/">
-          <div class="flex">
-            <img src="{{ asset('images/logo-pandeglang.png') }}" alt="logo" class="object-contain w-8 mr-3">
-            <div>
-              <div class="font-bold normal-case ">DISNAKER<span class="font-light">TRANS</span></div>
-              <div class="text-xs text-gray-500">Kabupaten Pandeglang</div>
-            </div>
+          <div>
+            <img src="{{ asset('images/logo-app.png') }}" alt="" class="w-[188px]">
           </div>
         </a>
       </div>
@@ -74,27 +70,27 @@
 
   {{-- header --}}
   <div class="bg-slate-100" id="home">
-    <div class="flex gap-12 py-12 mx-4 md:flex-row md:container md:mx-auto md:justify-center md:items-center">
-      <div class="w-2/3 animate__animated animate__slideInLeft">
-        <h1 class="font-bold text-7xl">E-Kaku</h1>
-        <div class="mt-10 text-xl text-gray-700 ">Aplikasi pembuatan kartu AK/1
-          Online Dinas
-          Tenaga
-          Kerja dan
+    <div
+      class="flex flex-col-reverse justify-center gap-12 px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex-row md:items-center ">
+      <div class="md:w-2/3 animate__animated animate__slideInLeft">
+        <h1 class="font-bold text-center md:text-left text-7xl text-primary">E-Kaku</h1>
+        <div class="mt-3 text-[18px] text-gray-700 md:text-left text-center">Aplikasi pembuatan kartu AK/1 Online Dinas
+          Tenaga Kerja
+          dan
           Transmigrasi Kabupaten Pandeglang</div>
-        <div class="mt-10">
+        <div class="flex justify-center mt-4 md:justify-start">
           <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang</a>
         </div>
       </div>
-      <div class="items-center justify-center hidden w-full md:flex animate__animated animate__slideInRight">
-        <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pandeglang" class="w-[400px]">
+      <div class="flex items-center justify-center w-full md:flex animate__animated animate__slideInRight">
+        <img src="{{ asset('images/hero.png') }}" alt="Logo Pandeglang" class="md:w-[250px] w-[130px]">
       </div>
     </div>
   </div>
   {{-- end header --}}
   {{-- persyaratan --}}
   <div id="persyaratan " class="animate__animated animate__fadeInUp">
-    <div class="gap-12 py-12 mx-4 md:container md:flex md:items-center md:justify-center md:mx-auto">
+    <div class="gap-12 px-4 py-6 mx-auto md:flex md:items-center md:justify-center max-w-7xl sm:px-6 lg:px-8">
       <div class="">
         <img src="{{ asset('images/Files And Folder_Isometric.png') }}" alt="file ilustration">
       </div>
@@ -118,7 +114,8 @@
 
   {{-- Tata Cara Pendaftaran --}}
   <div class="bg-slate-100" id="penggunaan">
-    <div class="gap-12 py-12 mx-4 md:container md:flex md:items-center md:justify-center md:mx-auto ">
+    <div
+      class="gap-12 px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex md:items-center md:justify-center md:mx-auto ">
       <div>
         <h2 class="text-4xl font-semibold">Tata Cara Penggunaan E-Kaku</h2>
         <ol class="mt-6 ml-8 list-decimal">
@@ -139,7 +136,7 @@
 
   {{-- hubungi kami --}}
   <div id="hubungi">
-    <div class="w-full gap-12 py-12 mx-4 md:container md:mx-auto md:flex md:justify-center md:items-start">
+    <div class="w-full gap-12 px-4 py-6 max-w-7xl md:mx-auto md:flex md:justify-center md:items-start">
       {{-- maps --}}
       {{-- alamat --}}
       <div class=" mapouter">
@@ -164,7 +161,7 @@
         </div>
       </div>
       <div>
-        <h2 class="mb-4 text-5xl font-bold">Alamat</h2>
+        <h2 class="mt-6 mb-4 text-4xl font-semibold md:mt-0">Alamat</h2>
         <div>Sukamanah, Kaduhejo, Kabupaten Pandeglang, Banten 42252, Indonesia</div>
         <div class="flex items-center mt-4 mb-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -175,7 +172,11 @@
           <div>0253 - 202038</div>
         </div>
         <div class="flex items-center">
-          <x-icons.at-symbol class="w-6 h-6 mr-2" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
           <div>disnakertrans@pandeglangkab.go.id</div>
         </div>
       </div>
@@ -185,7 +186,7 @@
 
   {{-- footer --}}
   <footer class="p-4 bg-neutral text-neutral-content">
-    <div class="container items-center mx-auto footer">
+    <div class="items-center mx-auto max-w-7xl footer">
       <div class="items-center grid-flow-col ">
         <p>Copyright © {{ date('Y') }} - Dinas Tenaga Kerja dan Transmigrasi Pandeglang</p>
       </div>

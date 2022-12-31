@@ -14,6 +14,12 @@ class BiodataController extends Controller
     return view('biodata/index', compact('biodata'));
   }
 
+  public function show()
+  {
+    $biodata = Biodata::where('user_id', auth()->user()->id)->first();
+    return view('biodata/show', compact('biodata'));
+  }
+
   public function create()
   {
     // jika user sudah membuat biodata maka abort
