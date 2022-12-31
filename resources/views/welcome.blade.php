@@ -62,7 +62,15 @@
         </ul>
       </div>
       <div class="navbar-end">
+        @if(auth()->check())
+        @isadmin
+        <a href="{{ route('dashboard.index') }}" class="btn btn-primary btn-outline">Dashboard</a>
+        @else
+        <a href="{{ route('biodata.index') }}" class="btn btn-primary btn-outline">Biodata</a>
+        @endisadmin
+        @else
         <a href="{{ route('login') }}" class="btn btn-primary btn-outline">Login</a>
+        @endif
       </div>
     </div>
   </div>
@@ -79,7 +87,15 @@
           dan
           Transmigrasi Kabupaten Pandeglang</div>
         <div class="flex justify-center mt-4 md:justify-start">
+          @if(auth()->check())
+          @isadmin
+          <a href="{{ route('dashboard.index') }}" class="btn btn-primary">Dashboard</a>
+          @else
+          <a href="{{ route('biodata.index') }}" class="btn btn-primary">Biodata</a>
+          @endisadmin
+          @else
           <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang</a>
+          @endif
         </div>
       </div>
       <div class="flex items-center justify-center w-full md:flex animate__animated animate__slideInRight">
@@ -98,12 +114,13 @@
       <div>
         <h2 class="text-4xl font-semibold">Persyaratan Pendaftaran <span class="font-bold">AK/1</span> di E-Kaku</h2>
         <ul class="mt-6 ml-8 list-disc">
-          <li>Pas Foto Background Merah, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>,
+          <li><b>Pas Foto</b> Background Merah, Format: <span class="badges">JPG</span>, <span
+              class="badges">JPEG</span>,
             <span class="badges">PNG</span>
           </li>
-          <li> Scan KTP, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
+          <li><b>Scan KTP</b>, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
               class="badges">PNG</span> </li>
-          <li>Scan Ijazah, Terkakhir Format: <span class="badges">PDF</span> </li>
+          <li><b>Scan Ijazah Terakhir</b>, Format: <span class="badges">PDF</span> </li>
           <li>Sertifikat (Opsional), Format: <span class="badges">PDF</span> </li>
         </ul>
         <small class="mt-4 italic text-gray-600">*Masing-masing file berukuran maksimal 2 MB</small>

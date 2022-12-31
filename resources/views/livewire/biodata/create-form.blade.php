@@ -1,9 +1,9 @@
 <div>
   <form wire:submit.prevent="submit" enctype="multipart/form-data">
     @csrf
-    <div class="grid gap-4 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       {{-- left --}}
-      <div class="flex flex-col gap-4">
+      <div class="">
 
         {{-- informasi pribadi --}}
         <div class="p-4 border rounded-lg">
@@ -21,7 +21,7 @@
           <x-form.input label="Tempat Lahir" name="tempat_lahir" placeholder="" wire:model.defer="tempat_lahir" />
 
           {{-- grouping --}}
-          <div class="flex gap-2">
+          <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
             {{-- tanggal lahir --}}
             <x-form.input label="Tanggal Lahir" name="tanggal_lahir" type="date" placeholder=""
               wire:model.defer="tanggal_lahir" />
@@ -82,7 +82,7 @@
 
 
         {{-- informasi tambahan --}}
-        <div class="p-4 border rounded-lg">
+        <div class="p-4 mt-4 border rounded-lg">
           <h3 class="mb-4 text-lg font-semibold ">Informasi Lanjutan</h3>
 
           {{-- no hp --}}
@@ -189,9 +189,17 @@
             <x-form.input type="file" label="Pas Foto" name="pas_foto" altLabel="Format: jgp, png. Max 2 MB"
               wire:model.defer="pas_foto" />
 
+            @if($pas_foto && Str::contains($pas_foto->getMimeType(), 'image'))
+            <img src="{{ $pas_foto->temporaryUrl() }}" alt="" class="mb-6">
+            @endif
+
             {{-- Foto ktp --}}
             <x-form.input type="file" label="Foto KTP" name="ktp" altLabel="Format: jpg, png. Max 2 MB"
               wire:model.defer="ktp" />
+
+            @if($ktp && Str::contains($ktp->getMimeType(), 'image'))
+            <img src="{{ $ktp->temporaryUrl() }}" alt="" class="mb-6">
+            @endif
 
             {{-- foto ijazah --}}
             <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB"

@@ -19,9 +19,9 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
   return view('welcome');
-});
+})->name('home');
 
-Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

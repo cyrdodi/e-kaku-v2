@@ -25,19 +25,20 @@
                 <h1 class="mb-4 text-3xl font-bold text-primary">Selamat Datang di Aplikasi E-Kaku</h1>
                 <p>Langkah selanjutnya adalah kamu harus melengkapi Biodata dan upload Berkas, pastikan kamu sudah
                   menyiapkan berkas yang diperlukan.</p>
-                <ul class="mt-4 ml-8 list-disc">
-                  <li>Pas Foto Background Merah, Format: <span class="badges">JPG</span>, <span
+                <ul class="mt-2 ml-8 list-disc">
+                  <li><b>Pas Foto</b> Background Merah, Format: <span class="badges">JPG</span>, <span
                       class="badges">JPEG</span>,
                     <span class="badges">PNG</span>
                   </li>
-                  <li> Scan KTP, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
+                  <li><b>Scan KTP</b>, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
                       class="badges">PNG</span> </li>
-                  <li>Scan Ijazah, Terkakhir Format: <span class="badges">PDF</span> </li>
+                  <li><b>Scan Ijazah Terakhir</b>, Format: <span class="badges">PDF</span>
+                  </li>
                   <li>Sertifikat (Opsional), Format: <span class="badges">PDF</span> </li>
                 </ul>
                 <small class="mt-4 italic text-gray-600">*Masing-masing file berukuran maksimal 2 MB</small>
                 <div class="mt-6">
-                  <a href="{{ route('biodata.index') }}" class="btn btn-primary">Lengkapi Biodata</a>
+                  <a href="{{ route('biodata.create') }}" class="btn btn-primary">Lengkapi Biodata</a>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@
     <x-form.select label="Pejabat Penandatangan" name="functionary_id" wire:model="functionary_id">
       <option value="">--Pilih--</option>
       @foreach($functionaries as $functionary)
-      <option value="{{ $functionary->id }}">{{ $functionary->name }}</option>
+      <option value="{{ $functionary->id }}">{{ empty($functionary->name) ? '[KOSONG]' : $functionary->name }}</option>
       @endforeach
     </x-form.select>
 

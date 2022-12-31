@@ -9,6 +9,10 @@ class BiodataController extends Controller
 {
   public function index()
   {
+    if (auth()->user()->is_admin == 1) {
+      return redirect()->route('dashboard.index');
+    }
+
     $biodata = Biodata::where('user_id', auth()->user()->id)->first();
 
     return view('biodata/index', compact('biodata'));
@@ -24,7 +28,8 @@ class BiodataController extends Controller
   {
     // jika user sudah membuat biodata maka abort
     if (!Gate::allows('create')) {
-      abort(403, 'Anda sudah memiliki Biodata');
+      // abort(403, 'Anda sudah memiliki Biodata');
+      return redirect()->route('biodata.index');
     }
 
     return view('biodata/create');

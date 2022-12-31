@@ -18,11 +18,9 @@
           @if($biodata)
           <div class="bg-white shadow-sm card">
             <div class="relative card-body">
-              <div class="flex gap-6">
-
+              <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <img src="{{ asset('storage/' .  $biodata->pas_foto_path) }}"
                   class="object-cover w-40 h-48 bg-gray-100 border rounded-lg" alt="Pas Foto">
-
                 <section class="">
                   <div class="mb-2 text-lg font-semibold">{{ $biodata->name }}</div>
                   <div class="flex mb-2 text-gray-500 ">

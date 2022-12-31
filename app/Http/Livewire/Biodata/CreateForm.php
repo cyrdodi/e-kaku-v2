@@ -52,6 +52,24 @@ class CreateForm extends Component
     // 'sertifikat' =>  'max:2048|mimes:pdf'
   ];
 
+  public function updatedPasFoto()
+  {
+    $this->validate(['pas_foto' => 'mimes:jpg,jpeg,png|max:2048']);
+  }
+
+  public function updatedKtp()
+  {
+    $this->validate(['ktp' => 'mimes:jpg,jpeg,png|max:2048']);
+  }
+  public function updatedIjazah()
+  {
+    $this->validate(['ijazah' => 'mimes:pdf|max:2048']);
+  }
+  public function updatedSertifikat()
+  {
+    $this->validate(['sertifikat' => 'mimes:pdf|max:2048']);
+  }
+
   public function submit()
   {
     $this->validate();
