@@ -15,16 +15,20 @@ class ReportList extends Component
   public $bulan;
   public $tahun;
 
-  private $list;
 
   public function mount()
   {
     $this->tahun = date('Y');
+    $this->bulan = date('m');
   }
 
   public function render()
   {
-    $list = $this->list;
+    $list = CetakTransaction::with('biodata')->whereMonth('created_at', $this->bulan)
+      ->whereYear('created_at', $this->tahun)
+      ->paginate(10);
+
+
     return view('livewire.report.report-list', compact('list'));
   }
 
@@ -36,9 +40,6 @@ class ReportList extends Component
       'tahun' => 'required'
     ]);
 
-    $this->list = CetakTransaction::with('biodata')->whereMonth('created_at', $this->bulan)
-      ->whereYear('created_at', $this->tahun)
-      ->paginate(10);
     // ->get();
 
     // dd($this->list);

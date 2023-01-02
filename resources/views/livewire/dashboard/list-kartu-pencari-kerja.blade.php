@@ -23,22 +23,22 @@
           <thead class="border-b">
             <tr>
               <th class="p-2">#</th>
-              <th class="p-2 text-left">No. Pendaftaran</th>
+              <th class="p-2 text-left">NIK</th>
               <th class="p-2 text-left">Nama</th>
-              <th class="p-2 text-left">Alamat</th>
-              <th class="p-2">Jenis Kelamin</th>
-              <th class="p-2">Pendidikan</th>
+              <th class="p-2 text-left">Alamat (Kecamatan)</th>
+              <th class="p-2 text-left">Jenis Kelamin</th>
+              <th class="p-2 text-left">Pendidikan</th>
               <th class="p-2">Action</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($biodata as $row)
-            <tr>
+            @forelse($biodata as $row)
+            <tr class="divide-y">
               <td class="p-2 text-center">{{ $biodata->firstItem() + $loop->index }}</td>
-              <td class="p-2 ">{{ $row->no_pendaftaran }}</td>
+              <td class="p-2 ">{{ $row->nik }}</td>
               <td class="p-2">
                 <div>{{ $row->name }}</div>
-                <div class="text-xs text-gray-400">{{ $row->nik }}</div>
+                <div class="text-xs text-gray-400">{{ $row->no_pendaftaran }}</div>
               </td>
               <td class="p-2">
                 {{ $row->kecamatan->name }}
@@ -52,7 +52,11 @@
                   href="{{ route('dashboardShow', ['biodata' => $row->id]) }}">Detail</a>
               </td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+              <td class="p-3 font-semibold text-center text-red-500" colspan="7">Data tidak ditemukan</td>
+            </tr>
+            @endforelse
           </tbody>
         </table>
       </div> {{-- end table --}}
