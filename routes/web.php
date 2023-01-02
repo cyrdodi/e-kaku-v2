@@ -5,6 +5,7 @@ use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/show/{biodata}', [DashboardController::class, 'show'])->name('dashboardShow');
     Route::get('/dashboard/edit/{biodata}', [DashboardController::class, 'edit'])->name('dashboardEdit');
     Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboardCreate');
+
+    Route::get('/report', [ReportController::class, 'index'])->name('report.index');
   });
 });
 

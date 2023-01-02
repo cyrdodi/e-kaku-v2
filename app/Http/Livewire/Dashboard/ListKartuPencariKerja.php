@@ -27,12 +27,4 @@ class ListKartuPencariKerja extends Component
       ->paginate(10);
     return view('livewire.dashboard.list-kartu-pencari-kerja', compact('biodata'));
   }
-
-  public function search()
-  {
-    $this->biodata = Biodata::with('pendidikanTerakhir', 'kecamatan')
-      ->when(!empty($this->search), fn ($query) => $query->where('name', 'like', '%' .  $this->search . '%')
-        ->orWhere('nik', 'like', '%' . $this->search . '%'))
-      ->paginate(10);
-  }
 }

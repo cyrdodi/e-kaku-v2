@@ -3,7 +3,12 @@
   <label class="label">
     <span class="label-text">{{ $label }}</span>
   </label>
-  <select class="select select-bordered @error($name) select-error @enderror" name="{{ $name }}" {{ $attributes }}>
+  <select @error($name) {{ $attributes->merge(['class' => "select select-bordered select-error"]) }}
+    @else
+    {{ $attributes->merge(['class' => "select select-bordered "]) }}
+    @enderror
+    name="{{
+    $name }}" {{ $attributes }}>
     {{ $slot }}
   </select>
   @if($altLabel)

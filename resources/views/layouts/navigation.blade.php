@@ -25,6 +25,9 @@
           <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
             {{ __('Dashboard') }}
           </x-nav-link>
+          <x-nav-link :href="route('report.index')" :active="request()->routeIs('report.index')">
+            {{ __('Report') }}
+          </x-nav-link>
           @endisadmin
           @endif
         </div>
@@ -96,6 +99,9 @@
       @isadmin
       <x-responsive-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard')">
         {{ __('Dashboard') }}
+      </x-responsive-nav-link>
+      <x-responsive-nav-link :href="route('report.index')" :active="request()->routeIs('report')">
+        {{ __('Report') }}
       </x-responsive-nav-link>
       @endisadmin
       @endif
