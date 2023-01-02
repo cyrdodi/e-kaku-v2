@@ -33,7 +33,8 @@
           </div>
 
           {{-- alamat --}}
-          <x-form.textarea label="Alamat" name="alamat" wire:model.defer="alamat">{{ old('alamat') }}</x-form.textarea>
+          <x-form.textarea label="Alamat" name="alamat" wire:model.defer="alamat" placeholder="Kampung atau nama jalan">
+            {{ old('alamat') }}</x-form.textarea>
 
           <div class="grid grid-cols-2 gap-2">
 
@@ -71,7 +72,7 @@
 
           <div class="grid grid-cols-2 gap-2">
             {{-- kelurahan --}}
-            <x-form.input label="kelurahan" name="kelurahan" wire:model.defer="kelurahan" />
+            <x-form.input label="Desa/Kelurahan" name="kelurahan" wire:model.defer="kelurahan" />
 
             {{-- kode pos --}}
             <x-form.input label="Kode Pos" name="kode_pos" type="number" wire:model.defer="kode_pos" />
@@ -86,7 +87,7 @@
           <h3 class="mb-4 text-lg font-semibold ">Informasi Lanjutan</h3>
 
           {{-- no hp --}}
-          <x-form.input label="No HP" name="no_hp" type="number" wire:model.defer="no_hp" />
+          <x-form.input label="No HP" name="no_hp" type="number" wire:model.defer="no_hp" placeholder="No HP Aktif" />
 
           {{-- email --}}
           <x-form.input label="Email" name="email" type="email" wire:model.defer="email" />
@@ -111,16 +112,16 @@
 
           <div class="grid grid-cols-2 gap-2">
             {{-- Tinggi badan --}}
-            <x-form.input label="Tinggi Badan" name="tinggi_badan" type="number" placeholder=""
+            <x-form.input label="Tinggi Badan (cm)" name="tinggi_badan" type="number" placeholder=""
               wire:model.defer="tinggi_badan" />
             {{-- berat badan --}}
-            <x-form.input label="Berat Badan" name="berat_badan" type="number" placeholder=""
+            <x-form.input label="Berat Badan (kg)" name="berat_badan" type="number" placeholder=""
               wire:model.defer="berat_badan" />
           </div>
 
           {{-- penyandang disabilitas --}}
-          <x-form.select name="disabilitas" label="Penyandang Disabilitas" wire:model.defer="disabilitas">
-            <option value="" selected>--pilih disabilitas--</option>
+          <x-form.select name="disabilitas" label="Apakah Anda Penyandang Disabilitas?" wire:model.defer="disabilitas">
+            <option value="" selected>--pilih--</option>
             <option value="0" {{ old('disabilitas')=='0' ? 'selected' : "" }}>Tidak</option>
             <option value="1" {{ old('disabilitas')=='1' ? 'selected' : "" }}>Ya</option>
           </x-form.select>

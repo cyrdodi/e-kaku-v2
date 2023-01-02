@@ -30,7 +30,8 @@
           </div>
 
           {{-- alamat --}}
-          <x-form.textarea label="Alamat" name="alamat" wire:model.defer="alamat"></x-form.textarea>
+          <x-form.textarea label="Alamat" name="alamat" wire:model.defer="alamat" placeholder="Kampung atau nama jalan">
+          </x-form.textarea>
 
           <div class="grid grid-cols-2 gap-2">
 
@@ -65,7 +66,7 @@
 
           <div class="grid grid-cols-2 gap-2">
             {{-- kelurahan --}}
-            <x-form.input label="kelurahan" name="kelurahan" wire:model.defer="kelurahan" />
+            <x-form.input label="Desa/Kelurahan" name="kelurahan" wire:model.defer="kelurahan" />
 
             {{-- kode pos --}}
             <x-form.input label="Kode Pos" name="kode_pos" type="number" wire:model.defer="kode_pos" />
@@ -104,10 +105,10 @@
 
           <div class="grid grid-cols-2 gap-2">
             {{-- Tinggi badan --}}
-            <x-form.input label="Tinggi Badan" name="tinggi_badan" type="number" placeholder=""
+            <x-form.input label="Tinggi Badan (cm)" name="tinggi_badan" type="number" placeholder=""
               wire:model.defer="tinggi_badan" />
             {{-- berat badan --}}
-            <x-form.input label="Berat Badan" name="berat_badan" type="number" placeholder=""
+            <x-form.input label="Berat Badan (kg)" name="berat_badan" type="number" placeholder=""
               wire:model.defer="berat_badan" />
           </div>
 
@@ -238,7 +239,7 @@
       </div> {{-- end right --}}
     </div>
     <div class="flex justify-end mt-4">
-      <button type="submit" class="btn btn-primary">Simpan</button>
+      <button type="submit" class="btn btn-primary">Update</button>
     </div>
   </form>
 

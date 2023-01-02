@@ -1,10 +1,11 @@
 <div>
   {{-- tanggal --}}
-  <div class="flex justify-between mb-4">
+  <div class="mb-4 md:flex md:justify-between">
     <div class="">
       <form wire:submit.prevent="filter">
-        <div class="flex items-end w-1/2">
-          <select name="bulan" label="Bulan" class="mr-2 select select-bordered @error('bulan') select-error @enderror"
+        <div class="items-end mb-2 md:w-1/2 md:flex md:mb-0">
+          <select name="bulan" label="Bulan"
+            class="mr-2 md:mb-0 mb-2 select select-bordered @error('bulan') select-error @enderror"
             wire:model.defer="bulan">
             <option value="01">Januari</option>
             <option value="02">Februari</option>

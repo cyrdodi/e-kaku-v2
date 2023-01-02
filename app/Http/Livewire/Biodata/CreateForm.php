@@ -130,10 +130,10 @@ class CreateForm extends Component
         'user_id' => auth()->user()->id,
       ]);
 
-      toastr()->success('Sukses', 'Biodata berhasil ditambahkan');
+      toastr()->success('Biodata berhasil ditambahkan', 'Sukses');
       return redirect($this->previousUrl);
     } catch (\Exception $e) {
-      toastr()->error('error', $e->getMessage());
+      toastr()->error($e->getMessage(), 'Error');
     }
   }
 

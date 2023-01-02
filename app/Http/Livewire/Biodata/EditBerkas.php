@@ -32,7 +32,7 @@ class EditBerkas extends ModalComponent
     $this->biodata->pas_foto->update($originalName);
     $this->biodata->pas_foto_path->update($filename);
 
-    toastr('success', 'Berhasil upload');
+    toastr('Berhasil upload', 'Sukses');
   }
 
   public function render()

@@ -20,7 +20,7 @@ class EditForm extends Component
   use WithFileUploads;
 
   // public $biodata;
-  public $keacamatan, $agama, $statusPerkawinan, $pendidikan;
+  public $kecamatan, $agama, $statusPerkawinan, $pendidikan;
 
   public $biodata;
   // form
@@ -253,7 +253,7 @@ class EditForm extends Component
         'tujuan_lamaran' => $this->tujuan_lamaran,
       ]);
 
-    toastr()->success('Biodata updated');
+    toastr()->success('Biodata updated', 'Sukses');
 
     return redirect($this->previousUrl);
   }

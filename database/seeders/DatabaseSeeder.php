@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
     ]);
 
 
-    Biodata::factory(50)->create();
+    // testing only
+    // Biodata::factory(50)->create();
   }
 }
