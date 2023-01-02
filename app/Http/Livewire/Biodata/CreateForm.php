@@ -93,7 +93,7 @@ class CreateForm extends Component
 
 
       Biodata::create([
-        'no_pendaftaran' => $this->generateNoPendaftaran($this->nik),
+        // 'no_pendaftaran' => $this->generateNoPendaftaran($this->nik),
         'nik' => $this->nik,
         'name' => $this->name,
         'tempat_lahir' => $this->tempat_lahir,

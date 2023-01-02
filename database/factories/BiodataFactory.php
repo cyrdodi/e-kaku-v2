@@ -20,7 +20,7 @@ class BiodataFactory extends Factory
   public function definition()
   {
     return [
-      'no_pendaftaran' => rand(0, 10000),
+      // 'no_pendaftaran' => rand(0, 10000),
       'nik' => rand(0, 800000),
       'name' => fake()->name(),
       'tempat_lahir' => fake()->word(),
