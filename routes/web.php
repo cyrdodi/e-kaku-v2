@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboardCreate');
 
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+    Route::get('/report/export/{bulan}/{tahun}', [ReportController::class, 'export'])->name('report.export');
   });
 });
 
