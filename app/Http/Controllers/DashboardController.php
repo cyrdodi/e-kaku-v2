@@ -30,10 +30,14 @@ class DashboardController extends Controller
     // $data = Employee::all();
     // share data to view
     // view()->share('pdf.kaku', $data);
+    Pdf::setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
 
-    $pdf = Pdf::loadView('pdf.test')
-      ->setPaper('a4', 'landscape');
+    $pdf = Pdf::loadView('pdf.test');
     // download PDF file with download method
+
+    $customPaper = array(0, 0, 841.89, 297.64);
+    $pdf->set_paper($customPaper);
+
     return $pdf->download('pdf_file.pdf');
   }
 

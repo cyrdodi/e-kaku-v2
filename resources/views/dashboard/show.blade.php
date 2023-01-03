@@ -67,6 +67,7 @@
         <a class="btn btn-primary" href="{{ route('dashboardPrintView', ['cetak_trans' => $cetak->id]) }}">Cetak
           Ulang</a>
         @endif
+        <a class="btn btn-primary" href="{{ route('dashboard.print') }}">Print PDF</a>
 
         <a href="{{ route('dashboardEdit', ['biodata' => $biodata->id]) }}"
           class="ml-4 btn btn-primary btn-outline">Edit</a>
