@@ -45,6 +45,9 @@ class DashboardController extends Controller
   {
     // $this->authorize('cetak', $biodata);
     // dd($cetakTrans->functionary->name);
+
+
+
     return view('pdf/kaku', compact('cetakTrans'));
   }
 
