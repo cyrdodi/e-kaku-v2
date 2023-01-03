@@ -24,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot()
   {
+    // set timezone
+    config(['app.locale' => 'id']);
+    Carbon::setLocale('id');
+    date_default_timezone_set('Asia/Jakarta');
+
+
     Blade::if('isadmin', function () {
       return auth()->user() && auth()->user()->is_admin == 1;
     });
