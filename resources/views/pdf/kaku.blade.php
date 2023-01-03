@@ -35,6 +35,11 @@ $noPen3 = substr($noPendaftaran, 9);
         visibility: hidden;
       }
     }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      /* font-family: 'Times New Roman', Times, serif; */
+    }
   </style>
 </head>
 
@@ -79,8 +84,8 @@ $noPen3 = substr($noPendaftaran, 9);
       <div>
         {{-- kop --}}
         <div>
-          <div class="relative flex ">
-            <div>
+          <div class="relative flex">
+            <div class="mr-2">
               <img src="{{ asset('images/logo-pandeglang.png') }}" class="w-14" alt="Logo Pdg">
             </div>
             <div>
@@ -94,7 +99,7 @@ $noPen3 = substr($noPendaftaran, 9);
           </div>
         </div>
 
-        <div class="px-2 py-1 my-2 font-semibold text-center border border-gray-800 rounded-lg border-sm text-[14px]">
+        <div class="px-2 py-1 my-1 font-semibold text-center border border-gray-800 rounded-lg border-sm text-[14px]">
           KARTU
           TANDA BUKTI
           PENDAFTARAN PENCARI
@@ -112,7 +117,7 @@ $noPen3 = substr($noPendaftaran, 9);
             </tr>
             <tr class="">
               <td>No. Induk Kependudukan</td>
-              <th class="flex justify-around gap-2 p-1 text-right">
+              <th class="flex justify-around gap-2 text-right">
                 <span class="px-1 tracking-widest border border-gray-700">{{ $group1 }}</span>
                 <span class="px-1 tracking-widest border border-gray-700">{{ $group2 }}</span>
                 <span class="px-1 tracking-widest border border-gray-700">{{ $group3 }}</span>
@@ -137,28 +142,35 @@ $noPen3 = substr($noPendaftaran, 9);
               <table>
                 <tr>
                   <td class="w-28">Nama Lengkap</td>
-                  <td>: {{ $cetakTrans->biodata->name }}</td>
+                  <td>:</td>
+                  <td>{{ $cetakTrans->biodata->name }}</td>
                 </tr>
                 <tr>
                   <td>Tempat/Tgl Lahir</td>
-                  <td>: {{ $cetakTrans->biodata->tempat_lahir }} / {{ date('d-m-Y',
+                  <td>:</td>
+                  <td>{{ $cetakTrans->biodata->tempat_lahir }} / {{ date('d-m-Y',
                     strtotime($cetakTrans->biodata->tanggal_lahir)) }}</td>
                 </tr>
                 <tr>
                   <td>Jenis Kelamin</td>
-                  <td>: {{ $cetakTrans->biodata->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' }}</td>
+                  <td>:</td>
+                  <td>{{ $cetakTrans->biodata->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' }}</td>
                 </tr>
                 <tr>
                   <td>Status</td>
-                  <td>: {{ $cetakTrans->biodata->statusPerkawinan->name }}</td>
+                  <td>:</td>
+                  <td>{{ $cetakTrans->biodata->statusPerkawinan->name }}</td>
                 </tr>
                 <tr>
                   <td>Agama</td>
-                  <td>: {{ $cetakTrans->biodata->agama->name }}</td>
+                  <td>:</td>
+                  <td>{{ $cetakTrans->biodata->agama->name }}</td>
                 </tr>
                 <tr>
-                  <td class="flex">Alamat</td>
-                  <td>: {{ $cetakTrans->biodata->alamat .', RT/RW ' . $cetakTrans->biodata->rtrw .', '.
+                  <td class="align-text-top">Alamat</td>
+                  <td class="align-text-top">:</td>
+                  <td class="align-text-top">{{ $cetakTrans->biodata->alamat .', RT/RW ' . $cetakTrans->biodata->rtrw
+                    .', '.
                     $cetakTrans->biodata->kelurahan .', '.
                     $cetakTrans->biodata->kecamatan->name .', '. $cetakTrans->biodata->kabupaten .', '.
                     $cetakTrans->biodata->provinsi .' - '.
@@ -166,11 +178,13 @@ $noPen3 = substr($noPendaftaran, 9);
                 </tr>
                 <tr>
                   <td>Telp/HP</td>
-                  <td>: {{ $cetakTrans->biodata->no_hp }}</td>
+                  <td>:</td>
+                  <td>{{ $cetakTrans->biodata->no_hp }}</td>
                 </tr>
                 <tr>
                   <td>Berlaku s.d</td>
-                  <td>: {{ date_format(date_create($cetakTrans->expired), 'd F Y') }}</td>
+                  <td>:</td>
+                  <td>{{ date_format(date_create($cetakTrans->expired), 'd F Y') }}</td>
                 </tr>
               </table>
             </div>
@@ -184,8 +198,14 @@ $noPen3 = substr($noPendaftaran, 9);
   <div class="flex justify-center ">
     <div class="flex justify-between p-4 mt-8 noprint w-[1133px] border-t ">
       <a href="{{ route('dashboardShow', ['biodata' => $cetakTrans->biodata->id]) }}" class="btn btn-secondary noprint"
-        on>Kembali</a>
-      <button class="btn btn-primary noprint" onclick="window.print()">Cetak</button>
+        on>
+        <x-icons.chevron-left class="mr-2" />
+        <span>Kembali</span>
+      </a>
+      <button class="btn btn-primary noprint" onclick="window.print()">
+        <x-icons.printer-solid class="mr-2" />
+        <span>Cetak</span>
+      </button>
     </div>
   </div>
 

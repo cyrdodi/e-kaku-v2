@@ -50,9 +50,9 @@
           {{ __('Sudah punya akun?') }}
         </a>
 
-        <x-primary-button class="ml-4">
-          {{ __('Register') }}
-        </x-primary-button>
+        <button class="ml-4  btn btn-primary">
+          Register
+        </button>
       </div>
     </form>
   </x-auth-card>

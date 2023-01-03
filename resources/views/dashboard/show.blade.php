@@ -23,7 +23,7 @@
 
             <section class="">
               <div class="mb-2 text-lg font-semibold">{{ $biodata->name }}</div>
-              <div class="flex mb-2 text-gray-500 ">
+              <div class="flex mb-2 ">
                 <x-icons.identification class="w-6 h-6 mr-2" />
                 <span class="font-medium">{{ $biodata->nik }}</span>
               </div>
@@ -31,7 +31,7 @@
                 $biodata->no_pendaftaran }}
               </div>
               <div class="flex mb-2">
-                <x-icons.at-symbol class="w-6 h-6 mr-2" />
+                <x-icons.envelope class="w-6 h-6 mr-2" />
                 <span>{{ $biodata->email }}</span>
               </div>
               <div class="flex mb-2">
@@ -48,10 +48,12 @@
                 @endif
               </div>
               <div class="flex w-2/3 mb-2">
-                <x-icons.map-pin class="w-6 h-6 mr-2" />
-                {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
-                $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
-                $biodata->kode_pos}}
+                <x-icons.map-pin class="w-8 h-8 mr-2" />
+                <div>
+                  {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
+                  $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
+                  $biodata->kode_pos}}
+                </div>
               </div>
             </section>
           </div>
@@ -62,15 +64,23 @@
 
         @if($cetak == null)
         <button onclick="Livewire.emit('openModal', 'dashboard.cetak', {{ json_encode(['biodata' => $biodata->id]) }})"
-          class="btn btn-primary ">Cetak Kartu</button>
+          class="btn btn-primary ">
+          <x-icons.printer class="mr-2" />
+          <span>Cetak Kartu</span>
+        </button>
         @else
-        <a class="btn btn-primary" href="{{ route('dashboardPrintView', ['cetak_trans' => $cetak->id]) }}">Cetak
-          Ulang</a>
+        <a class="btn btn-primary" href="{{ route('dashboardPrintView', ['cetak_trans' => $cetak->id]) }}">
+          <x-icons.printer class="mr-2" />
+          <span>Cetak Ulang</span>
+        </a>
         @endif
-        <a class="btn btn-primary" href="{{ route('dashboard.print') }}">Print PDF</a>
 
-        <a href="{{ route('dashboardEdit', ['biodata' => $biodata->id]) }}"
-          class="ml-4 btn btn-primary btn-outline">Edit</a>
+        {{-- <a class="btn btn-primary" href="{{ route('dashboard.print') }}">Print PDF</a> --}}
+
+        <a href="{{ route('dashboardEdit', ['biodata' => $biodata->id]) }}" class="ml-4 btn btn-primary btn-outline">
+          <x-icons.pencil-square class="mr-2" />
+          <span>Edit</span>
+        </a>
       </div>
 
       {{-- --}}

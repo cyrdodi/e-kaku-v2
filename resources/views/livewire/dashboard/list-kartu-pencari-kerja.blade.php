@@ -14,7 +14,10 @@
           </form> --}}
         </div>
 
-        <a href="{{ route('dashboardCreate') }}" class="btn btn-primary">Tambah Baru</a>
+        <a href="{{ route('dashboardCreate') }}" class="btn btn-primary">
+          <x-icons.plus class="mr-2" />
+          <span>Tambah Baru</span>
+        </a>
       </div>
 
       {{-- table --}}
@@ -48,7 +51,7 @@
                 {{ $row->pendidikanTerakhir->name . ' ('. $row->tahun_lulus . ')' }}
               </td>
               <td class="p-2 text-center">
-                <a class="btn btn-sm btn-primary"
+                <a class="btn btn-sm btn-primary btn-outline"
                   href="{{ route('dashboardShow', ['biodata' => $row->id]) }}">Detail</a>
               </td>
             </tr>

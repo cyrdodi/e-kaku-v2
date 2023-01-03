@@ -184,7 +184,7 @@
       </div>
       <div>
         <h2 class="mt-6 mb-4 text-4xl font-semibold md:mt-0">Alamat</h2>
-        <div>Sukamanah, Kaduhejo, Kabupaten Pandeglang, Banten 42252, Indonesia</div>
+        <div>Jl. Raya Labuan KM 4 Cipacung Pandeglang, Kaduhejo, Kabupaten Pandeglang Provinsi Banten 42253</div>
         <div class="flex items-center mt-4 mb-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6 mr-2">

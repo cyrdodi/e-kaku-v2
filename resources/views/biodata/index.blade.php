@@ -54,14 +54,14 @@
             <div class="gap-6 md:flex">
               {{-- image --}}
               <div>
-                <img src="{{ asset('images/Step 1_Isometric.png') }}" alt="Ilustrasi">
+                <img src="{{ asset('images/Job Interview _Isometric.png') }}" alt="Ilustrasi">
               </div>
               {{-- copyright --}}
               <div>
                 <h1 class="mb-4 text-3xl font-bold text-primary">Datamu sudah terekam di Disnakertrans Kab. Pandeglang!
                 </h1>
-                <p>Selanjutnya kamu tinggal mendatangi Kantor Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang
-                  untuk mencetak <span class="font-bold">Kartu AK/1</span>.</p>
+                <p>Selanjutnya untuk melakukan pencetakan dan verifikasi silahkan mengunjungi Dinas Ketenagakerjaan/Mal
+                  Pelayanan Publik Kab. Pandeglang</p>
 
                 <div class="mt-4">
                   <a href="{{ route('biodata.show') }}" class="btn btn-primary">

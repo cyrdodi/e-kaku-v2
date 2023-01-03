@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <meta name="description"
+    content="Aplikasi pembuatan kartu kuning secara online Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang">
+  <meta name="author" content="Dodi Yulian">
+
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Fonts -->

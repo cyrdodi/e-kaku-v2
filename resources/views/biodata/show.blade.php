@@ -18,10 +18,10 @@
           @if($biodata)
           <div class="bg-white shadow-sm card">
             <div class="relative card-body">
-              <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div class="md:flex ">
                 <img src="{{ asset('storage/' .  $biodata->pas_foto_path) }}"
                   class="object-cover w-40 h-48 bg-gray-100 border rounded-lg" alt="Pas Foto">
-                <section class="">
+                <section class="md:ml-4">
                   <div class="mb-2 text-lg font-semibold">{{ $biodata->name }}</div>
                   <div class="flex mb-2 text-gray-500 ">
                     <x-icons.identification class="w-6 h-6 mr-2" />
@@ -47,11 +47,13 @@
                     Perempuan
                     @endif
                   </div>
-                  <div class="flex w-2/3 mb-2">
-                    <x-icons.map-pin class="w-6 h-6 mr-2" />
-                    {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
-                    $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
-                    $biodata->kode_pos}}
+                  <div class="flex mb-2">
+                    <x-icons.map-pin class="mr-2 " />
+                    <div>
+                      {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
+                      $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
+                      $biodata->kode_pos}}
+                    </div>
                   </div>
                 </section>
               </div>
@@ -61,7 +63,10 @@
 
           {{-- button --}}
           <div class="mt-4">
-            <a href="{{ route('biodataEdit', ['biodata' => $biodata->id]) }}" class="btn btn-primary ">Edit</a>
+            <a href="{{ route('biodataEdit', ['biodata' => $biodata->id]) }}" class="btn btn-primary ">
+              <x-icons.pencil-square class="mr-2" />
+              <span>Edit</span>
+            </a>
           </div>
 
           {{-- --}}
