@@ -213,7 +213,7 @@
 
             <div class="p-5 mb-6 border rounded-lg shadow-inner">
               {{-- foto ijazah --}}
-              <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB"
+              <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf, jpg, jpeg, png. Max 2 MB"
                 wire:model="ijazah" />
               @if(!$ijazah)
               <a href="{{ asset('storage/' . $biodata->ijazah_path) }}" class="underline">{{ $biodata->ijazah }}</a>

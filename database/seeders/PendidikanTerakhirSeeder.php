@@ -19,6 +19,7 @@ class PendidikanTerakhirSeeder extends Seeder
     PendidikanTerakhir::create(['name' => 'SMP']);
     PendidikanTerakhir::create(['name' => 'MTS']);
     PendidikanTerakhir::create(['name' => 'SMA']);
+    PendidikanTerakhir::create(['name' => 'SMK']);
     PendidikanTerakhir::create(['name' => 'MA']);
     PendidikanTerakhir::create(['name' => 'D1']);
     PendidikanTerakhir::create(['name' => 'D2']);

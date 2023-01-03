@@ -203,7 +203,7 @@
             @endif
 
             {{-- foto ijazah --}}
-            <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf. Max 2 MB"
+            <x-form.input type="file" label="Ijazah" name="ijazah" altLabel="Format: pdf, jpg, jpeg, png, . Max 2 MB"
               wire:model.defer="ijazah" />
 
             {{-- sertifikat --}}

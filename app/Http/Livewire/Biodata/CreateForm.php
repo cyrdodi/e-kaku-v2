@@ -25,7 +25,7 @@ class CreateForm extends Component
   public $previousUrl;
 
   protected $rules = [
-    'nik' => 'required|numeric',
+    'nik' => 'required|numeric|digits:16',
     'name' => 'required',
     'tempat_lahir' => 'required',
     'tanggal_lahir' => 'date|required',
@@ -48,7 +48,7 @@ class CreateForm extends Component
     'jurusan' => 'required',
     'pas_foto' => 'required|max:2048|image',
     'ktp' => 'required|max:2048|image',
-    'ijazah' => 'required|max:2048|mimes:pdf',
+    // 'ijazah' => 'required|max:2048|mimes:pdf,jpg,jpeg,png',
     // 'sertifikat' =>  'max:2048|mimes:pdf'
   ];
 
@@ -63,7 +63,7 @@ class CreateForm extends Component
   }
   public function updatedIjazah()
   {
-    $this->validate(['ijazah' => 'mimes:pdf|max:2048']);
+    $this->validate(['ijazah' => 'mimes:pdf,jpg,jpeg,png|max:2048']);
   }
   public function updatedSertifikat()
   {
@@ -73,6 +73,16 @@ class CreateForm extends Component
   public function submit()
   {
     $this->validate();
+
+    // jika admin maka dibolehkan tidak upload ijazah
+    if (!auth()->user()->is_admin == 1) {
+      // $this->validate([
+      //   'ijazah' => 'max:2048|mimes:pdf,jpg,jpeg,png',
+      // ]);
+      $this->validate([
+        'ijazah' => 'required|max:2048|mimes:pdf,jpg,jpeg,png',
+      ]);
+    }
 
     try {
       if ($this->sertifikat) {
@@ -88,12 +98,14 @@ class CreateForm extends Component
       $pasFotoPath = $this->pas_foto->store('berkas');
       $ktpName = $this->ktp->getClientOriginalName();
       $ktpPath = $this->ktp->store('berkas');
-      $ijazahName = $this->ijazah->getClientOriginalName();
-      $ijazahPath = $this->ijazah->store('berkas');
+
+      if ($this->ijazah) {
+        $ijazahName = $this->ijazah->getClientOriginalName();
+        $ijazahPath = $this->ijazah->store('berkas');
+      }
 
 
       Biodata::create([
-        // 'no_pendaftaran' => $this->generateNoPendaftaran($this->nik),
         'nik' => $this->nik,
         'name' => $this->name,
         'tempat_lahir' => $this->tempat_lahir,
@@ -123,8 +135,8 @@ class CreateForm extends Component
         'pas_foto_path' => $pasFotoPath,
         'ktp' => $ktpName,
         'ktp_path' => $ktpPath,
-        'ijazah' => $ijazahName,
-        'ijazah_path' => $ijazahPath,
+        'ijazah' => $ijazahName ?? null,
+        'ijazah_path' => $ijazahPath ?? null,
         'sertifikat' => $sertifikatName ?? null,
         'sertifikat_path' => $sertifikatPath ?? null,
         'user_id' => auth()->user()->id,
@@ -137,25 +149,14 @@ class CreateForm extends Component
     }
   }
 
-  public function generateNoPendaftaran($nik)
-  {
-
-    $prefix = substr($nik, 0, 4);
-    $suffix = date('dmY');
-
-    // cek apakah ada data pada bulan ini
-    $noUrut = Biodata::whereYear('created_at', date('Y'))
-      ->whereMonth('created_at', date('m'))
-      ->count();
-
-    $noUrut = sprintf('%05d', $noUrut + 1);
-
-    return $prefix . $noUrut . $suffix;
-  }
-
   public function mount()
   {
     $this->previousUrl = URL::previous();
+
+    if (auth()->user()->is_admin == 0) {
+      $this->name = auth()->user()->name;
+      $this->email = auth()->user()->email;
+    }
 
     $this->kecamatan = Kecamatan::orderBy('name')->get();
     $this->agama = Agama::where('is_active', 1)->get();

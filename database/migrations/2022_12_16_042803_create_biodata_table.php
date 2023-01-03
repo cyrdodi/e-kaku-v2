@@ -46,8 +46,8 @@ return new class extends Migration
       $table->string('pas_foto_path');
       $table->string('ktp');
       $table->string('ktp_path');
-      $table->string('ijazah');
-      $table->string('ijazah_path');
+      $table->string('ijazah')->nullable();
+      $table->string('ijazah_path')->nullable();
       $table->string('sertifikat')->nullable();
       $table->string('sertifikat_path')->nullable();
       $table->foreignId('user_id')->constrained('users');

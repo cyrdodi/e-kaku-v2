@@ -32,7 +32,9 @@
                   </li>
                   <li><b>Scan KTP</b>, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
                       class="badges">PNG</span> </li>
-                  <li><b>Scan Ijazah Terakhir</b>, Format: <span class="badges">PDF</span>
+                  <li><b>Scan Ijazah Terakhir</b>, Format: <span class="badges">PDF</span>, <span
+                      class="badges">JPG</span>,
+                    <span class="badges">JPEG</span>, <span class="badges">PNG</span>
                   </li>
                   <li>Sertifikat (Opsional), Format: <span class="badges">PDF</span> </li>
                 </ul>

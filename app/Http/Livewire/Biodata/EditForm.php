@@ -31,7 +31,7 @@ class EditForm extends Component
 
   // validation
   protected $rules = [
-    'nik' => 'required|numeric',
+    'nik' => 'required|numeric|digits:16',
     'name' => 'required',
     'tempat_lahir' => 'required',
     'tanggal_lahir' => 'date|required',
@@ -52,10 +52,6 @@ class EditForm extends Component
     'tahun_lulus' => 'required|numeric',
     'institusi_pendidikan' => 'required',
     'jurusan' => 'required',
-    // 'pas_foto' => ['required', 'max:2048', 'image'],
-    // 'ktp' => ['required', 'max:2048', 'image'],
-    // 'ijazah' => ['required', 'max:2048', 'mimes:pdf'],
-    // 'sertifikat' => ['max:2048', 'mimes:pdf']
   ];
 
   public function mount(Biodata $biodata)
@@ -124,7 +120,7 @@ class EditForm extends Component
   public function updatedIjazah()
   {
     $this->validate([
-      'ijazah' => 'mimes:pdf|max:2048'
+      'ijazah' => 'mimes:pdf,jpg,jpeg,png|max:2048'
     ]);
   }
 
@@ -191,7 +187,7 @@ class EditForm extends Component
     // update ijazah
     if ($this->ijazah) {
       $this->validate([
-        'ijazah' => 'mimes:pdf|max:2048'
+        'ijazah' => 'mimes:pdf,jpg,jpeg,png|max:2048'
       ]);
 
       // delete old file
