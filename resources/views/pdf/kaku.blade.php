@@ -70,6 +70,8 @@ $noPen3 = substr($noPendaftaran, 9);
             <div class="flex justify-center">
               @if($cetakTrans->functionary->id == 1)
               <img src="{{ asset('images/ttd.png') }}" alt="ttd" class="object-fill w-32 " />
+              @elseif($cetakTrans->functionary->id == 3)
+              <img src="{{ asset('images/ttd2.png') }}" alt="ttd" class="object-fill w-32 " />
               @endif
             </div>
             <div class="mt-0 text-center">
