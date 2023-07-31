@@ -1,0 +1,5 @@
+[06-Jan-2023 13:19:07 UTC] PHP Warning:  require(/home/ekakupdg/e-kaku-v2/vendor/autoload.php): Failed to open stream: No such file or directory in /home/ekakupdg/e-kaku-v2/artisan on line 18
+[06-Jan-2023 13:19:07 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/ekakupdg/e-kaku-v2/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/ekakupdg/e-kaku-v2/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/ekakupdg/e-kaku-v2/artisan on line 18
