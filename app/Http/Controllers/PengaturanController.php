@@ -10,4 +10,14 @@ class PengaturanController extends Controller
   {
     return view('pengaturan/index');
   }
+
+  public function pejabatIndex()
+  {
+    return view('pengaturan/pejabat-index');
+  }
+
+  public function pejabatCreate()
+  {
+    return view('pengaturan/pejabat-create');
+  }
 }

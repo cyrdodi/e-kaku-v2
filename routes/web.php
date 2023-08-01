@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/report/export/{bulan}/{tahun}', [ReportController::class, 'export'])->name('report.export');
 
     Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::get('/pengaturan/pejabat', [PengaturanController::class, 'pejabatIndex'])->name('pengaturan.pejabat');
+    Route::get('/pengaturan/pejabat/create', [PengaturanController::class, 'pejabatCreate'])->name('pengaturan.pejabat.create');
   });
 });
 

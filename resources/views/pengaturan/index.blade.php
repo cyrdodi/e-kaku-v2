@@ -5,18 +5,15 @@
     </h2>
   </x-slot>
 
-  <div class="py-12">
+  <div class="py-10">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-
       <div class="w-full mt-6 bg-white max-w-7xl card">
         <div class="card-body">
-          <ul class="menu bg-base-200 w-56 rounded-box">
+          <ul class="menu  w-[618px] rounded-box">
             <li>
-              <h2 class="menu-title">Title</h2>
+              <h2 class="menu-title">Cetak Kartu</h2>
               <ul>
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
-                <li><a>Item 3</a></li>
+                <li><a href="{{ route('pengaturan.pejabat') }}">Pejabat Penandatangan</a></li>
               </ul>
             </li>
           </ul>
