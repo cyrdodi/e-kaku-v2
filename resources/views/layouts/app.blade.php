@@ -10,7 +10,7 @@
     content="Aplikasi pembuatan kartu kuning secara online Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang">
   <meta name="author" content="Dodi Yulian">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'E-Kaku v2') }}</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,8 +28,15 @@
   <meta name="theme-color" content="#ffffff">
 
   <!-- Scripts -->
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   @livewireStyles
+  @livewireScripts
+  @stack('scripts')
 </head>
 
 <body class="flex flex-col h-full font-sans antialiased">
@@ -56,6 +63,7 @@
   </div>
   @livewireScripts
   @livewire('livewire-ui-modal')
+  @livewire('notifications')
 </body>
 
 </html>
