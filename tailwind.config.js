@@ -14,6 +14,12 @@ module.exports = {
 
   theme: {
     extend: {
+      colors: {
+        danger: colors.rose,
+        primary: colors.blue,
+        success: colors.green,
+        warning: colors.yellow,
+      },
       fontFamily: {
         sans: ['Plus Jakarta Sans', ...defaultTheme.fontFamily.sans],
       },
@@ -33,14 +39,6 @@ module.exports = {
           "success": "#36D399",
           "warning": "#FBBD23",
           "error": "#F87272",
-        },
-        extend: {
-          colors: {
-            danger: colors.rose,
-            primary: colors.blue,
-            success: colors.green,
-            warning: colors.yellow,
-          },
         },
       },
     ],

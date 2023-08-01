@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.badges {
-  @apply px-1 py-0.5 text-xs font-semibold text-blue-700 bg-blue-100 rounded-lg;
+
+@layer components {
+  .badges {
+    @apply px-1 py-0.5 text-xs font-semibold text-blue-700 bg-blue-100 rounded-lg;
+  }
 }
