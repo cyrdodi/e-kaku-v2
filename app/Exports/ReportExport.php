@@ -30,17 +30,28 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, ShouldA
     return $this->data;
   }
 
+  public function columnFormats(): array
+  {
+    return [
+      // F is the column
+      'D' => '#0',
+      'E' => '#0',
+    ];
+  }
+
   public function map($cetakTrans): array
   {
     return [
       date('Y-m-d', strtotime($cetakTrans->created_at)),
       $cetakTrans->biodata->name,
-      (string)$cetakTrans->biodata->no_pendaftaran,
+      "`" . $cetakTrans->biodata->nik,
+      "`" . $cetakTrans->biodata->no_pendaftaran,
       $cetakTrans->biodata->tempat_lahir,
       $cetakTrans->biodata->tanggal_lahir,
       $cetakTrans->biodata->jenis_kelamin,
       $cetakTrans->biodata->alamat . ', ' . $cetakTrans->biodata->kelurahan . ', ' . $cetakTrans->biodata->kecamatan->name . ', ' . $cetakTrans->biodata->kabupaten . ' - ' . $cetakTrans->biodata->provinsi . ' ' . $cetakTrans->biodata->kode_post,
       $cetakTrans->biodata->kecamatan->name,
+      $cetakTrans->biodata->kode_pos,
       $cetakTrans->biodata->statusPerkawinan->name,
       $cetakTrans->biodata->pendidikanTerakhir->name,
       $cetakTrans->biodata->jurusan,
@@ -68,12 +79,14 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, ShouldA
       [
         'Tanggal',
         'Nama',
+        'NIK',
         'No. Pendaftaran',
         'Tempat Lahir',
         'Tanggal Lahir',
         'Jenis Kelamin',
         'Alamat Lengkap',
         'Kecamatan',
+        'Kode Pos',
         'Status',
         'Pendidikan',
         'Jurusan',
@@ -103,7 +116,7 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, ShouldA
       ],
     ];
 
-    $sheet->getStyle('B5:Q' . $this->totalRow + 5)->applyFromArray($styleArray);
+    $sheet->getStyle('B5:S' . $this->totalRow + 5)->applyFromArray($styleArray);
 
     return [
       1 => ['font' => ['bold' => true, 'size' => 13]],
