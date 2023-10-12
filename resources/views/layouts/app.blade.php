@@ -35,8 +35,7 @@
   </style>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   @livewireStyles
-  @livewireScripts
-  @stack('scripts')
+
 </head>
 
 <body class="flex flex-col h-full font-sans antialiased">
@@ -62,6 +61,7 @@
     @include('layouts.footer')
   </div>
   @livewireScripts
+  @stack('scripts')
   @livewire('livewire-ui-modal')
   @livewire('notifications')
 </body>
