@@ -1,11 +1,30 @@
 <div>
+
+  {{-- stats --}}
+  <div class="mb-6 mr-4 shadow stats">
+    <div class="stat">
+      <div class="stat-title">Total Pendaftaran</div>
+      <div class="stat-value">{{ $countRegisteredYearly }}</div>
+      <div class="stat-desc">Tahun {{ $year }}</div>
+    </div>
+  </div> {{-- end stats --}}
+  {{-- stats --}}
+  <div class="mb-6 shadow stats">
+    <div class="stat">
+      <div class="stat-title">Total Tercetak</div>
+      <div class="stat-value">{{ $countPrintedYearly }}</div>
+      <div class="stat-desc">Tahun {{ $year }}</div>
+    </div>
+  </div> {{-- end stats --}}
+
+
   {{-- <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
     <div class="p-6 text-gray-900"> --}}
       {{-- search menu here --}}
 
       {{-- search --}}
       <div class="flex justify-between mb-4">
-        <div class="flex gap-3">
+        <div class="flex gap-3 items-center">
           {{-- <form wire:submit.prevent="search"> --}}
             <input type="text" placeholder="Pencarian by nama/nik"
               class="md:w-[400px] w-lg max-w-lg  input input-bordered" wire:model="search" />
@@ -14,10 +33,27 @@
           </form> --}}
         </div>
 
-        <a href="{{ route('dashboardCreate') }}" class="btn btn-primary">
-          <x-icons.plus class="mr-2" />
-          <span>Tambah Baru</span>
-        </a>
+        <div class="flex gap-4">
+
+          <select class="select select-bordered w-full max-w-xs" wire:model="year">
+            @foreach($years as $year)
+            @if(is_array($year))
+            <option value="{{ $year['years'] }}" {{ date('Y')==$year['years'] ? 'selected' : '' }}>
+              {{ $year->years ?? $year['years'] }}
+            </option>
+            @else
+            <option value="{{ $year->years }}" {{ date('Y')==$year->years ? 'selected' : '' }}>
+              {{ $year->years ?? $year->years }}
+            </option>
+            @endif
+            @endforeach
+          </select>
+
+          <a href="{{ route('dashboardCreate') }}" class="btn btn-primary mb-4">
+            <x-icons.plus class="mr-2" />
+            <span>Tambah Baru</span>
+          </a>
+        </div>
       </div>
 
       {{-- table --}}
