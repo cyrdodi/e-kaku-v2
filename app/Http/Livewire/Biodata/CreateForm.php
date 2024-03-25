@@ -46,8 +46,8 @@ class CreateForm extends Component
     'tahun_lulus' => 'required|numeric',
     'institusi_pendidikan' => 'required',
     'jurusan' => 'required',
-    'pas_foto' => 'required|max:2048|image',
-    'ktp' => 'required|max:2048|image',
+   // 'pas_foto' => 'required|max:2048|image',
+   // 'ktp' => 'required|max:2048|image',
     // 'ijazah' => 'required|max:2048|mimes:pdf,jpg,jpeg,png',
     // 'sertifikat' =>  'max:2048|mimes:pdf'
   ];
@@ -94,10 +94,14 @@ class CreateForm extends Component
         $sertifikatPath  = $this->sertifikat->store('berkas');
       }
 
-      $pasFotoName = $this->pas_foto->getClientOriginalName();
-      $pasFotoPath = $this->pas_foto->store('berkas');
-      $ktpName = $this->ktp->getClientOriginalName();
-      $ktpPath = $this->ktp->store('berkas');
+	if($this->pas_foto){
+
+     	 $pasFotoName = $this->pas_foto->getClientOriginalName();
+     	 $pasFotoPath = $this->pas_foto->store('berkas');
+     	 $ktpName = $this->ktp->getClientOriginalName();
+     	 $ktpPath = $this->ktp->store('berkas');
+
+	}
 
       if ($this->ijazah) {
         $ijazahName = $this->ijazah->getClientOriginalName();
@@ -131,10 +135,10 @@ class CreateForm extends Component
         'pengalaman' => $this->pengalaman,
         'tujuan_lamaran' => $this->tujuan_lamaran,
         // 
-        'pas_foto' => $pasFotoName,
-        'pas_foto_path' => $pasFotoPath,
-        'ktp' => $ktpName,
-        'ktp_path' => $ktpPath,
+        'pas_foto' => $pasFotoName ?? 'test.jpg',
+        'pas_foto_path' => $pasFotoPath ?? 'berkas/sWyCz8xNjywdJ72UrZB0JzKekyB66Z41SOB0qBlT.jpg',
+        'ktp' => $ktpName ?? 'test.jpg',
+        'ktp_path' => $ktpPath ?? 'berkas/sWyCz8xNjywdJ72UrZB0JzKekyB66Z41SOB0qBlT.jpg',
         'ijazah' => $ijazahName ?? null,
         'ijazah_path' => $ijazahPath ?? null,
         'sertifikat' => $sertifikatName ?? null,
