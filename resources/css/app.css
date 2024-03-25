@@ -1,12 +1,11 @@
-@import '../../vendor/filament/forms/dist/module.esm.css';
+@import "../../vendor/filament/forms/dist/module.esm.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
-  .badges {
-    @apply px-1 py-0.5 text-xs font-semibold text-blue-700 bg-blue-100 rounded-lg;
-  }
+    .badges {
+        @apply px-1 py-0.5 text-xs font-semibold text-blue-700 bg-blue-100 rounded-lg;
+    }
 }
