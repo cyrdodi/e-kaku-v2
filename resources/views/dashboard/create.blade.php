@@ -13,16 +13,14 @@
   <div class="container py-12 mx-auto">
     <div>
       <div class="flex justify-center ">
-        <div class="w-full mt-6 bg-white max-w-7xl card">
+        <div class="w-full mt-6 max-w-7xl card">
           <div class="card-body">
-            @livewire('biodata.create-form')
+            {{-- @livewire('biodata.create-form') --}}
+            <livewire:biodata.biodata-create />
           </div>
 
         </div>
       </div>
     </div>
-  </div>
-  </div>/
-  </div>
   </div>
 </x-app-layout>
