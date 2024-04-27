@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
   <x-slot name="header">
     <div class="flex justify-between">
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -13,7 +13,7 @@
   <div class="container py-12 mx-auto">
     <div>
       <div class="flex justify-center ">
-        <div class="w-full mt-6 max-w-7xl card">
+        <div class="w-full  max-w-7xl card">
           <div class="card-body">
             {{-- @livewire('biodata.create-form') --}}
             <livewire:biodata.biodata-create />
@@ -23,4 +23,4 @@
       </div>
     </div>
   </div>
-</x-app-layout>
+</x-layouts.app>
