@@ -34,7 +34,7 @@
     }
   </style>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-  @livewireStyles
+  @filamentStyles
 
 </head>
 
@@ -60,7 +60,7 @@
   <div class="items-center mt-auto bg-neutral text-neutral-content">
     @include('layouts.footer')
   </div>
-  @livewireScripts
+  @filamentScripts
   @stack('scripts')
   @livewire('livewire-ui-modal')
   @livewire('notifications')
