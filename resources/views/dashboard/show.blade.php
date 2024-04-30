@@ -18,7 +18,8 @@
         <div class="relative card-body">
           <div class="flex gap-6">
 
-            <img src="{{ asset('storage/' .  $biodata->pas_foto_path) }}"
+            <img
+              src="{{ $biodata->pas_foto == 'pas_foto_default' ? asset($biodata->pas_foto_path) : asset('storage/' . $biodata->pas_foto_path) }}"
               class="object-cover w-40 h-48 bg-gray-100 border rounded-lg" alt="Pas Foto">
 
             <section class="">
@@ -163,7 +164,9 @@
           <table>
             <tr>
               <th class="w-40 text-left">KTP</th>
-              <td><a href="{{ asset('storage/' . $biodata->ktp_path) }}" target="_blank" class="underline">{{
+              <td><a
+                  href="{{ $biodata->ktp == 'ktp_default' ? asset($biodata->ktp_path) : asset('storage/' . $biodata->ktp_path) }}"
+                  target="_blank" class="underline">{{
                   $biodata->ktp }}</a></td>
             </tr>
             <tr>
