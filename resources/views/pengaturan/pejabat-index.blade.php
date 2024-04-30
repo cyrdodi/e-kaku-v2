@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800">
       {{ __('Pengaturan') }}
@@ -22,4 +22,4 @@
       </x-card>
     </div>
   </div>
-</x-app-layout>
+</x-layouts.app>

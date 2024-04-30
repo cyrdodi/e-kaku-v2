@@ -28,9 +28,9 @@
           <x-nav-link :href="route('report.index')" :active="request()->routeIs('report.index')">
             {{ __('Report') }}
           </x-nav-link>
-          {{-- <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
+          <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
             {{ __('Pengaturan') }}
-          </x-nav-link> --}}
+          </x-nav-link>
           @endisadmin
           @endif
         </div>
