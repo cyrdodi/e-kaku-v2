@@ -51,7 +51,7 @@
                 <x-icons.map-pin class="w-8 h-8 mr-2" />
                 <div>
                   {{ $biodata->alamat .', RT/RW ' . $biodata->rtrw .', '. $biodata->kelurahan .', '.
-                  $biodata->kecamatan->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
+                  $biodata->kecamatanName->name .', '. $biodata->kabupaten .', '. $biodata->provinsi .' - '.
                   $biodata->kode_pos}}
                 </div>
               </div>

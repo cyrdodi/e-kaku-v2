@@ -61,6 +61,8 @@
     @include('layouts.footer')
   </div>
 
+  @livewire('notifications')
+
   @filamentScripts
 </body>
 

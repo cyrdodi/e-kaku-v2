@@ -38,7 +38,7 @@ class ListKartuPencariKerja extends Component
     $this->countPrintedYearly = CetakTransaction::whereYear('created_at', $this->year)->count();
 
 
-    $biodata = Biodata::with('pendidikanTerakhir', 'kecamatan')
+    $biodata = Biodata::with('pendidikanTerakhir', 'kecamatanName')
       ->whereYear('created_at', $this->year)
       ->when(!empty($this->search), function ($query) {
         return  $query->where('name', 'like', '%' .  $this->search . '%')
@@ -46,6 +46,9 @@ class ListKartuPencariKerja extends Component
       })
       ->orderBy('id', 'desc')
       ->paginate(10);
+
+    // dd($biodata[3]->kecamatanName->name);
+
     return view('livewire.dashboard.list-kartu-pencari-kerja', compact('biodata'));
   }
 }

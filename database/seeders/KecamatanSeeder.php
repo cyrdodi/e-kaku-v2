@@ -117,5 +117,8 @@ class KecamatanSeeder extends Seeder
     Kecamatan::create([
       'name' => 'Karangtanjung'
     ]);
+    Kecamatan::create([
+      'name' => 'Koroncong'
+    ]);
   }
 }

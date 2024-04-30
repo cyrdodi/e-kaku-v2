@@ -80,7 +80,7 @@
                 <div class="text-xs text-gray-400">{{ $row->no_pendaftaran }}</div>
               </td>
               <td class="p-2">
-                {{ $row->kecamatan->name }}
+                {{ $row->kecamatanName->name }}
               </td>
               <td class="p-2">{{ $row->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' }}</td>
               <td class="p-2">

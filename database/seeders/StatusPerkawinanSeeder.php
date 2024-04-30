@@ -15,9 +15,35 @@ class StatusPerkawinanSeeder extends Seeder
    */
   public function run()
   {
-    StatusPerkawinan::create(['name' => 'Belum Kawin']);
-    StatusPerkawinan::create(['name' => 'Sudah Kawin']);
-    StatusPerkawinan::create(['name' => 'Janda']);
-    StatusPerkawinan::create(['name' => 'Duda']);
+    StatusPerkawinan::create([
+      'id' => 1,
+      'name' => 'Belum Kawin',
+      'is_active' => true,
+    ]);
+    StatusPerkawinan::create([
+      'id' => 2,
+      'name' => 'Sudah Kawin',
+      'is_active' => true,
+    ]);
+    StatusPerkawinan::create([
+      'id' => 3,
+      'name' => 'Janda',
+      'is_active' => false,
+    ]);
+    StatusPerkawinan::create([
+      'id' => 4,
+      'name' => 'Duda',
+      'is_active' => false,
+    ]);
+    StatusPerkawinan::create([
+      'id' => 5,
+      'name' => 'Cerai Hidup',
+      'is_active' => true,
+    ]);
+    StatusPerkawinan::create([
+      'id' => 6,
+      'name' => 'Cerai Mati',
+      'is_active' => true,
+    ]);
   }
 }

@@ -4,14 +4,19 @@ namespace App\Http\Livewire\Biodata;
 
 use Filament\Forms;
 use App\Models\Agama;
+use App\Models\Biodata;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Livewire\Component;
 use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\StatusPerkawinan;
 use App\Models\PendidikanTerakhir;
 use Illuminate\Support\HtmlString;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Illuminate\Support\Facades\Blade;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 class BiodataCreate extends Component implements HasForms
 {
@@ -34,66 +39,89 @@ class BiodataCreate extends Component implements HasForms
                             Forms\Components\TextInput::make('nik')
                                 ->label('NIK')
                                 ->minLength(16)
+                                ->numeric()
                                 ->required(),
 
                             Forms\Components\TextInput::make('name')
                                 ->label('Nama Lengkap')
                                 ->required(),
 
-                            Forms\Components\TextInput::make('birth_place')
+                            Forms\Components\TextInput::make('tempat_lahir')
                                 ->label('Tempat Lahir')
                                 ->required(),
 
                             Forms\Components\Grid::make()
                                 ->schema([
-                                    Forms\Components\DatePicker::make('birthday')
+                                    Forms\Components\DatePicker::make('tanggal_lahir')
                                         ->label('Tanggal Lahir')
                                         ->required(),
 
-                                    Forms\Components\Select::make('sex')
+                                    Forms\Components\Select::make('jenis_kelamin')
                                         ->label('Jenis Kelamin')
                                         ->options(['l' => 'Laki-laki', 'p' => 'Perempuan'])
                                         ->required(),
                                 ]),
 
 
-                            Forms\Components\Textarea::make('address')
-                                ->label('Alamat')
-                                ->required(),
 
-                            Forms\Components\Grid::make()
+                            Forms\Components\Section::make('Alamat')
                                 ->schema([
-                                    Forms\Components\TextInput::make('rtrw')
-                                        ->label('RT/RW')
-                                        ->required(),
+                                    Forms\Components\Grid::make()
+                                        ->schema([
+                                            Forms\Components\TextInput::make('provinsi')
+                                                ->label('Provinsi')
+                                                ->default('Banten')
+                                                ->readOnly()
+                                                ->required(),
 
-                                    Forms\Components\TextInput::make('province')
-                                        ->label('Provinsi')
-                                        ->required(),
+                                            Forms\Components\TextInput::make('kabupaten')
+                                                ->label('Kabupaten')
+                                                ->default('Pandeglang')
+                                                ->readOnly()
+                                                ->required(),
 
-                                    Forms\Components\TextInput::make('regency')
-                                        ->label('Kabupaten')
-                                        ->required(),
+                                            Forms\Components\Select::make('kecamatan_id')
+                                                ->label('Kecamatan')
+                                                ->options(Kecamatan::all()->sortBy('name')->pluck('name', 'id'))
+                                                ->searchable()
+                                                ->required()
+                                                ->live(onBlur: true)
+                                                ->afterStateUpdated(function (Set $set) {
+                                                    $set('kelurahan_id', null);
+                                                    $set('kode_pos', null);
+                                                }),
 
-                                    Forms\Components\Select::make('district')
-                                        ->label('Kecamatan')
-                                        ->options(Kecamatan::all()->pluck('name', 'id'))
-                                        ->required(),
+                                            Forms\Components\Select::make('kelurahan_id')
+                                                ->label('Desa/Kelurahan')
+                                                ->options(fn (Get $get) =>  Kelurahan::where('kecamatan_id', $get('kecamatan_id'))->pluck('name', 'id'))
+                                                ->afterStateUpdated(function (Set $set, $state) {
+                                                    $kodepos = Kelurahan::where('id', $state)->first();
+                                                    return $set('kode_pos', $kodepos->kodepos);
+                                                })
+                                                ->searchable()
+                                                ->required()
+                                                ->live(onBlur: true),
 
-                                    Forms\Components\TextInput::make('village')
-                                        ->label('Desa/Kelurahan')
-                                        ->required(),
+                                            Forms\Components\TextInput::make('kode_pos')
+                                                ->label('Kode Pos')
+                                                ->required(),
 
-                                    Forms\Components\TextInput::make('post_code')
-                                        ->label('Kode Pos')
-                                        ->required(),
+                                            Forms\Components\TextInput::make('rtrw')
+                                                ->label('RT/RW')
+                                                ->required(),
 
+                                        ]),
+                                    Forms\Components\Textarea::make('alamat')
+                                        ->label('Alamat')
+                                        ->required(),
                                 ]),
+
+
                         ]),
 
                     Forms\Components\Wizard\Step::make('Informasi Lanjutan')
                         ->schema([
-                            Forms\Components\TextInput::make('handphone')
+                            Forms\Components\TextInput::make('no_hp')
                                 ->label('No. Handphone')
                                 ->required(),
 
@@ -102,30 +130,30 @@ class BiodataCreate extends Component implements HasForms
                                 ->email()
                                 ->required(),
 
-                            Forms\Components\Select::make('religion')
+                            Forms\Components\Select::make('agama_id')
                                 ->options(Agama::all()->pluck('name', 'id'))
                                 ->label('Agama')
                                 ->required(),
 
-                            Forms\Components\Select::make('status')
-                                ->options(StatusPerkawinan::all()->pluck('name', 'id'))
+                            Forms\Components\Select::make('status_perkawinan_id')
+                                ->options(StatusPerkawinan::where('is_active', true)->pluck('name', 'id'))
                                 ->label('Status Perkawinan')
                                 ->required(),
 
                             Forms\Components\Grid::make()
                                 ->schema([
-                                    Forms\Components\TextInput::make('height')
+                                    Forms\Components\TextInput::make('tinggi_badan')
                                         ->label('Tinggi Badan (cm)')
                                         ->numeric()
                                         ->required(),
 
-                                    Forms\Components\TextInput::make('weight')
+                                    Forms\Components\TextInput::make('berat_badan')
                                         ->label('Berat Badan (kg)')
                                         ->numeric()
                                         ->required()
                                 ]),
 
-                            Forms\Components\Select::make('is_disability')
+                            Forms\Components\Select::make('disabilitas')
                                 ->label('Apakah anda penyandang disabilitas?')
                                 ->options([0 => 'Tidak', 1 => 'Ya'])
                                 ->required(),
@@ -162,14 +190,21 @@ class BiodataCreate extends Component implements HasForms
 
                     Forms\Components\Wizard\Step::make('Berkas')
                         ->schema([
-                            Forms\Components\FileUpload::make('pas_foto'),
+                            Forms\Components\FileUpload::make('pas_foto_path')
+                                ->directory('berkas')
+                                ->storeFileNamesIn('pas_foto'),
 
-                            Forms\Components\FileUpload::make('ktp'),
+                            Forms\Components\FileUpload::make('ktp_path')
+                                ->directory('berkas')
+                                ->storeFileNamesIn('ktp'),
 
-                            Forms\Components\FileUpload::make('ijazah'),
+                            Forms\Components\FileUpload::make('ijazah_path')
+                                ->directory('berkas')
+                                ->storeFileNamesIn('ijazah'),
 
-                            Forms\Components\FileUpload::make('sertifikat'),
-
+                            Forms\Components\FileUpload::make('sertifikat_path')
+                                ->directory('berkas')
+                                ->storeFileNamesIn('sertifikat'),
                         ])
 
                 ])
@@ -191,7 +226,61 @@ class BiodataCreate extends Component implements HasForms
     {
         $formData = $this->form->getState();
 
-        dd($formData);
+        $kecamatan = Kecamatan::where('id', $formData['kecamatan_id'])->first();
+        $kelurahan = Kelurahan::where('id', $formData['kelurahan_id'])->first();
+
+        try {
+            Biodata::create([
+                'nik' => $formData['nik'],
+                'name' => $formData['name'],
+                'tempat_lahir' => $formData['tempat_lahir'],
+                'tanggal_lahir' => $formData['tanggal_lahir'],
+                'jenis_kelamin' => $formData['jenis_kelamin'],
+                'kecamatan_id' => $formData['kecamatan_id'],
+                'kecamatan' => $kecamatan->name,
+                'kelurahan_id' => $formData['kelurahan_id'],
+                'kelurahan' => $kelurahan->name,
+                'provinsi' => 'Banten',
+                'kabupaten' => 'Pandeglang',
+                'kode_pos' => $formData['kode_pos'],
+                'alamat' => $formData['alamat'],
+                'rtrw' => $formData['rtrw'],
+                'no_hp' => $formData['no_hp'],
+                'email' => $formData['email'],
+                'agama_id' => $formData['agama_id'],
+                'status_perkawinan_id' => $formData['status_perkawinan_id'],
+                'tinggi_badan' => $formData['tinggi_badan'],
+                'berat_badan' => $formData['berat_badan'],
+                'disabilitas' => $formData['disabilitas'],
+                'pendidikan_terakhir_id' => $formData['pendidikan_terakhir_id'],
+                'tahun_lulus' => $formData['tahun_lulus'],
+                'institusi_pendidikan' => $formData['institusi_pendidikan'],
+                'jurusan' => $formData['jurusan'],
+                'keterampilan' => $formData['keterampilan'],
+                'pengalaman' => $formData['pengalaman'],
+                'tujuan_lamaran' => $formData['tujuan_lamaran'],
+                'pas_foto' => $formData['pas_foto'] ?? '',
+                'pas_foto_path' => $formData['pas_foto_path'] ?? '',
+                'ktp' => $formData['ktp'] ?? '',
+                'ktp_path' => $formData['ktp_path'] ?? '',
+                'ijazah' => $formData['ijazah'],
+                'ijazah_path' => $formData['ijazah_path'],
+                'sertifikat' => $formData['sertifikat'],
+                'sertifikat_path' => $formData['sertifikat_path'],
+                'user_id' => auth()->user()->id,
+            ]);
+
+            Notification::make()
+                ->title('Biodata berhasil disimpan')
+                ->success()
+                ->send();
+        } catch (\Exception $e) {
+            Notification::make()
+                ->title('Biodata gagal disimpan')
+                ->body(env('APP_ENV') === 'production' ? $e->getCode() : $e->getMessage())
+                ->danger()
+                ->send();
+        }
     }
 
     public function render()

@@ -16,9 +16,9 @@ class Biodata extends Model
   public $table = 'biodata';
   public $guarded = [];
 
-  public function kecamatan()
+  public function kecamatanName()
   {
-    return $this->belongsTo(Kecamatan::class);
+    return $this->belongsTo(Kecamatan::class, 'kecamatan_id', 'id');
   }
 
   public function pendidikanTerakhir()
