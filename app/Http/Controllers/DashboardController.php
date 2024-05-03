@@ -59,9 +59,11 @@ class DashboardController extends Controller
 
     $cetak = CetakTransaction::where('biodata_id', $biodata->id)->first();
 
-    // dd($cetak);
+    $functionaries = Functionary::where('is_active', 1)
+      ->orderBy('name', 'desc')
+      ->get();
 
-    return view('dashboard.show', compact('biodata', 'cetak'));
+    return view('dashboard.show', compact('biodata', 'cetak', 'functionaries'));
   }
 
   public function edit(Biodata $biodata)

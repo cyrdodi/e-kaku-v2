@@ -64,11 +64,41 @@
       <div class="flex mt-4">
 
         @if($cetak == null)
-        <button onclick="Livewire.emit('openModal', 'dashboard.cetak', {{ json_encode(['biodata' => $biodata->id]) }})"
+        {{-- <button
+          onclick="Livewire.emit('openModal', 'dashboard.cetak', {{ json_encode(['biodata' => $biodata->id]) }})"
           class="btn btn-primary ">
           <x-icons.printer class="mr-2" />
           <span>Cetak Kartu</span>
-        </button>
+        </button> --}}
+        <x-filament::modal>
+          <x-slot name="trigger">
+            {{-- <x-filament::button>
+              Open modal
+            </x-filament::button> --}}
+            <button class="btn btn-primary ">
+              <x-icons.printer class="mr-2" />
+              <span>Cetak Kartu</span>
+            </button>
+          </x-slot>
+
+          {{-- Modal content --}}
+
+          <form action="" method="GET">
+            <div>
+              <label for="">Pejabat Penandatangan</label>
+              <x-filament::input.wrapper>
+                <x-filament::input.select name="functionary">
+                  @foreach($functionaries as $functionary)
+                  <option value="{{ $functionary->id }}">{{ $functionary->name }}</option>
+                  @endforeach
+                </x-filament::input.select>
+              </x-filament::input.wrapper>
+            </div>
+
+            <x-filament::button type="submit">Lanjutkan</x-filament::button>
+          </form>
+        </x-filament::modal>
+
         @else
         <a class="btn btn-primary" href="{{ route('dashboardPrintView', ['cetak_trans' => $cetak->id]) }}">
           <x-icons.printer class="mr-2" />

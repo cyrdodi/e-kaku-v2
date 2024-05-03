@@ -12,12 +12,6 @@
 
   <title>{{ config('app.name', 'E-Kaku v2') }}</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-
   {{-- favicon --}}
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +25,13 @@
     [x-cloak] {
       display: none !important;
     }
+
+    @font-face {
+      font-family: "Plus Jakarta Sans";
+      src: url("../fonts/PlusJakartaSans-VariableFont_wght.ttf")
+    }
   </style>
+
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   @filamentStyles
