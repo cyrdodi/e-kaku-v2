@@ -83,7 +83,11 @@
 
           {{-- Modal content --}}
 
-          <form action="" method="GET">
+          <form action="{{ route('dashboard.print') }}" method="GET">
+            @csrf
+
+            <input type="text" hidden name="biodata" value="{{ $biodata->id }}">
+
             <div>
               <label for="">Pejabat Penandatangan</label>
               <x-filament::input.wrapper>

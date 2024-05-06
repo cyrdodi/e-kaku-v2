@@ -16,27 +16,47 @@ class DashboardController extends Controller
     return view('dashboard/index');
   }
 
+  // public function print()
+  // {
+  //   $data = 'Dodi Yulian';
+
+  //   // $pdf = Pdf::loadView('pdf.test')
+  //   //   ->setPaper('a4', 'landscape');
+  //   // return $pdf->download('invoice.pdf');
+
+  //   // retreive all records from db
+  //   // $data = Employee::all();
+  //   // share data to view
+  //   // view()->share('pdf.kaku', $data);
+  //   Pdf::setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
+  //   $pdf = Pdf::loadView('pdf.test');
+  //   // download PDF file with download method
+
+  //   $customPaper = array(0, 0, 841.89, 297.64);
+  //   $pdf->set_paper($customPaper);
+
+  //   return $pdf->download('pdf_file.pdf');
+  // }
+
+  // v2.1
   public function print()
   {
-    $data = 'Dodi Yulian';
+    $functionary = Functionary::find(request()->input('functionary'));
+    $biodata = Biodata::find(request()->input('biodata'));
 
-    // $pdf = Pdf::loadView('pdf.test')
-    //   ->setPaper('a4', 'landscape');
-    // return $pdf->download('invoice.pdf');
+    $pdf = Pdf::loadView('pdf.yellow-card', compact('functionary', 'biodata'));
+    Pdf::setOption(['isHtml5ParserEnabled' => true, 'isPhpEnabled' => true]);
+    $pdf->setPaper('A5', 'landscape');
 
-    // retreive all records from db
-    // $data = Employee::all();
-    // share data to view
-    // view()->share('pdf.kaku', $data);
-    Pdf::setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
 
-    $pdf = Pdf::loadView('pdf.test');
-    // download PDF file with download method
+    // $pdf->setPaper([0.0, 0.0, 595.00, 420.50]);
 
-    $customPaper = array(0, 0, 841.89, 297.64);
-    $pdf->set_paper($customPaper);
+    $font = $pdf->getFontMetrics()->get_font("helvetica", "bold");
 
-    return $pdf->download('pdf_file.pdf');
+    $pdf->getCanvas()->page_text(72, 18, "Header: {PAGE_NUM} of {PAGE_COUNT}", $font, 10, array(0, 0, 0));
+
+    return $pdf->stream('e-kaku_' . 'test' . '.pdf');
   }
 
   public function printView(CetakTransaction $cetakTrans)
