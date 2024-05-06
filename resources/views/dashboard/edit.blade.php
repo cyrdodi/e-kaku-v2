@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
   <x-slot name="header">
     <div class="flex justify-between">
 
@@ -15,10 +15,10 @@
   <div class="container py-12 mx-auto">
     <div>
       <div class="flex justify-center ">
-        <div class="w-full mt-6 bg-white max-w-7xl card">
-          <livewire:biodata.edit-form :biodata="$biodata" />
+        <div class="w-full mt-6  max-w-7xl card">
+          <livewire:biodata.biodata-edit :biodata="$biodata" />
         </div>
       </div>
     </div>
   </div>
-</x-app-layout>
+</x-layouts.app>

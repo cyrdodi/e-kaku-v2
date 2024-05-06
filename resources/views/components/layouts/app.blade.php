@@ -25,11 +25,6 @@
     [x-cloak] {
       display: none !important;
     }
-
-    @font-face {
-      font-family: "Plus Jakarta Sans";
-      src: url("../fonts/PlusJakartaSans-VariableFont_wght.ttf")
-    }
   </style>
 
 
@@ -38,7 +33,7 @@
 
 </head>
 
-<body class="flex flex-col h-full font-sans antialiased">
+<body class="flex flex-col h-full font-plusjakarta antialiased">
   <div class="flex-grow bg-gray-100">
     @include('layouts.navigation')
 

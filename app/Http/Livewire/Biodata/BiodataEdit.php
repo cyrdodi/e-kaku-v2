@@ -18,15 +18,17 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Forms\Concerns\InteractsWithForms;
 
-class BiodataCreate extends Component implements HasForms
+class BiodataEdit extends Component implements HasForms
 {
     use InteractsWithForms;
 
     public ?array $data;
 
+    public Biodata $biodata;
+
     public function mount()
     {
-        $this->form->fill();
+        $this->form->fill($this->biodata->toArray());
     }
 
     public function form(Forms\Form $form): Forms\Form
@@ -214,7 +216,7 @@ class BiodataCreate extends Component implements HasForms
                         <x-filament::button
                             type="submit"
                         >
-                            Submit
+                            Update
                         </x-filament::button>
                     BLADE)))
 
@@ -224,59 +226,18 @@ class BiodataCreate extends Component implements HasForms
 
     public function submit()
     {
-        $formData = $this->form->getState();
-
-        $kecamatan = Kecamatan::where('id', $formData['kecamatan_id'])->first();
-        $kelurahan = Kelurahan::where('id', $formData['kelurahan_id'])->first();
 
         try {
-            Biodata::create([
-                'nik' => $formData['nik'],
-                'name' => $formData['name'],
-                'tempat_lahir' => $formData['tempat_lahir'],
-                'tanggal_lahir' => $formData['tanggal_lahir'],
-                'jenis_kelamin' => $formData['jenis_kelamin'],
-                'kecamatan_id' => $formData['kecamatan_id'],
-                'kecamatan' => $kecamatan->name,
-                'kelurahan_id' => $formData['kelurahan_id'],
-                'kelurahan' => $kelurahan->name,
-                'provinsi' => 'Banten',
-                'kabupaten' => 'Pandeglang',
-                'kode_pos' => $formData['kode_pos'],
-                'alamat' => $formData['alamat'],
-                'rtrw' => $formData['rtrw'],
-                'no_hp' => $formData['no_hp'],
-                'email' => $formData['email'],
-                'agama_id' => $formData['agama_id'],
-                'status_perkawinan_id' => $formData['status_perkawinan_id'],
-                'tinggi_badan' => $formData['tinggi_badan'],
-                'berat_badan' => $formData['berat_badan'],
-                'disabilitas' => $formData['disabilitas'],
-                'pendidikan_terakhir_id' => $formData['pendidikan_terakhir_id'],
-                'tahun_lulus' => $formData['tahun_lulus'],
-                'institusi_pendidikan' => $formData['institusi_pendidikan'],
-                'jurusan' => $formData['jurusan'],
-                'keterampilan' => $formData['keterampilan'],
-                'pengalaman' => $formData['pengalaman'],
-                'tujuan_lamaran' => $formData['tujuan_lamaran'],
-                'pas_foto' => $formData['pas_foto'] ?? 'pas_foto_default',
-                'pas_foto_path' => $formData['pas_foto_path'] ?? 'images/pas_foto.png',
-                'ktp' => $formData['ktp'] ?? 'ktp_default',
-                'ktp_path' => $formData['ktp_path'] ?? 'images/ktp.png',
-                'ijazah' => $formData['ijazah'],
-                'ijazah_path' => $formData['ijazah_path'],
-                'sertifikat' => $formData['sertifikat'],
-                'sertifikat_path' => $formData['sertifikat_path'],
-                'user_id' => auth()->user()->id,
-            ]);
-
+            $this->biodata->update($this->form->getState());
             Notification::make()
-                ->title('Biodata berhasil disimpan')
+                ->title('Update berhasil')
                 ->success()
                 ->send();
+
+            return redirect()->route('dashboardShow', ['biodata' => $this->biodata]);
         } catch (\Exception $e) {
             Notification::make()
-                ->title('Biodata gagal disimpan')
+                ->title('Update gagal')
                 ->body(env('APP_ENV') === 'production' ? $e->getCode() : $e->getMessage())
                 ->danger()
                 ->send();
@@ -285,6 +246,6 @@ class BiodataCreate extends Component implements HasForms
 
     public function render()
     {
-        return view('livewire.biodata.biodata-create');
+        return view('livewire.biodata.biodata-edit');
     }
 }

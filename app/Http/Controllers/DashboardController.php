@@ -20,10 +20,22 @@ class DashboardController extends Controller
 
   public function firstPrint()
   {
+
+
     $functionary = Functionary::find(request()->input('functionary'));
 
     $biodata = Biodata::find(request()->input('biodata'));
     $expDate = request()->input('exp_date');
+
+    // check if already printed
+    if ($biodata->no_pendaftaran != null) {
+      Notification::make()
+        ->title('Sudah pernah dicetak')
+        ->warning()
+        ->send();
+      return redirect()->route('dasbboardShow', ['biodata' => $biodata->id]);
+    }
+
 
     DB::beginTransaction();
 
@@ -74,7 +86,7 @@ class DashboardController extends Controller
 
     $pdf->getCanvas()->page_text(72, 18, "Header: {PAGE_NUM} of {PAGE_COUNT}", $font, 10, array(0, 0, 0));
 
-    return $pdf->stream('e-kaku_' . 'test' . '.pdf');
+    return $pdf->stream('e-kaku_' . $biodata->no_pendaftaran . '.pdf');
   }
 
   private function generateNoPendaftaran($nik)
@@ -93,17 +105,10 @@ class DashboardController extends Controller
     return $prefix . $noUrut . $suffix;
   }
 
-  public function printView(CetakTransaction $cetakTrans)
-  {
-    // $this->authorize('cetak', $biodata);
-    // dd($cetakTrans->functionary->name);
-
-
-
-    return view('pdf/kaku', compact('cetakTrans'));
-  }
-
-  // public function createPDF()
+  // public function printView(CetakTransaction $cetakTrans)
+  // {
+  //   return view('pdf/kaku', compact('cetakTrans'));
+  // }
 
 
   public function show(Biodata $biodata)

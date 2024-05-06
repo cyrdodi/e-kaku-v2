@@ -26,7 +26,7 @@ module.exports = {
         warning: colors.yellow,
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', ...defaultTheme.fontFamily.sans],
+        plusjakarta: ['Plus Jakarta Sans', ...defaultTheme.fontFamily.sans],
       },
     },
   },

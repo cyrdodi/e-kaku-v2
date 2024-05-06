@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../../public/fonts/PlusJakartaSans-VariableFont_wght.ttf");
+}
+
 @layer components {
     .badges {
         @apply px-1 py-0.5 text-xs font-semibold text-blue-700 bg-blue-100 rounded-lg;
