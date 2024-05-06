@@ -83,18 +83,27 @@
 
           {{-- Modal content --}}
 
-          <form action="{{ route('dashboard.print') }}" method="GET">
+          <form action="{{ route('dashboard.firstPrint') }}" method="GET">
             @csrf
 
             <input type="text" hidden name="biodata" value="{{ $biodata->id }}">
 
+            <div class="mb-4">
+              <label for="">Tanggal Kadaluarsa</label>
+              <x-filament::input.wrapper class=" mt-2">
+                <x-filament::input type="date" name="exp_date" value="{{date('Y-m-d', strtotime('+2 Year'))  }}" />
+              </x-filament::input.wrapper>
+            </div>
+
+
             <div>
               <label for="">Pejabat Penandatangan</label>
-              <x-filament::input.wrapper>
+              <x-filament::input.wrapper class="mt-2 mb-4">
                 <x-filament::input.select name="functionary">
                   @foreach($functionaries as $functionary)
                   <option value="{{ $functionary->id }}">{{ $functionary->name }}</option>
                   @endforeach
+                  <option value="">--KOSONG--</option>
                 </x-filament::input.select>
               </x-filament::input.wrapper>
             </div>
@@ -104,7 +113,7 @@
         </x-filament::modal>
 
         @else
-        <a class="btn btn-primary" href="{{ route('dashboardPrintView', ['cetak_trans' => $cetak->id]) }}">
+        <a class="btn btn-primary" href="{{ route('dashboard.print', ['cetakTransaction' => $cetak->id]) }}">
           <x-icons.printer class="mr-2" />
           <span>Cetak Ulang</span>
         </a>

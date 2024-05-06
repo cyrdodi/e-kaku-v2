@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biodata;
-use App\Models\CetakTransaction;
 use App\Models\Functionary;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\CetakTransaction;
+use Illuminate\Support\Facades\DB;
+use Filament\Notifications\Notification;
 
 class DashboardController extends Controller
 {
@@ -16,38 +18,54 @@ class DashboardController extends Controller
     return view('dashboard/index');
   }
 
-  // public function print()
-  // {
-  //   $data = 'Dodi Yulian';
-
-  //   // $pdf = Pdf::loadView('pdf.test')
-  //   //   ->setPaper('a4', 'landscape');
-  //   // return $pdf->download('invoice.pdf');
-
-  //   // retreive all records from db
-  //   // $data = Employee::all();
-  //   // share data to view
-  //   // view()->share('pdf.kaku', $data);
-  //   Pdf::setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-
-  //   $pdf = Pdf::loadView('pdf.test');
-  //   // download PDF file with download method
-
-  //   $customPaper = array(0, 0, 841.89, 297.64);
-  //   $pdf->set_paper($customPaper);
-
-  //   return $pdf->download('pdf_file.pdf');
-  // }
-
-  // v2.1
-  public function print()
+  public function firstPrint()
   {
     $functionary = Functionary::find(request()->input('functionary'));
-    $biodata = Biodata::find(request()->input('biodata'));
 
-    $pdf = Pdf::loadView('pdf.yellow-card', compact('functionary', 'biodata'));
+    $biodata = Biodata::find(request()->input('biodata'));
+    $expDate = request()->input('exp_date');
+
+    DB::beginTransaction();
+
+    try {
+      $cetakTransaction = CetakTransaction::create([
+        'user_id' => auth()->user()->id,
+        'biodata_id' => $biodata->id,
+        'functionary_id' => $functionary->id,
+        'expired' => $expDate,
+      ]);
+
+      $noPendaftaran = $this->generateNoPendaftaran($biodata->nik);
+
+      $biodata->update(['no_pendaftaran' => $noPendaftaran]);
+
+      DB::commit();
+      return redirect()->route('dashboard.print', ['cetakTransaction' => $cetakTransaction]);
+    } catch (\Exception $e) {
+      // notification
+      Notification::make()
+        ->title('Gagal cetak')
+        ->body(env('APP_ENV') === 'production' ? $e->getCode() : $e->getMessage())
+        ->danger()
+        ->send();
+      DB::rollBack();
+
+      return redirect()->route('dashboardShow', ['biodata' => $biodata->id]);
+    }
+  }
+
+  // v2.1
+  public function print(CetakTransaction $cetakTransaction)
+  {
+    $functionary = Functionary::find($cetakTransaction->functionary_id);
+    $biodata = Biodata::find($cetakTransaction->biodata_id);
+    $expDate = $cetakTransaction->expired;
+
+    $pdf = Pdf::loadView('pdf.yellow-card', compact('functionary', 'biodata', 'expDate'));
     Pdf::setOption(['isHtml5ParserEnabled' => true, 'isPhpEnabled' => true]);
-    $pdf->setPaper('A5', 'landscape');
+    $pdf->setPaper([0, 0, 297, 841.89], 'landscape');
+
+    // "a4" => array(0, 0, 595.28, 841.89),
 
 
     // $pdf->setPaper([0.0, 0.0, 595.00, 420.50]);
@@ -57,6 +75,22 @@ class DashboardController extends Controller
     $pdf->getCanvas()->page_text(72, 18, "Header: {PAGE_NUM} of {PAGE_COUNT}", $font, 10, array(0, 0, 0));
 
     return $pdf->stream('e-kaku_' . 'test' . '.pdf');
+  }
+
+  private function generateNoPendaftaran($nik)
+  {
+
+    $prefix = substr($nik, 0, 4);
+    $suffix = date('dmY');
+
+    // cek apakah ada data pada bulan ini
+    $noUrut = CetakTransaction::whereYear('created_at', date('Y'))
+      ->whereMonth('created_at', date('m'))
+      ->count();
+
+    $noUrut = sprintf('%05d', $noUrut + 1);
+
+    return $prefix . $noUrut . $suffix;
   }
 
   public function printView(CetakTransaction $cetakTrans)
