@@ -8,6 +8,7 @@ use App\Models\Biodata;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AgamaSeeder;
 use Database\Seeders\KecamatanSeeder;
+use Database\Seeders\KelurahanSeeder;
 use Database\Seeders\StatusPerkawinanSeeder;
 use Database\Seeders\PendidikanTerakhirSeeder;
 
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
       PendidikanTerakhirSeeder::class,
       StatusPerkawinanSeeder::class,
       FunctionarySeeder::class,
+      KelurahanSeeder::class,
     ]);
 
 
