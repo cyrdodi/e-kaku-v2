@@ -1,6 +1,10 @@
 {
+  "public/fonts/PlusJakartaSans-VariableFont_wght.ttf": {
+    "file": "assets/PlusJakartaSans-VariableFont_wght.e493fee2.ttf",
+    "src": "public/fonts/PlusJakartaSans-VariableFont_wght.ttf"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.56c2f0b1.js",
+    "file": "assets/app.27605932.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
@@ -12,7 +16,7 @@
     "src": "resources/js/app.css"
   },
   "resources/css/app.css": {
-    "file": "assets/app.49ea0e12.css",
+    "file": "assets/app.111ac16b.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
