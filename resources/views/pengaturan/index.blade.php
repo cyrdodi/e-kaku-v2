@@ -1,8 +1,13 @@
 <x-layouts.app>
   <x-slot name="header">
-    <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('Pengaturan') }}
-    </h2>
+    <div class="flex justify-between">
+
+      <h2 class="text-xl font-semibold leading-tight text-gray-800">
+        {{ __('Pengaturan') }}
+      </h2>
+
+      <x-breadcrumb current="Pengaturan" />
+    </div>
   </x-slot>
 
   <div class="py-10">

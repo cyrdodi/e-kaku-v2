@@ -76,7 +76,7 @@
           <td class="px-2 py-1">{{ $item->biodata->name}}</td>
           <td class="px-2 py-1">{{ $item->biodata->tempat_lahir .'/'. $item->biodata->tanggal_lahir}}</td>
           <td class="px-2 py-1">{{ $item->biodata->jenis_kelamin}}</td>
-          <td class="px-2 py-1">{{ $item->biodata->kecamatan->name}}</td>
+          <td class="px-2 py-1">{{ $item->biodata->kecamatanName->name}}</td>
           <td class="px-2 py-1">{{ $item->biodata->statusPerkawinan->name}}</td>
           <td class="px-2 py-1">{{ $item->biodata->pendidikanTerakhir->name}}</td>
           <td class="px-2 py-1">{{ $item->biodata->jurusan}}</td>

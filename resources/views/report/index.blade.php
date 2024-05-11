@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
   <x-slot name="header">
     <div class="flex justify-between">
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -16,4 +16,4 @@
       @livewire('report.report-list')
     </div>
   </div>
-</x-app-layout>
+</x-layouts.app>

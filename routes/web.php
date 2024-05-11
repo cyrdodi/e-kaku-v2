@@ -59,6 +59,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/test', [BiodataController::class, 'generateNoPendaftaran']);
+// Route::get('/test', [BiodataController::class, 'generateNoPendaftaran']);
 
 require __DIR__ . '/auth.php';
