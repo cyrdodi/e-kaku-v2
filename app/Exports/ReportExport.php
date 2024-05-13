@@ -33,9 +33,9 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, ShouldA
   public function columnFormats(): array
   {
     return [
-      // F is the column
-      'D' => '#0',
-      'E' => '#0',
+      // D is the column
+      'D' => 'General',
+      'E' => 'General',
     ];
   }
 
@@ -44,8 +44,8 @@ class ReportExport implements FromCollection, WithHeadings, WithMapping, ShouldA
     return [
       date('Y-m-d', strtotime($cetakTrans->created_at)),
       strtoupper($cetakTrans->biodata->name),
-      "`" . $cetakTrans->biodata->nik,
-      "`" . $cetakTrans->biodata->no_pendaftaran,
+      "'" . $cetakTrans->biodata->nik,
+      "'" . $cetakTrans->biodata->no_pendaftaran,
       strtoupper($cetakTrans->biodata->tempat_lahir),
       $cetakTrans->biodata->tanggal_lahir,
       strtoupper($cetakTrans->biodata->jenis_kelamin),
