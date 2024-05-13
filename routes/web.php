@@ -31,10 +31,10 @@ Route::middleware('auth')->group(function () {
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
   Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
-  Route::get('/biodata/show', [BiodataController::class, 'show'])->name('biodata.show');
-  Route::get('/biodata/create', [BiodataController::class, 'create'])->name('biodata.create');
-  Route::post('/biodata/create', [BiodataController::class, 'store']);
-  Route::get('/biodata/edit/{biodata}', [BiodataController::class, 'edit'])->name('biodataEdit');
+  // Route::get('/biodata/show', [BiodataController::class, 'show'])->name('biodata.show');
+  // Route::get('/biodata/create', [BiodataController::class, 'create'])->name('biodata.create');
+  // Route::post('/biodata/create', [BiodataController::class, 'store']);
+  // Route::get('/biodata/edit/{biodata}', [BiodataController::class, 'edit'])->name('biodataEdit');
 
   // delete berkas
   Route::delete('/biodata/delete/berkas', [BiodataController::class, 'destroyBerkas'])->name('biodataDestroyBerkas');
@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard/first-print/', [DashboardController::class, 'firstPrint'])->name('dashboard.firstPrint');
     Route::get('/dashboard/print/{cetakTransaction}', [DashboardController::class, 'print'])->name('dashboard.print');
-    Route::get('/dashboard/print-view/{cetak_trans}', [DashboardController::class, 'printView'])->name('dashboardPrintView');
+    // Route::get('/dashboard/print-view/{cetak_trans}', [DashboardController::class, 'printView'])->name('dashboardPrintView');
     Route::get('/dashboard/show/{biodata}', [DashboardController::class, 'show'])->name('dashboardShow');
     Route::get('/dashboard/edit/{biodata}', [DashboardController::class, 'edit'])->name('dashboardEdit');
     // Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboardCreate');
@@ -57,8 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/pengaturan/pejabat/create', [PengaturanController::class, 'pejabatCreate'])->name('pengaturan.pejabat.create');
   });
 });
-
-
 // Route::get('/test', [BiodataController::class, 'generateNoPendaftaran']);
 
 require __DIR__ . '/auth.php';

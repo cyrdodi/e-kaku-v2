@@ -115,20 +115,15 @@
       </div>
 
       <div>
-        <h2 class="text-4xl font-semibold">Persyaratan Pendaftaran <span class="font-bold">AK/1</span> di E-Kaku</h2>
+        <h2 class="text-4xl font-semibold">Persyaratan Pembuatan <span class="font-bold">AK/1</span></h2>
         <ul class="mt-6 ml-8 list-disc">
-          <li><b>Pas Foto</b> Background Merah, Format: <span class="badges">JPG</span>, <span
-              class="badges">JPEG</span>,
-            <span class="badges">PNG</span>
+          <li><b>Pas Foto</b> Background Merah 2 Lembar
           </li>
-          <li><b>Scan KTP</b>, Format: <span class="badges">JPG</span>, <span class="badges">JPEG</span>, <span
-              class="badges">PNG</span> </li>
-          <li><b>Scan Ijazah Terakhir</b>, Format: <span class="badges">PDF</span>, <span class="badges">JPG</span>,
-            <span class="badges">JPEG</span>, <span class="badges">PNG</span>
-          </li>
-          <li>Sertifikat (Opsional), Format: <span class="badges">PDF</span> </li>
+          <li><b>Fotocopy KTP</b></li>
+          <li><b>Fotocopy Ijazah Terakhir</b></li>
+          <li><b>Fotocopy Sertifikat (Opsional)</b></li>
         </ul>
-        <small class="mt-4 italic text-gray-600">*Masing-masing file berukuran maksimal 2 MB</small>
+        {{-- <small class="mt-4 italic text-gray-600">*Masing-masing file berukuran maksimal 2 MB</small> --}}
       </div>
     </div>
   </div>
@@ -139,7 +134,7 @@
     <div
       class="gap-12 px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8 md:flex md:items-center md:justify-center md:mx-auto ">
       <div>
-        <h2 class="text-4xl font-semibold">Tata Cara Penggunaan E-Kaku</h2>
+        <h2 class="text-4xl font-semibold">Jadwal Pembuatan Kartu Kuning</h2>
         <ol class="mt-6 ml-8 list-decimal">
           <li>Pencari Kerja membuat akun pada website E-Kaku</li>
           <li>Setelah mempunyai akun, langkah selanjutnya adalah melengkapi Biodata dan upload Berkas persyaratan</li>

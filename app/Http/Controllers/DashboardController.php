@@ -105,11 +105,6 @@ class DashboardController extends Controller
     return $prefix . $noUrut . $suffix;
   }
 
-  // public function printView(CetakTransaction $cetakTrans)
-  // {
-  //   return view('pdf/kaku', compact('cetakTrans'));
-  // }
-
 
   public function show(Biodata $biodata)
   {
