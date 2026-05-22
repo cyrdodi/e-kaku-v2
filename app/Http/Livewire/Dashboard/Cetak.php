@@ -48,11 +48,11 @@ class Cetak extends ModalComponent
         return redirect()->route('dashboardPrintView', ['cetak_trans' => $cetakTransId]);
       });
     } catch (\Exception $e) {
-      toastr()->error($e->getMessage(), 'Error');
+      flash()->error($e->getMessage());
     }
 
 
-    // toastr()->success('Berhasil input');
+    // flash()->success('Berhasil input');
 
     // go to preview pdf
   }

@@ -72,7 +72,7 @@
 
                 @if ($cetak == null)
                     <button
-                        onclick="Livewire.emit('openModal', 'dashboard.cetak', {{ json_encode(['biodata' => $biodata->id]) }})"
+                        onclick="Livewire.dispatch('openModal', { component: 'dashboard.cetak', arguments: {{ json_encode(['biodata' => $biodata->id]) }} })"
                         class="btn btn-primary ">
                         <x-icons.printer class="mr-2" />
                         <span>Cetak Kartu</span>

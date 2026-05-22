@@ -6,19 +6,21 @@ use Filament\Forms\Components\TextInput;
 use Livewire\Component;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Form;
 
 class CreatePejabat extends Component implements HasForms
 {
   use InteractsWithForms;
 
-  protected function getFormSchema(): array
+  public function form(Form $form): Form
   {
-    return [
-      TextInput::make('name'),
-      TextInput::make('nip'),
-      TextInput::make('golongan'),
-      TextInput::make('jabatan'),
-    ];
+    return $form
+      ->schema([
+        TextInput::make('name'),
+        TextInput::make('nip'),
+        TextInput::make('golongan'),
+        TextInput::make('jabatan'),
+      ]);
   }
 
   public function render()

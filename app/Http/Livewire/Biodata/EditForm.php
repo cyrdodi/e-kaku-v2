@@ -249,7 +249,7 @@ class EditForm extends Component
         'tujuan_lamaran' => $this->tujuan_lamaran,
       ]);
 
-    toastr()->success('Biodata updated', 'Sukses');
+    flash()->success('Biodata updated');
 
     return redirect($this->previousUrl);
   }

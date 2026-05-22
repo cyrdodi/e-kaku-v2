@@ -7,36 +7,29 @@ use App\Models\Functionary;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Concerns\InteractsWithTable;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class TablePejabat extends Component implements HasTable
 {
   use InteractsWithTable;
 
-  protected function getTableQuery(): Builder|Relation
+  public function table(Table $table): Table
   {
-    return Functionary::query();
-  }
-
-  protected function getTableColumns(): array
-  {
-    return [
-      TextColumn::make('name'),
-      TextColumn::make('nip'),
-      TextColumn::make('golongan'),
-      TextColumn::make('jabatan')
-        ->wrap(),
-    ];
-  }
-
-  protected function getTableActions(): array
-  {
-    return [
-      Action::make('edit')
-        ->url(route('pengaturan.index'))
-    ];
+    return $table
+      ->query(Functionary::query())
+      ->columns([
+        TextColumn::make('name'),
+        TextColumn::make('nip'),
+        TextColumn::make('golongan'),
+        TextColumn::make('jabatan')
+          ->wrap(),
+      ])
+      ->actions([
+        Action::make('edit')
+          ->url(route('pengaturan.index'))
+      ]);
   }
 
   public function render()
