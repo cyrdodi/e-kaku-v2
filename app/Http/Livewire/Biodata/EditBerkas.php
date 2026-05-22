@@ -23,7 +23,7 @@ class EditBerkas extends ModalComponent
   public function savePasFoto()
   {
     $this->validate([
-      'pas_foto' => 'image|requred|max:2048'
+      'pas_foto' => 'required|image|mimes:jpeg,png,jpg|max:2048'
     ]);
 
     $originalName = $this->pas_foto->getClientOriginalName();

@@ -24,72 +24,81 @@ class CreateForm extends Component
 
   public $previousUrl;
 
-  protected $rules = [
-    'nik' => 'required|numeric|digits:16',
-    'name' => 'required',
-    'tempat_lahir' => 'required',
-    'tanggal_lahir' => 'date|required',
-    'jenis_kelamin' => 'required',
-    'kecamatan_id' => 'required',
-    'kelurahan' => 'required',
-    'kode_pos' => 'required|numeric',
-    'alamat' => 'required',
-    'rtrw' => 'required',
-    'no_hp' => 'required|numeric',
-    'email' => 'required|email',
-    'agama_id' => 'required',
-    'status_perkawinan_id' => 'required',
-    'tinggi_badan' => 'required|numeric',
-    'berat_badan' => 'required|numeric',
-    'disabilitas' => 'required',
-    'pendidikan_terakhir_id' => 'required',
-    'tahun_lulus' => 'required|numeric',
-    'institusi_pendidikan' => 'required',
-    'jurusan' => 'required',
-    // 'pas_foto' => 'required|max:2048|image',
-    // 'ktp' => 'required|max:2048|image',
-    // 'ijazah' => 'required|max:2048|mimes:pdf,jpg,jpeg,png',
-    // 'sertifikat' =>  'max:2048|mimes:pdf'
-  ];
+  public function rules()
+  {
+    return [
+      'nik' => 'required|numeric|digits:16',
+      'name' => 'required',
+      'tempat_lahir' => 'required',
+      'tanggal_lahir' => 'date|required',
+      'jenis_kelamin' => 'required',
+      'kecamatan_id' => 'required',
+      'kelurahan' => 'required',
+      'kode_pos' => 'required|numeric',
+      'alamat' => 'required',
+      'rtrw' => 'required',
+      'no_hp' => 'required|numeric',
+      'email' => 'required|email',
+      'agama_id' => 'required',
+      'status_perkawinan_id' => 'required',
+      'tinggi_badan' => 'required|numeric',
+      'berat_badan' => 'required|numeric',
+      'disabilitas' => 'required',
+      'pendidikan_terakhir_id' => 'required',
+      'tahun_lulus' => 'required|numeric',
+      'institusi_pendidikan' => 'required',
+      'jurusan' => 'required',
+    ];
+  }
 
   public function updatedPasFoto()
   {
-    $this->validate(['pas_foto' => 'mimes:jpg,jpeg,png|max:2048']);
+    $this->validate(['pas_foto' => 'required|image|mimes:jpeg,png,jpg|max:2048']);
   }
 
   public function updatedKtp()
   {
-    $this->validate(['ktp' => 'mimes:jpg,jpeg,png|max:2048']);
+    $this->validate(['ktp' => 'required|image|mimes:jpeg,png,jpg|max:2048']);
   }
   public function updatedIjazah()
   {
-    $this->validate(['ijazah' => 'mimes:pdf,jpg,jpeg,png|max:2048']);
+    $this->validate(['ijazah' => 'required|file|mimes:pdf,jpg,jpeg,png|max:2048']);
   }
   public function updatedSertifikat()
   {
-    $this->validate(['sertifikat' => 'mimes:pdf|max:2048']);
+    $this->validate(['sertifikat' => 'nullable|file|mimes:pdf|max:2048']);
   }
 
   public function submit()
   {
     $this->validate();
 
-    // jika admin maka dibolehkan tidak upload ijazah
+    $fileRules = [];
+
     if (!auth()->user()->is_admin == 1) {
-      // $this->validate([
-      //   'ijazah' => 'max:2048|mimes:pdf,jpg,jpeg,png',
-      // ]);
-      $this->validate([
-        'ijazah' => 'required|max:2048|mimes:pdf,jpg,jpeg,png',
-      ]);
+      $fileRules['pas_foto'] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+      $fileRules['ktp'] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+      $fileRules['ijazah'] = 'required|file|mimes:pdf,jpg,jpeg,png|max:2048';
+    } else {
+      if ($this->pas_foto || $this->ktp) {
+        $fileRules['pas_foto'] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+        $fileRules['ktp'] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+      }
+      if ($this->ijazah) {
+        $fileRules['ijazah'] = 'file|mimes:pdf,jpg,jpeg,png|max:2048';
+      }
+    }
+
+    if ($this->sertifikat) {
+      $fileRules['sertifikat'] = 'file|mimes:pdf|max:2048';
+    }
+
+    if (!empty($fileRules)) {
+      $this->validate($fileRules);
     }
 
     try {
       if ($this->sertifikat) {
-        $this->validate([
-          'sertifikat' =>  'max:2048|mimes:pdf'
-        ]);
-
         $sertifikatName = $this->sertifikat->getClientOriginalName();
         $sertifikatPath  = $this->sertifikat->store('berkas');
       }

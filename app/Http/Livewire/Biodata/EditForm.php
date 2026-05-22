@@ -29,30 +29,32 @@ class EditForm extends Component
 
   public $previousUrl;
 
-  // validation
-  protected $rules = [
-    'nik' => 'required|numeric|digits:16',
-    'name' => 'required',
-    'tempat_lahir' => 'required',
-    'tanggal_lahir' => 'date|required',
-    'jenis_kelamin' => 'required',
-    'kecamatan_id' => 'required',
-    'kelurahan' => 'required',
-    'kode_pos' => 'required|numeric',
-    'alamat' => 'required',
-    'rtrw' => 'required',
-    'no_hp' => 'required|numeric',
-    'email' => 'required|email',
-    'agama_id' => 'required',
-    'status_perkawinan_id' => 'required',
-    'tinggi_badan' => 'required|numeric',
-    'berat_badan' => 'required|numeric',
-    'disabilitas' => 'required',
-    'pendidikan_terakhir_id' => 'required',
-    'tahun_lulus' => 'required|numeric',
-    'institusi_pendidikan' => 'required',
-    'jurusan' => 'required',
-  ];
+  public function rules()
+  {
+    return [
+      'nik' => 'required|numeric|digits:16',
+      'name' => 'required',
+      'tempat_lahir' => 'required',
+      'tanggal_lahir' => 'date|required',
+      'jenis_kelamin' => 'required',
+      'kecamatan_id' => 'required',
+      'kelurahan' => 'required',
+      'kode_pos' => 'required|numeric',
+      'alamat' => 'required',
+      'rtrw' => 'required',
+      'no_hp' => 'required|numeric',
+      'email' => 'required|email',
+      'agama_id' => 'required',
+      'status_perkawinan_id' => 'required',
+      'tinggi_badan' => 'required|numeric',
+      'berat_badan' => 'required|numeric',
+      'disabilitas' => 'required',
+      'pendidikan_terakhir_id' => 'required',
+      'tahun_lulus' => 'required|numeric',
+      'institusi_pendidikan' => 'required',
+      'jurusan' => 'required',
+    ];
+  }
 
   public function mount(Biodata $biodata)
   {
@@ -106,28 +108,28 @@ class EditForm extends Component
   public function updatedPasFoto()
   {
     $this->validate([
-      'pas_foto' => 'mimes:jpg,jpeg,png|max:2048'
+      'pas_foto' => 'image|mimes:jpeg,png,jpg|max:2048'
     ]);
   }
 
   public function updatedKtp()
   {
     $this->validate([
-      'ktp' => 'mimes:jpg,jpeg,png|max:2048'
+      'ktp' => 'image|mimes:jpeg,png,jpg|max:2048'
     ]);
   }
 
   public function updatedIjazah()
   {
     $this->validate([
-      'ijazah' => 'mimes:pdf,jpg,jpeg,png|max:2048'
+      'ijazah' => 'file|mimes:pdf,jpg,jpeg,png|max:2048'
     ]);
   }
 
   public function updatedSertifikat()
   {
     $this->validate([
-      'sertifikat' => 'mimes:pdf|max:2048'
+      'sertifikat' => 'file|mimes:pdf|max:2048'
     ]);
   }
 
@@ -148,7 +150,7 @@ class EditForm extends Component
     //  update pas foto
     if ($this->pas_foto) {
       $this->validate([
-        'pas_foto' => 'image|max:2048'
+        'pas_foto' => 'image|mimes:jpeg,png,jpg|max:2048'
       ]);
 
       // delete old file
@@ -168,7 +170,7 @@ class EditForm extends Component
     // update ktp
     if ($this->ktp) {
       $this->validate([
-        'ktp' => 'image|max:2048'
+        'ktp' => 'image|mimes:jpeg,png,jpg|max:2048'
       ]);
 
       // delete old file
@@ -187,7 +189,7 @@ class EditForm extends Component
     // update ijazah
     if ($this->ijazah) {
       $this->validate([
-        'ijazah' => 'mimes:pdf,jpg,jpeg,png|max:2048'
+        'ijazah' => 'file|mimes:pdf,jpg,jpeg,png|max:2048'
       ]);
 
       // delete old file
@@ -205,7 +207,7 @@ class EditForm extends Component
 
     if ($this->sertifikat) {
       $this->validate([
-        'sertifikat' => 'mimes:pdf|max:2048'
+        'sertifikat' => 'file|mimes:pdf|max:2048'
       ]);
 
       if ($this->biodata->sertifikat_path !== null) {
