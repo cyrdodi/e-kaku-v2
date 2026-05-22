@@ -26,8 +26,8 @@
       <div class="flex justify-between mb-4">
         <div class="flex gap-3 items-center">
           {{-- <form wire:submit.prevent="search"> --}}
-            <input type="text" placeholder="Pencarian by nama/nik"
-              class="md:w-[400px] w-lg max-w-lg  input input-bordered" wire:model="search" />
+            <input type="text" placeholder="Pencarian by nama"
+              class="md:w-[400px] w-lg max-w-lg  input input-bordered" wire:model.live.debounce.150ms="search" />
             {{-- <button type="submit" class="btn btn-outline btn-primary">Search</button> --}}
             {{--
           </form> --}}
@@ -35,7 +35,7 @@
 
         <div class="flex gap-4">
 
-          <select class="select select-bordered w-full max-w-xs" wire:model="year">
+          <select class="select select-bordered w-full max-w-xs" wire:model.live="year">
             @foreach($years as $year)
             @if(is_array($year))
             <option value="{{ $year['years'] }}" {{ date('Y')==$year['years'] ? 'selected' : '' }}>

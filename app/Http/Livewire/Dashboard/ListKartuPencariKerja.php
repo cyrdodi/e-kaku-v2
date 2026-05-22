@@ -41,8 +41,7 @@ class ListKartuPencariKerja extends Component
     $biodata = Biodata::with('pendidikanTerakhir', 'kecamatan')
       ->whereYear('created_at', $this->year)
       ->when(!empty($this->search), function ($query) {
-        return  $query->where('name', 'like', '%' .  $this->search . '%')
-          ->orWhere('nik', 'like', '%' . $this->search . '%');
+        return  $query->where('name', 'like', '%' .  $this->search . '%');
       })
       ->orderBy('id', 'desc')
       ->paginate(10);

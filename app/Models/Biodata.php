@@ -16,6 +16,15 @@ class Biodata extends Model
   public $table = 'biodata';
   public $guarded = [];
 
+  protected function casts(): array
+  {
+    return [
+      'nik' => 'encrypted',
+      'no_hp' => 'encrypted',
+      'email' => 'encrypted',
+    ];
+  }
+
   public function kecamatan()
   {
     return $this->belongsTo(Kecamatan::class);
