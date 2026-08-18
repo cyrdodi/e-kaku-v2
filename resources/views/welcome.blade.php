@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'E-Kaku') }} - Layanan Kartu AK/1 Pandeglang</title>
-
+  <title>{{ config('app.name', 'E-Kaku') }} - Layanan Kartu Pencari Kerja (AK.1) Pandeglang</title>
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
   <link rel="apple-touch-icon" href="{{ asset('logo-didingklik-dark.png') }}">
   <meta name="theme-color" content="#2563eb">
   <meta name="description"
-    content="Aplikasi pembuatan kartu kuning secara online Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang dialihkan ke Didingklik">
+    content="Aplikasi pembuatan Kartu Pencari Kerja (AK.1) secara online Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang dialihkan ke Didingklik">
   <meta name="author" content="Dodi Yulian">
 
   <!-- Scripts -->
@@ -100,10 +100,10 @@
           <span>Layanan Terintegrasi Didingklik Pandeglang</span>
         </div>
         <h1 class="font-extrabold text-center md:text-left text-4xl md:text-5xl lg:text-6xl text-slate-900 leading-tight">
-          Layanan Kartu Kuning (AK/1) Kini Berada di <span class="text-primary">Didingklik</span>
+          Layanan <span class="text-primary">Kartu Pencari Kerja (AK.1)</span> Kini Berada di Didingklik
         </h1>
         <p class="mt-4 text-lg text-slate-600 md:text-left text-center leading-relaxed">
-          Pendaftaran dan pembuatan Kartu AK/1 Online Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang resmi dialihkan ke aplikasi terpadu <strong>Didingklik</strong> (Dewi Iing Klik).
+          Pendaftaran dan pembuatan <strong>Kartu Pencari Kerja (AK.1)</strong> Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang resmi dialihkan ke aplikasi terpadu <strong>Didingklik</strong> (Dewi Iing Klik).
         </p>
 
         <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 mt-6">
@@ -158,8 +158,8 @@
       </div>
 
       <div>
-        <h2 class="text-3xl font-bold text-slate-900">Persyaratan Pendaftaran <span class="text-primary font-extrabold">AK/1</span></h2>
-        <p class="text-slate-600 mt-2">Pastikan dokumen berikut siap sebelum mengajukan pembuatan Kartu Kuning melalui Didingklik:</p>
+        <h2 class="text-3xl font-bold text-slate-900">Persyaratan Pendaftaran <span class="text-primary font-extrabold">Kartu Pencari Kerja (AK.1)</span></h2>
+        <p class="text-slate-600 mt-2">Pastikan dokumen berikut siap sebelum mengajukan pembuatan Kartu Pencari Kerja (AK.1) melalui Didingklik:</p>
         <ul class="mt-6 space-y-3">
           <li class="flex items-start gap-2">
             <span class="bg-primary/10 text-primary p-1 rounded-full text-xs mt-0.5">✓</span>
@@ -198,10 +198,10 @@
             <strong>Registrasi / Log In:</strong> Buat akun baru atau masuk menggunakan akun Didingklik Anda.
           </li>
           <li class="pl-2">
-            <strong>Isi Formulir & Upload Berkas:</strong> Pilih layanan Kartu Kuning (AK/1) Disnakertrans, lengkapi data diri serta unggah dokumen persyaratan.
+            <strong>Isi Formulir & Upload Berkas:</strong> Pilih layanan <strong>"Kartu Pencari Kerja (AK.1)"</strong> Disnakertrans, lengkapi data diri serta unggah dokumen persyaratan.
           </li>
           <li class="pl-2">
-            <strong>Verifikasi & Cetak:</strong> Datang ke kantor pelayanan Disnakertrans Kabupaten Pandeglang untuk pencetakan fisik kartu.
+            <strong>Persetujuan & Cetak Mandiri:</strong> Setelah berkas diverifikasi dan disetujui, Kartu Pencari Kerja (AK.1) yang telah dilengkapi Tanda Tangan Elektronik (TTE) resmi dapat diunduh dan dicetak secara mandiri oleh pemohon.
           </li>
         </ol>
       </div>

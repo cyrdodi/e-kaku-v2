@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
    */
   public function create()
   {
-    return redirect('/')->with('status', 'Pendaftaran mandiri telah dinonaktifkan. Layanan pembuatan Kartu AK/1 Online beralih ke aplikasi Didingklik.');
+    return redirect('/')->with('status', 'Pendaftaran mandiri telah dinonaktifkan. Layanan pembuatan Kartu Pencari Kerja (AK.1) beralih ke aplikasi Didingklik.');
   }
 
   /**
@@ -31,6 +31,6 @@ class RegisteredUserController extends Controller
    */
   public function store(Request $request)
   {
-    return redirect('/')->with('status', 'Pendaftaran mandiri telah dinonaktifkan. Layanan pembuatan Kartu AK/1 Online beralih ke aplikasi Didingklik.');
+    return redirect('/')->with('status', 'Pendaftaran mandiri telah dinonaktifkan. Layanan pembuatan Kartu Pencari Kerja (AK.1) beralih ke aplikasi Didingklik.');
   }
 }
