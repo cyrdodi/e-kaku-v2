@@ -5,8 +5,10 @@
       <div class="flex">
         <!-- Logo -->
         <div class="flex items-center shrink-0">
-          <a href="/">
-            <img src="{{ asset('images/logo-app.png') }}" alt="" class="w-[188px]">
+          <a href="/" class="flex items-center gap-3 py-1">
+            <img src="{{ asset('images/logo-app.png') }}" alt="Logo Disnakertrans" class="h-9 object-contain">
+            <div class="h-5 w-px bg-gray-200"></div>
+            <img src="{{ asset('logo-didingklik-dark.png') }}" alt="Logo Didingklik" class="h-8 object-contain">
           </a>
         </div>
 

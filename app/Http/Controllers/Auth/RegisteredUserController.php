@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
    */
   public function create()
   {
-    return view('auth.register');
+    return redirect('/')->with('status', 'Pendaftaran mandiri telah dinonaktifkan. Layanan pembuatan Kartu AK/1 Online beralih ke aplikasi Didingklik.');
   }
 
   /**
@@ -28,27 +28,9 @@ class RegisteredUserController extends Controller
    *
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\RedirectResponse
-   *
-   * @throws \Illuminate\Validation\ValidationException
    */
   public function store(Request $request)
   {
-    $request->validate([
-      'name' => ['required', 'string', 'max:255'],
-      'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-      'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    ]);
-
-    $user = User::create([
-      'name' => $request->name,
-      'email' => $request->email,
-      'password' => Hash::make($request->password),
-    ]);
-
-    event(new Registered($user));
-
-    Auth::login($user);
-
-    return redirect(RouteServiceProvider::BIODATA);
+    return redirect('/')->with('status', 'Pendaftaran mandiri telah dinonaktifkan. Layanan pembuatan Kartu AK/1 Online beralih ke aplikasi Didingklik.');
   }
 }

@@ -61,6 +61,14 @@ class LoginRequest extends FormRequest
       ]);
     }
 
+    // Jika user bukan admin (login pengguna umum dinonaktifkan)
+    if (Auth::user()->is_admin != 1) {
+      Auth::logout();
+      throw ValidationException::withMessages([
+        'email' => __('Login untuk pengguna umum telah dinonaktifkan. Layanan pembuatan Kartu AK/1 Online telah dialihkan ke aplikasi Didingklik.'),
+      ]);
+    }
+
 
     RateLimiter::clear($this->throttleKey());
   }

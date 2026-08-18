@@ -1,12 +1,17 @@
 <x-guest-layout>
   <x-auth-card>
     <x-slot name="logo">
-      <a href="/">
-        {{-- <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pandeglang" class="object-contain w-24">
-        --}}
-        <img src="{{ asset('images/logo-app.png') }}" alt="" class="w-[450px]">
+      <a href="/" class="flex flex-row items-center justify-center gap-3 mb-2">
+        <img src="{{ asset('images/logo-app.png') }}" alt="Logo Disnakertrans" class="h-10 object-contain">
+        <div class="h-7 w-px bg-gray-300"></div>
+        <img src="{{ asset('logo-didingklik-dark.png') }}" alt="Logo Didingklik" class="h-9 object-contain">
       </a>
     </x-slot>
+
+    <div class="p-3 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 border border-blue-200">
+      <div class="font-bold mb-1">📌 Akses Khusus Admin / Petugas</div>
+      <div>Halaman login ini khusus untuk Admin & Petugas Disnakertrans. Pengguna umum/pencari kerja silakan gunakan layanan melalui aplikasi atau portal website <strong>Didingklik</strong>.</div>
+    </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -41,16 +46,13 @@
         </label>
       </div>
 
-      <div class="flex items-center justify-end mt-4">
-        @if (Route::has('password.request'))
-        <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          href="{{ route('register') }}">
-          {{ __('Buat akun baru') }}
+      <div class="flex items-center justify-between mt-4">
+        <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none" href="/">
+          &larr; Kembali ke Beranda
         </a>
-        @endif
 
         <button type="submit" class="ml-3 btn btn-primary">
-          Log in
+          Log in Admin
         </button>
       </div>
     </form>
