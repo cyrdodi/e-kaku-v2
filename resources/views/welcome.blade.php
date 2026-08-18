@@ -15,13 +15,12 @@
     rel="stylesheet">
 
   {{-- favicon --}}
-  <link rel="icon" type="image/svg+xml" href="{{ asset('logo-didingklik.svg') }}">
-  <link rel="icon" type="image/png" href="{{ asset('logo-didingklik-dark.png') }}">
-  <link rel="apple-touch-icon" href="{{ asset('logo-didingklik-dark.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('images/logo-pandeglang.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('images/logo-pandeglang.png') }}">
   <meta name="theme-color" content="#2563eb">
   <meta name="description"
     content="Aplikasi pembuatan Kartu Pencari Kerja (AK.1) secara online Dinas Tenaga Kerja dan Transmigrasi Kabupaten Pandeglang dialihkan ke Didingklik">
-  <meta name="author" content="Dodi Yulian">
+  <meta name="author" content="Umbi">
 
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -172,10 +171,11 @@
           <div class="w-full max-w-md bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-200/80 shadow-2xl shadow-blue-500/10 space-y-6 relative hover:shadow-blue-500/15 transition-all duration-300">
             
             <!-- Logo Header Card -->
-            <div class="flex items-center justify-center gap-4 py-2 border-b border-slate-100">
-              <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pemkab Pandeglang" class="h-16 object-contain hover:scale-105 transition-transform">
-              <div class="h-10 w-px bg-slate-200"></div>
-              <img src="{{ asset('logo-didingklik-dark.png') }}" alt="Didingklik Logo" class="h-16 object-contain hover:scale-105 transition-transform">
+            <div class="flex items-center justify-center gap-3 py-2 border-b border-slate-100">
+         
+              <img src="{{ asset('images/logo-pandeglang.png') }}" alt="Logo Pemkab Pandeglang" class="h-12 sm:h-14 object-contain hover:scale-105 transition-transform" title="Pemkab Pandeglang">
+              <div class="h-8 w-px bg-slate-200"></div>
+              <img src="{{ asset('logo-didingklik-dark.png') }}" alt="Logo Didingklik" class="h-11 sm:h-12 object-contain hover:scale-105 transition-transform" title="Didingklik">
             </div>
 
             <!-- Hero Illustration Image -->

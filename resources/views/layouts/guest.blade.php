@@ -15,9 +15,8 @@
     rel="stylesheet">
 
   {{-- favicon --}}
-  <link rel="icon" type="image/svg+xml" href="{{ asset('logo-didingklik.svg') }}">
-  <link rel="icon" type="image/png" href="{{ asset('logo-didingklik-dark.png') }}">
-  <link rel="apple-touch-icon" href="{{ asset('logo-didingklik-dark.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('images/logo-pandeglang.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('images/logo-pandeglang.png') }}">
 
   <style>
 
